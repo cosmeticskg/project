@@ -1,0 +1,35 @@
+/* .detail-photo-slider{
+    height: 900px;
+    width: 100%;
+} */
+
+
+.App {
+    text-align: center;
+    padding: 0;
+}
+
+.slick-slider .slick-prev,
+.slick-slider .slick-next {
+    position: absolute;
+    top: 50%;
+    z-index: 20;
+}
+
+.slick-slider {
+    position: relative;
+}
+
+.slick-slider .slick-prev {
+    left: 5% !important;
+    z-index: 20;
+}
+
+.slick-slider .slick-next {
+    right: 5% !important;
+    z-index: 20;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: whitesmoke !important;
+}

@@ -1,0 +1,38 @@
+header {
+    display: flex;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    background: #f2f2f2;
+}
+
+header button {
+    color: black;
+    font-size: 35px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.header_name {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.header_buttons {
+    margin: 0;
+    padding: 0;
+    /* background-color: grey; */
+    width: 100px;
+    display: flex;
+    justify-content: flex-end ;
+}
+
+.header_buttons button {
+    height: 40px;
+}
+
+.header_buttons img {
+    width: 35px;
+    height: 35px;
+}
