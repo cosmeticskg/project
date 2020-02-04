@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./header-main.css";
 import cart from "../../img/shopping-cart.png";
 import favorites from "../../img/folder.png";
+import { Link } from "react-router-dom";
 
 function HeaderMain(props) {
   return (
@@ -13,9 +14,11 @@ function HeaderMain(props) {
         <button>
           <img src={favorites} alt="favorites" />
         </button>
-        <button>
-          <img src={cart} alt="cart" />
-        </button>
+        <Link to="/cart">
+          <button>
+            <img src={cart} alt="cart" />
+          </button>
+        </Link>
       </div>
     </header>
   );
