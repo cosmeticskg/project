@@ -13,7 +13,7 @@ import { getProductsRequestThunk } from "./actions";
 class Cart extends Component {
   componentDidMount() {
     this.props.fetchProducts();
-    console.log(this.props);
+    // console.log(this.props);
   }
 
   render() {
@@ -37,7 +37,7 @@ class Cart extends Component {
               <p>Корзина: (this.props.count)</p>
             </div>
             <CartList
-              products={allProducts}
+              purchasedProducts={allProducts}
               //  onAddedToCart={onAddedToCart}
             />
           </div>

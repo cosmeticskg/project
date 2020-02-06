@@ -1,11 +1,12 @@
 import {
   GET_PRODUCT_REQUEST,
   GET_PRODUCT_SUCCESS,
-  GET_PRODUCT_ERROR
+  GET_PRODUCT_ERROR,
+  GET_PURCHASED_PRODUCTS_FROM_STORE
 } from "./actions";
 
 const initialState = {
-  products: [],
+  purchasedProducts: [],
   error: false,
   loading: false,
   count: 0,
@@ -14,6 +15,11 @@ const initialState = {
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_PURCHASED_PRODUCTS_FROM_STORE:
+      return {
+        ...state,
+        purchasedProducts: action.payload
+      };
     case GET_PRODUCT_REQUEST:
       return {
         ...state,
@@ -24,7 +30,7 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        products: action.payload
+        purchasedProducts: action.payload
       };
     case GET_PRODUCT_ERROR:
       return {

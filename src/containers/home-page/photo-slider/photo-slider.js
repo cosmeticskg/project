@@ -23,7 +23,7 @@ const photos = [
   {
     name: "Photo 1",
     url:
-      "http://www.v3wall.com/wallpaper/1366_768/1001/1366_768_20100117013002386531.jpg"
+      "https://images.wallpaperscraft.ru/image/kosmetika_kraski_palitra_159038_1366x768.jpg"
   }
 ];
 

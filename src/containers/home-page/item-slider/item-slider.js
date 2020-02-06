@@ -6,40 +6,17 @@ import Slider from "react-slick";
 const items = [
   {
     item: <Item />
-  },
-  {
-    item: <Item />
-  },
-  {
-    item: <Item />
-  },
-  {
-    item: <Item />
-  },
-  {
-    item: <Item />
-  },
-  {
-    item: <Item />
-  },
-  {
-    item: <Item />
-  },
-  {
-    item: <Item />
-  },
-  {
-    item: <Item />
-  },
-  {
-    item: <Item />
-  },
-  {
-    item: <Item />
   }
 ];
 
+
 export default class ItemSlider extends Component {
+
+  componentDidMount(){
+    // console.log(this.props);
+    
+  }
+  
   render() {
     const settings = {
       dots: false,
@@ -52,14 +29,19 @@ export default class ItemSlider extends Component {
       // autoplay: true,
       // autoplaySpeed: 3000
     };
+    const {products} = this.props;
     return (
       <div>
-        <h1>Рекомендуемые товары</h1>
         <div className="item__slider">
           <Slider  {...settings}>
-            {items.map(items => {
+              {
+                products.products.map(items => {
+                  return <div className="item__slider__row"><Item products={items} /></div>; 
+                })
+              }
+            {/* {items.map(items => {
               return <div className="item__slider__row">{items.item}</div>;
-            })}
+            })} */}
           </Slider>
         </div>
       </div>

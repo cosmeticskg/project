@@ -8,7 +8,9 @@ function HeaderMain(props) {
   return (
     <header>
       <div className="header_name">
-        <button>Cosmetica.kg</button>
+        <Link to="/">
+          <button>Cosmetica.kg</button>
+        </Link>
       </div>
       <div className="header_buttons">
         <button>

@@ -18,7 +18,7 @@ const CartItem = product => {
           <span>{product.description}</span>
         </div>
         <div>
-          <p>{product.price} сом</p>
+          <p>{product.current_price} сом</p>
         </div>
       </div>
       <div className="cart-item-buttons">

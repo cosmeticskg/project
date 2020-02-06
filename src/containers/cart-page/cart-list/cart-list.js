@@ -3,11 +3,11 @@ import CartItem from "../cart-item";
 import "./cart-list.css";
 
 const CartList = props => {
-//   console.log(props);
+  // console.log(props);
 
   return (
     <div className="cart-item-list">
-      {props.products.products.map(product => {
+      {props.purchasedProducts.purchasedProducts.map(product => {
         return (
           <CartItem
             key={product.id}

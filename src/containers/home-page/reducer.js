@@ -1,13 +1,14 @@
 import {
   GET_PRODUCT_REQUEST,
   GET_PRODUCT_SUCCESS,
-  GET_PRODUCT_ERROR
+  GET_PRODUCT_ERROR,
 } from "./actions";
 
 const initialState = {
   products: [],
   error: false,
   loading: false,
+  count: 0,
   total: 0
 };
 

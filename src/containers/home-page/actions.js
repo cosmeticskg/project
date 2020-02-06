@@ -1,8 +1,8 @@
 import API from "../../API";
 
-export const GET_PRODUCT_REQUEST = "[CART_PAGE] GET_POSTS_REQUEST";
-export const GET_PRODUCT_SUCCESS = "[CART-PAGE] GET_POSTS_SUCCESS";
-export const GET_PRODUCT_ERROR = "[CART_PAGE] GET_POSTS_ERROR";
+export const GET_PRODUCT_REQUEST = "[CART_PAGE] GET_PRODUCT_REQUEST";
+export const GET_PRODUCT_SUCCESS = "[CART-PAGE] GET_PRODUCT_SUCCESS";
+export const GET_PRODUCT_ERROR = "[CART_PAGE] GET_PRODUCT_ERROR";
 
 export const getProductsRequest = () => ({ type: GET_PRODUCT_REQUEST });
 export const getProductsSuccess = data => ({
@@ -15,7 +15,7 @@ export const getProductsRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getProducts()
     .then(res => {
-      console.log(res, "RESPONSE fROM GET Products");
+      // console.log(res.data);
       dispatch(getProductsSuccess(res.data));
     })
     .catch(err => {
