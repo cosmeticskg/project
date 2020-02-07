@@ -8,16 +8,16 @@ import API from "../../API";
 import Spinner from "../../components/spinner/spinner";
 import ErrorIndicator from "../../components/error-indicator";
 import { connect } from "react-redux";
-import { getProductsRequestThunk } from "./actions";
+import {
+  allProductsRemovedFromCart,
+  productRemovedFromCart,
+  productAddedToCart
+} from "./actions";
 
-class Cart extends Component {
-  componentDidMount() {
-    this.props.fetchProducts();
-    // console.log(this.props);
-  }
-
-  render() {
-    const { allProducts, loading, error } = this.props;
+const Cart = (props) =>  {
+  const {cartItems, onIncrease, onDecrease, onDelete,loading,error} = props;
+  console.log(props);
+  
 
     if (loading) {
       return <Spinner />;
@@ -37,7 +37,11 @@ class Cart extends Component {
               <p>Корзина: (this.props.count)</p>
             </div>
             <CartList
-              purchasedProducts={allProducts}
+              cartItems={cartItems}
+              onDecrease={onDecrease}
+              onIncrease={onIncrease}
+              onDelete={onDelete}
+              // purchasedProducts={allProducts}
               //  onAddedToCart={onAddedToCart}
             />
           </div>
@@ -46,7 +50,7 @@ class Cart extends Component {
             <h2>Сумма заказа</h2>
             <div>
               <p>К оплате</p>
-              <p>7000сом</p>
+              <p>{cartItems.total}</p>
             </div>
             <button>Купить</button>
           </div>
@@ -54,17 +58,19 @@ class Cart extends Component {
         <Footer />
       </div>
     );
-  }
+  
 }
 
-const mapStateToProps = store => ({
-  allProducts: store.cart
-});
-
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = (state) => {
   return {
-    fetchProducts: () => dispatch(getProductsRequestThunk())
+    cartItems: state.cart,
   };
+};
+
+const mapDispatchToProps = {
+  onIncrease: productAddedToCart,
+  onDecrease: productRemovedFromCart,
+  onDelete: allProductsRemovedFromCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

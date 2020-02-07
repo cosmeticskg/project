@@ -4,9 +4,8 @@ import itemPic from "../../../img/items/pomada.jpg";
 import trash from "../../../img/trash.svg";
 import heartInactive from "../../../img/heart-inactive.svg";
 
-const CartItem = product => {
+const CartItem = (product,{onDecrease,onDelete,onIncrease,cartItems}) => {
   // console.log(product);
-
   return (
     <div className="cart-item-wrapper">
       <input type="checkbox" className="cart-checkbox" />
@@ -23,7 +22,7 @@ const CartItem = product => {
       </div>
       <div className="cart-item-buttons">
         <div>
-          <button className="cart-like-trash-btn">
+          <button onClick={() => onDelete(product.get_id)} className="cart-like-trash-btn">
             <img src={heartInactive} alt="heart" />
           </button>
           <button className="cart-like-trash-btn">
@@ -31,9 +30,9 @@ const CartItem = product => {
           </button>
         </div>
         <div className="cart-inc-dec">
-          <button>-</button>
+          <button onClick={() => onDecrease(product.get_id)}>-</button>
           <span>{product.count}</span>
-          <button>+</button>
+          <button onClick={() => onIncrease(product.get_id)}>+</button>
         </div>
       </div>
     </div>

@@ -4,9 +4,10 @@ import itemPic from "../../../img/items/pomada.jpg";
 import cart from "../../../img/shopping-cart.png";
 import favorites from "../../../img/folder.png";
 
-function Item(products) {
-  console.log(products.products);
-  const {name,current_price} = products.products;
+function Item(props) {
+  console.log(props);
+  const {name,current_price} = props.products;
+  const {addProduct} = props;
   return (
     <div className="item__wrapper">
       <div className="item__img">
@@ -31,7 +32,7 @@ function Item(products) {
           </button>
         </div>
         <div className="item__buttons__cart">
-          <button >
+          <button onClick={() => props.addProduct(props.products)}>
             <img src={cart} alt="cart" />
           </button>
         </div>

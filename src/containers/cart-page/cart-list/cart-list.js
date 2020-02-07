@@ -3,16 +3,19 @@ import CartItem from "../cart-item";
 import "./cart-list.css";
 
 const CartList = props => {
-  // console.log(props);
-
+  // console.log(props.cartItems.purchasedProducts);
+  const {onDecrease,onDelete,onIncrease,cartItems} = props;
   return (
     <div className="cart-item-list">
-      {props.purchasedProducts.purchasedProducts.map(product => {
+      {props.cartItems.purchasedProducts.map(product => {
         return (
           <CartItem
-            key={product.id}
+            key={product.get_id}
             {...product}
-            // onAddedToCart={() => onAddedToCart(book.id)}
+            cartItems={cartItems}
+            onDecrease={onDecrease}
+            onIncrease={onIncrease}
+            onDelete={onDelete}
           />
         );
       })}
