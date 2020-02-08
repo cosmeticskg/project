@@ -5,7 +5,7 @@ import cart from "../../../img/shopping-cart.png";
 import favorites from "../../../img/folder.png";
 
 function Item(props) {
-  console.log(props);
+  // console.log(props);
   const {name,current_price} = props.products;
   const {addProduct} = props;
   return (

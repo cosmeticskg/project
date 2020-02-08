@@ -11,12 +11,13 @@ import { connect } from "react-redux";
 import {
   allProductsRemovedFromCart,
   productRemovedFromCart,
-  productAddedToCart
+  productAddedToCart,
+  removeBasketItemThunk
 } from "./actions";
 
 const Cart = (props) =>  {
-  const {cartItems, onIncrease, onDecrease, onDelete,loading,error} = props;
-  console.log(props);
+  const {purchasedProducts, loading, error} = props;
+  // console.log(props);
   
 
     if (loading) {
@@ -37,10 +38,7 @@ const Cart = (props) =>  {
               <p>Корзина: (this.props.count)</p>
             </div>
             <CartList
-              cartItems={cartItems}
-              onDecrease={onDecrease}
-              onIncrease={onIncrease}
-              onDelete={onDelete}
+              {...props}
               // purchasedProducts={allProducts}
               //  onAddedToCart={onAddedToCart}
             />
@@ -50,7 +48,7 @@ const Cart = (props) =>  {
             <h2>Сумма заказа</h2>
             <div>
               <p>К оплате</p>
-              <p>{cartItems.total}</p>
+              <p>{purchasedProducts.total}</p>
             </div>
             <button>Купить</button>
           </div>
@@ -63,14 +61,14 @@ const Cart = (props) =>  {
 
 const mapStateToProps = (state) => {
   return {
-    cartItems: state.cart,
+    purchasedProducts: state.cart,
   };
 };
 
-const mapDispatchToProps = {
+const mapDispatchToProps = dispatch => ({
   onIncrease: productAddedToCart,
   onDecrease: productRemovedFromCart,
-  onDelete: allProductsRemovedFromCart
-};
+  onDelete: id => {dispatch(removeBasketItemThunk(id))}
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

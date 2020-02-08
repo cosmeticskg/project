@@ -42,9 +42,10 @@ export const allProductsRemovedFromCart = productId => ({
 
 export const removeBasketItemThunk = basketItem => dispatch => {
   let items = JSON.parse(localStorage.getItem("products"));
+  console.log(basketItem);
   items.splice(basketItem, 1);
   localStorage.setItem("products", JSON.stringify(items));
-  dispatch(productRemovedFromCart(items));
+  dispatch(allProductsRemovedFromCart(items));
 };
 
 
