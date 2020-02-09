@@ -10,10 +10,11 @@ import ErrorIndicator from "../../components/error-indicator";
 import { connect } from "react-redux";
 import {
   allProductsRemovedFromCart,
-  productRemovedFromCart,
-  productAddedToCart,
-  removeBasketItemThunk
+  productCountToggle,
+  removeBasketItemThunk,
+  plusBasketItemThunk
 } from "./actions";
+import { addProduct } from "../home-page/actions";
 
 const Cart = (props) =>  {
   const {purchasedProducts, loading, error} = props;
@@ -66,9 +67,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onIncrease: productAddedToCart,
-  onDecrease: productRemovedFromCart,
-  onDelete: id => {dispatch(removeBasketItemThunk(id))}
+  // onIncrease: id => {dispatch(plusBasketItemThunk(id))},
+  onToggle: (id,value) => {dispatch(productCountToggle(id, value))},
+  // onDecrease:id => {dispatch(productCountToggle(id, -1))},
+  onDelete: id => {dispatch(allProductsRemovedFromCart(id))},
+  // onDelete: id => {dispatch(removeBasketItemThunk(id))}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

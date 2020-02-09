@@ -4,8 +4,7 @@ import API from "../../API";
 // export const GET_PRODUCT_SUCCESS = "[CART-PAGE] GET_PRODUCT_SUCCESS";
 // export const GET_PRODUCT_ERROR = "[CART_PAGE] GET_PRODUCT_ERROR";
 // export const GET_PURCHASED_PRODUCTS_FROM_STORE = '[CART_PAGE] GET_PURCHASED_PRODUCTS_FROM_STORE';
-export const PRODUCT_ADDED_TO_CART = "[CART_PAGE] PRODUCT_ADDED_TO_CART ";
-export const PRODUCT_REMOVED_FROM_CART = "[CART_PAGE] PRODUCT_REMOVED_FROM_CART ";
+export const PRODUCT_COUNT_TOGGLE = "[CART_PAGE] PRODUCT_COUNT_TOGGLE ";
 export const ALL_PRODUCTS_REMOVED_FROM_CART = "[CART_PAGE] ALL_PRODUCTS_REMOVED_FROM_CART ";
 
 // export const getProductsRequest = () => ({
@@ -25,15 +24,17 @@ export const ALL_PRODUCTS_REMOVED_FROM_CART = "[CART_PAGE] ALL_PRODUCTS_REMOVED_
 //   payload: purchasedProduct
 // });
 
-export const productAddedToCart = productId => ({
-  type: PRODUCT_ADDED_TO_CART,
-  payload: productId
+export const productCountToggle = (productId,value) => ({
+  type: PRODUCT_COUNT_TOGGLE,
+  payload: productId,
+  value
 });
 
-export const productRemovedFromCart = productId => ({
-  type: PRODUCT_REMOVED_FROM_CART,
-  payload: productId
-});
+// export const productRemovedFromCart = (productId,value) => ({
+//   type: PRODUCT_ADDED_TO_CART,
+//   payload: productId,
+//   value
+// });
 
 export const allProductsRemovedFromCart = productId => ({
   type: ALL_PRODUCTS_REMOVED_FROM_CART,
@@ -42,12 +43,23 @@ export const allProductsRemovedFromCart = productId => ({
 
 export const removeBasketItemThunk = basketItem => dispatch => {
   let items = JSON.parse(localStorage.getItem("products"));
-  console.log(basketItem);
   items.splice(basketItem, 1);
   localStorage.setItem("products", JSON.stringify(items));
   dispatch(allProductsRemovedFromCart(items));
 };
-
+// export const plusBasketItemThunk = basketItem => dispatch => {
+//   let items = JSON.parse(localStorage.getItem("products"));
+//   // console.log(basketItem);
+//   console.log(items.key(basketItem));
+  
+//   items.find(key=>{
+//     return key === basketItem;
+//   })
+//   // console.log(items);
+  
+//   localStorage.setItem("products", JSON.stringify(items));
+//   dispatch(productCountToggle(items));
+// };
 
 // export const getProductsRequestThunk = () => dispatch => {
 //   dispatch(getProductsRequest());

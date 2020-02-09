@@ -4,9 +4,25 @@ import itemPic from "../../../img/items/pomada.jpg";
 import trash from "../../../img/trash.svg";
 import heartInactive from "../../../img/heart-inactive.svg";
 
-const CartItem = ({onDecrease,onDelete,onIncrease,image,description,current_price,get_id,quantity,index}) => {
+const CartItem = ({
+  onToggle,
+  onDelete,
+  image,
+  description,
+  current_price,
+  get_id,
+  quantity,
+  index
+}) => {
   // console.log(product);
-  
+
+  // const handleAddQuantity = id => {
+  //   onToggle(id, 1);
+  // };
+  // const handleDecreaseQuantity = id => {
+  //   onToggle(id, -1);
+  // };
+
   return (
     <div className="cart-item-wrapper">
       <input type="checkbox" className="cart-checkbox" />
@@ -31,9 +47,21 @@ const CartItem = ({onDecrease,onDelete,onIncrease,image,description,current_pric
           </button>
         </div>
         <div className="cart-inc-dec">
-          <button onClick={onDecrease}>-</button>
+          <button
+            onClick={() => {
+              quantity > 1 ? onToggle(get_id, -1) : console.log("");
+            }}
+          >
+            -
+          </button>
           <span>{quantity}</span>
-          <button onClick={() => onIncrease(get_id)}>+</button>
+          <button
+            onClick={() => {
+              onToggle(get_id, 1);
+            }}
+          >
+            +
+          </button>
         </div>
       </div>
     </div>
