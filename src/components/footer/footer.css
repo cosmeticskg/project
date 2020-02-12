@@ -5,4 +5,7 @@ footer{
     align-items: center;
     line-height: 1px;
     background: lightgreen;
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
 }

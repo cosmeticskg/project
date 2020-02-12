@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./cart-item.css";
-import itemPic from "../../../img/items/pomada.jpg";
+// import itemPic from "../../../img/items/pomada.jpg";
 import trash from "../../../img/trash.svg";
 import heartInactive from "../../../img/heart-inactive.svg";
 
@@ -12,20 +12,24 @@ const CartItem = ({
   current_price,
   get_id,
   quantity,
-  index
+  selectProduct,
+  is_purchased
 }) => {
-  // console.log(product);
+  // const [viewCheck,setViewChecked] = useState(false);
 
-  // const handleAddQuantity = id => {
-  //   onToggle(id, 1);
-  // };
-  // const handleDecreaseQuantity = id => {
-  //   onToggle(id, -1);
-  // };
+  const handleDelete = id => {
+    onDelete(id);
+  };
 
   return (
     <div className="cart-item-wrapper">
-      <input type="checkbox" className="cart-checkbox" />
+      <input
+        onChange={() => selectProduct(get_id)}
+        type="checkbox"
+        checked={is_purchased}
+        className="cart-checkbox"
+      />
+
       <div>
         <img className="cart-product-img" src={image} alt="item-pic" />
       </div>
@@ -42,7 +46,10 @@ const CartItem = ({
           <button className="cart-like-trash-btn">
             <img src={heartInactive} alt="heart" />
           </button>
-          <button onClick={onDelete} className="cart-like-trash-btn">
+          <button
+            onClick={() => handleDelete(get_id)}
+            className="cart-like-trash-btn"
+          >
             <img src={trash} alt="trash" />
           </button>
         </div>

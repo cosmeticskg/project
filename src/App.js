@@ -4,8 +4,8 @@ import Home from './containers/home-page';
 import Cart from './containers/cart-page/';  
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import { NotFound } from './containers/404'; 
-import Header from './components/header-main';
-import Navbar from './components/navbar';
+// import Header from './components/header-main';
+// import Navbar from './components/navbar';
 
 
 function App() {

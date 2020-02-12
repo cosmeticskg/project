@@ -48,7 +48,7 @@ export default class PhotoSlider extends Component {
           {photos.map(photo => {
             return (
               <div>
-                <img width="100%" height="768px" src={photo.url} />
+                <img width="100%" height="350px" src={photo.url} />
               </div>
             );
           })}

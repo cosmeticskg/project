@@ -1,23 +1,25 @@
-import React, { Component } from "react";
+import React,{useEffect} from "react";
 import HeaderMain from "../../components/header-main/";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import "./index.css";
 import CartList from "./cart-list";
-import API from "../../API";
+// import API from "../../API";
 import Spinner from "../../components/spinner/spinner";
 import ErrorIndicator from "../../components/error-indicator";
 import { connect } from "react-redux";
 import {
-  allProductsRemovedFromCart,
+  productFinallyRemovedFromCart,
   productCountToggle,
-  removeBasketItemThunk,
-  plusBasketItemThunk
+  selectProductToBuy
 } from "./actions";
-import { addProduct } from "../home-page/actions";
+// import { addProduct } from "../home-page/actions";
 
 const Cart = (props) =>  {
   const {purchasedProducts, loading, error} = props;
+  // useEffect(() => {
+
+  // },[]);
   // console.log(props);
   
 
@@ -36,12 +38,10 @@ const Cart = (props) =>  {
         <div className="cart">
           <div className="cart-body-wrapper">
             <div className="cart-name">
-              <p>Корзина: (this.props.count)</p>
+              <p>Корзина: ({purchasedProducts.purchasedProducts.length})</p>
             </div>
             <CartList
               {...props}
-              // purchasedProducts={allProducts}
-              //  onAddedToCart={onAddedToCart}
             />
           </div>
 
@@ -62,16 +62,14 @@ const Cart = (props) =>  {
 
 const mapStateToProps = (state) => {
   return {
-    purchasedProducts: state.cart,
+    purchasedProducts: state.cart
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  // onIncrease: id => {dispatch(plusBasketItemThunk(id))},
   onToggle: (id,value) => {dispatch(productCountToggle(id, value))},
-  // onDecrease:id => {dispatch(productCountToggle(id, -1))},
-  onDelete: id => {dispatch(allProductsRemovedFromCart(id))},
-  // onDelete: id => {dispatch(removeBasketItemThunk(id))}
+  onDelete: id => {dispatch(productFinallyRemovedFromCart(id))},
+  selectProduct: id => {dispatch(selectProductToBuy(id))}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
