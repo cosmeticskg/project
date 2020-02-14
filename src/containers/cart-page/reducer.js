@@ -1,13 +1,12 @@
 import {
   PRODUCT_COUNT_TOGGLE,
   PRODUCT_FINALLY_REMOVED_FROM_CART,
-  SELECT_PRODUCT_TO_BUY
+  SELECT_PRODUCT_TO_BUY,
+  CLEAR_TOTAL_VALUE
 } from "./actions";
 
 const initialState = {
   purchasedProducts: JSON.parse(localStorage.getItem("products")) || [],
-  error: false,
-  loading: false,
   total: 0
 };
 
@@ -19,12 +18,6 @@ const IncDecCounter = (id, products, value) => {
     return item;
   });
 };
-
-// onload =() => {
-//   products.map (item=>{
-//     item.is_purchased = false;
-//   })
-// }
 
 const cartReducer = (state = initialState, action) => {
   let products = JSON.parse(localStorage.getItem("products"));
@@ -49,7 +42,7 @@ const cartReducer = (state = initialState, action) => {
 
     case PRODUCT_FINALLY_REMOVED_FROM_CART:
       let itemId = action.payload;
-      let removeProducts = products.filter(item => item.is_purchased)
+      let removeProducts = products.filter(item => item.is_purchased);
       let removeTotal = removeProducts.reduce((total, item) => {
         if (item.get_id === action.payload) {
           total -= item.current_price * item.quantity;
@@ -57,13 +50,8 @@ const cartReducer = (state = initialState, action) => {
         return total;
       }, state.total);
 
-      let newItems = products.filter(item => action.payload !== item.get_id)
-      // products.splice(itemId, 1);
-      // let beforeOldItem = products.slice(0,itemId);
-      // let afterOldItem = products.slice(itemId+1);
-      // let newProducts = [...beforeOldItem,...afterOldItem];
-      // console.log(newProducts);
-      
+      let newItems = products.filter(item => action.payload !== item.get_id);
+
       localStorage.setItem("products", JSON.stringify(newItems));
       return {
         ...state,
@@ -95,6 +83,12 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         purchasedProducts: products,
         total: selectTotal
+      };
+
+    case CLEAR_TOTAL_VALUE:
+      return {
+        ...state,
+        total: 0
       };
 
     default:

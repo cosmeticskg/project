@@ -8,17 +8,17 @@ import ItemSlider from '../item-slider';
 class HomeContainer extends Component {
   componentDidMount() {
     this.props.fetchProducts();
-    // console.log(this.props);
+    console.log(this.props);
   }
 
   render() {
     const { allProducts, loading, error,addProduct } = this.props;
 
-    if (loading) {
+    if (this.props.loading) {
       return <Spinner />;
     }
 
-    if (error) {
+    if (this.props.error) {
       return <ErrorIndicator />;
     }
 
@@ -37,7 +37,8 @@ class HomeContainer extends Component {
 
 const mapStateToProps = state => ({
   allProducts: state.home,
-  // purchasedProducts: state.cart
+  loading: state.home.loading,
+  error: state.home.error
 });
 
 const mapDispatchToProps = dispatch => {

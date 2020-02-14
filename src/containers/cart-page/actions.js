@@ -1,6 +1,8 @@
 export const PRODUCT_COUNT_TOGGLE = "[CART_PAGE] PRODUCT_COUNT_TOGGLE ";
 export const PRODUCT_FINALLY_REMOVED_FROM_CART = "[CART_PAGE] PRODUCT_FINALLY_REMOVED_FROM_CART ";
 export const SELECT_PRODUCT_TO_BUY = "[CART_PAGE] SELECT_PRODUCT_TO_BUY ";
+export const CLEAR_TOTAL_VALUE = "[CART_PAGE] CLEAR_TOTAL_VALUE ";
+
 
 
 export const productCountToggle = (productId,value) => ({
@@ -8,6 +10,10 @@ export const productCountToggle = (productId,value) => ({
   payload: productId,
   value
 });
+
+export const clearTotalValue = () => ({
+  type: CLEAR_TOTAL_VALUE
+})
 
 export const productFinallyRemovedFromCart = productId => ({
   type: PRODUCT_FINALLY_REMOVED_FROM_CART,
@@ -19,9 +25,9 @@ export const selectProductToBuy = productId => ({
   payload: productId
 });
 
-export const removeBasketItemThunk = basketItem => dispatch => {
-  let items = JSON.parse(localStorage.getItem("products"));
-  items.splice(basketItem, 1);
-  localStorage.setItem("products", JSON.stringify(items));
-  dispatch(productFinallyRemovedFromCart(items));
-};
+// export const removeBasketItemThunk = basketItem => dispatch => {
+//   let items = JSON.parse(localStorage.getItem("products"));
+//   items.splice(basketItem, 1);
+//   localStorage.setItem("products", JSON.stringify(items));
+//   dispatch(productFinallyRemovedFromCart(items));
+// };

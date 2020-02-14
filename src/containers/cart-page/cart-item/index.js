@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./cart-item.css";
 // import itemPic from "../../../img/items/pomada.jpg";
 import trash from "../../../img/trash.svg";
@@ -20,13 +20,13 @@ const CartItem = ({
   const handleDelete = id => {
     onDelete(id);
   };
-
+  
   return (
     <div className="cart-item-wrapper">
       <input
         onChange={() => selectProduct(get_id)}
         type="checkbox"
-        checked={is_purchased}
+        checked = {is_purchased}
         className="cart-checkbox"
       />
 

@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CartItem from "../cart-item";
 import "./cart-list.css";
 
-const CartList = (props,hooks) => {
-  // console.log(props);
-  
-  const { purchasedProducts } = props.purchasedProducts;
+const CartList = props => {
+  const purchasedProducts = JSON.parse(localStorage.getItem("products"));
   return (
     <div className="cart-item-list">
       {purchasedProducts && purchasedProducts.length ? (
-        purchasedProducts.map((product, i) => {          
+        purchasedProducts.map((product, i) => {
           return (
             <CartItem
               key={product.get_id}
