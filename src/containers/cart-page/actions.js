@@ -2,8 +2,8 @@ export const PRODUCT_COUNT_TOGGLE = "[CART_PAGE] PRODUCT_COUNT_TOGGLE ";
 export const PRODUCT_FINALLY_REMOVED_FROM_CART = "[CART_PAGE] PRODUCT_FINALLY_REMOVED_FROM_CART ";
 export const SELECT_PRODUCT_TO_BUY = "[CART_PAGE] SELECT_PRODUCT_TO_BUY ";
 export const CLEAR_TOTAL_VALUE = "[CART_PAGE] CLEAR_TOTAL_VALUE ";
-
-
+export const SHOW_MODAL_ORDER = "[CART_PAGE] SHOW_MODAL_ORDER ";
+export const HIDE_MODAL_ORDER = "[CART_PAGE] HIDE_MODAL_ORDER ";
 
 export const productCountToggle = (productId,value) => ({
   type: PRODUCT_COUNT_TOGGLE,
@@ -13,6 +13,14 @@ export const productCountToggle = (productId,value) => ({
 
 export const clearTotalValue = () => ({
   type: CLEAR_TOTAL_VALUE
+})
+
+export const showModalOrder = () => ({
+  type: SHOW_MODAL_ORDER
+})
+
+export const hideModalOrder = () => ({
+  type: HIDE_MODAL_ORDER
 })
 
 export const productFinallyRemovedFromCart = productId => ({

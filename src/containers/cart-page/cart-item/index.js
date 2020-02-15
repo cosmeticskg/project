@@ -16,7 +16,7 @@ const CartItem = ({
   is_purchased
 }) => {
   // const [viewCheck,setViewChecked] = useState(false);
-
+  
   const handleDelete = id => {
     onDelete(id);
   };

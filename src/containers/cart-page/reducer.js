@@ -2,12 +2,16 @@ import {
   PRODUCT_COUNT_TOGGLE,
   PRODUCT_FINALLY_REMOVED_FROM_CART,
   SELECT_PRODUCT_TO_BUY,
-  CLEAR_TOTAL_VALUE
+  CLEAR_TOTAL_VALUE,
+  SHOW_MODAL_ORDER,
+  HIDE_MODAL_ORDER
 } from "./actions";
 
 const initialState = {
   purchasedProducts: JSON.parse(localStorage.getItem("products")) || [],
-  total: 0
+  total: 0,
+  showModalOrderValue: false,
+  showModalThanks: false
 };
 
 const IncDecCounter = (id, products, value) => {
@@ -89,6 +93,17 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         total: 0
+      };
+
+    case SHOW_MODAL_ORDER:
+      return {
+        ...state,
+        showModalOrderValue: true
+      };
+    case HIDE_MODAL_ORDER:
+      return {
+        ...state,
+        showModalOrderValue: false
       };
 
     default:

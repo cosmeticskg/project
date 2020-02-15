@@ -8,22 +8,22 @@ const photos = [
   {
     name: "Photo 1",
     url:
-      "https://www.itl.cat/pngfile/big/34-349499_kylie-jenner-hd-wallpapers-4k-8k-kylie-jenner.jpg"
+      "https://images.wbstatic.net/poster/ru/main/c1360x370/big_valentine_140222.jpg"
   },
   {
     name: "Photo 1",
     url:
-      "https://images.wallpaperscraft.com/image/lips_lipstick_creative_black_4341_1366x768.jpg"
+      "https://images.wbstatic.net/poster/ru/main/c1360x370/big_sale_1402.jpg"
   },
   {
     name: "Photo 1",
     url:
-      "https://images.wallpaperscraft.com/image/brushes_cosmetics_set_114242_1366x768.jpg"
+      "https://images.wbstatic.net/poster/ru/main/c1360x370/big_electro_1402.jpg"
   },
   {
     name: "Photo 1",
     url:
-      "https://images.wallpaperscraft.ru/image/kosmetika_kraski_palitra_159038_1366x768.jpg"
+      "https://images.wbstatic.net/poster/ru/main/c1360x370/big_shoes_verh_1402.jpg"
   }
 ];
 

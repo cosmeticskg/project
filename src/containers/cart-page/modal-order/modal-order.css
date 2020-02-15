@@ -1,0 +1,103 @@
+.modal-wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 65%;
+    background-color: white;
+    border-radius: 4px;
+    width: 50%;
+    padding: 30px 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .24);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 420px;
+}
+
+.modal-content form ul{
+    list-style: none;
+    margin: 0 auto;
+    padding: 0 80px;
+}
+
+.modal-content form ul li {
+    padding-top: 7px;
+}
+
+.modal-content form ul li label {
+    display: block;
+    width: 100%;
+    height: 25px;
+    font-size: 16px;
+    color:#7f7f7f
+}
+
+.modal-content form ul li label span {
+    font-style: 16px;
+}
+
+.modal-content form ul li input,.modal-content form ul li textarea {
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    padding: 6px 0px 4px 0;
+    vertical-align: middle;
+    box-shadow: none;
+    resize:none
+}
+.modal-content form ul li textarea{
+    padding: 0 0 25px 0 ;
+}
+
+.modal-content form button{
+    border-radius: 20px;
+    margin: 20px 150px;
+    height: 40px;
+    width: 120px;   
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: black;
+    background-color: #0055ff;
+    font-size: 15px;
+}
+
+.modal-content form button:hover{
+    background-color: #c73e45d2;
+    color: white;
+}
+
+.modal-content-close {
+    position: absolute;
+    background-color: white;
+    top: 5px;
+    right: 18px;
+    cursor: pointer;
+    outline: none;
+    width: 0;
+    height: 0;
+    font-size: 40px;
+    transform: rotate(45deg);
+    border: none;
+}
+
+.display-flex {
+    display: block;
+}
+
+.display-none {
+    display: none;
+}

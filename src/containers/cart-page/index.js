@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import HeaderMain from "../../components/header-main/";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
@@ -11,8 +11,11 @@ import {
   productFinallyRemovedFromCart,
   productCountToggle,
   selectProductToBuy,
-  clearTotalValue
+  clearTotalValue,
+  showModalOrder,
+  hideModalOrder
 } from "./actions";
+import ModalOrder from "./modal-order/modal-order";
 
 class Cart extends Component {
   componentWillMount() {
@@ -23,33 +26,45 @@ class Cart extends Component {
   }
 
   render() {
+    const handleShow = () => {
+      this.props.showModalOrder();
+    };
+    const handleHide = () => {
+      this.props.hideModalOrder();
+    };
     const { purchasedProducts } = this.props;
-    console.log(this.props.total);
     return (
-      <div>
-        <HeaderMain />
-        <Navbar />
-        <div className="cart">
-          <div className="cart-body-wrapper">
-            <div className="cart-name">
-              <p>
-                Корзина: ({JSON.parse(localStorage.getItem("products")).length})
-              </p>
+      <Fragment>
+        <div>
+          <HeaderMain />
+          <Navbar />
+          <div className="cart">
+            <div className="cart-body-wrapper">
+              <div className="cart-name">
+                <p>
+                  Корзина: (
+                  {JSON.parse(localStorage.getItem("products")).length})
+                </p>
+              </div>
+              <CartList {...this.props} />
             </div>
-            <CartList {...this.props} />
-          </div>
 
-          <div className="cart-total">
-            <h2>Сумма заказа</h2>
-            <div>
-              <p>К оплате</p>
-              <p>{purchasedProducts.total}</p>
+            <div className="cart-total">
+              <h2>Сумма заказа</h2>
+              <div>
+                <p>К оплате</p>
+                <p>{purchasedProducts.total}</p>
+              </div>
+              <button onClick={handleShow}>Купить</button>
             </div>
-            <button>Купить</button>
           </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+        <ModalOrder
+          show={this.props.showModalOrderValue}
+          handleClose={handleHide}
+        />
+      </Fragment>
     );
   }
 }
@@ -57,7 +72,8 @@ class Cart extends Component {
 const mapStateToProps = state => {
   return {
     purchasedProducts: state.cart,
-    total: state.cart.total
+    total: state.cart.total,
+    showModalOrderValue: state.cart.showModalOrderValue
   };
 };
 
@@ -73,6 +89,12 @@ const mapDispatchToProps = dispatch => ({
   },
   clearTotal: () => {
     dispatch(clearTotalValue());
+  },
+  showModalOrder: () => {
+    dispatch(showModalOrder());
+  },
+  hideModalOrder: () => {
+    dispatch(hideModalOrder());
   }
 });
 
