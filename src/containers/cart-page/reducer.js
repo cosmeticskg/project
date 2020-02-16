@@ -4,6 +4,7 @@ import {
   SELECT_PRODUCT_TO_BUY,
   CLEAR_TOTAL_VALUE,
   SHOW_MODAL_ORDER,
+  SHOW_MODAL_THANKS,
   HIDE_MODAL_ORDER
 } from "./actions";
 
@@ -11,7 +12,7 @@ const initialState = {
   purchasedProducts: JSON.parse(localStorage.getItem("products")) || [],
   total: 0,
   showModalOrderValue: false,
-  showModalThanks: false
+  showModalThanksValue: false
 };
 
 const IncDecCounter = (id, products, value) => {
@@ -100,10 +101,17 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         showModalOrderValue: true
       };
+
+    case SHOW_MODAL_THANKS:
+      return {
+        ...state,
+        showModalThanksValue: true
+      };
     case HIDE_MODAL_ORDER:
       return {
         ...state,
-        showModalOrderValue: false
+        showModalOrderValue: false,
+        showModalThanksValue: false
       };
 
     default:

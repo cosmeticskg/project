@@ -3,7 +3,7 @@ import "./modal-order.css";
 import { Field, reduxForm } from "redux-form";
 
 const ModalOrder = props => {
-  const { show, handleClose,handleSubmit } = props;
+  const { show, handleClose,handleSubmit,handleThanks } = props;
   // console.log(props);
   
   const showClassName = show
@@ -47,7 +47,7 @@ const ModalOrder = props => {
               <Field name="comment" component="textarea" />
             </li>
           </ul>
-          <button type="submit">Отправить</button>
+          <button onClick={handleThanks} type="submit">Отправить</button>
         </form>
       </div>
     </div>

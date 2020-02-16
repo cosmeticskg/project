@@ -5,6 +5,7 @@ export const PRODUCT_FINALLY_REMOVED_FROM_CART =
 export const SELECT_PRODUCT_TO_BUY = "[CART_PAGE] SELECT_PRODUCT_TO_BUY ";
 export const CLEAR_TOTAL_VALUE = "[CART_PAGE] CLEAR_TOTAL_VALUE ";
 export const SHOW_MODAL_ORDER = "[CART_PAGE] SHOW_MODAL_ORDER ";
+export const SHOW_MODAL_THANKS = "[CART_PAGE] SHOW_MODAL_THANKS ";
 export const HIDE_MODAL_ORDER = "[CART_PAGE] HIDE_MODAL_ORDER ";
 
 export const productCountToggle = (productId, value) => ({
@@ -19,6 +20,9 @@ export const clearTotalValue = () => ({
 
 export const showModalOrder = () => ({
   type: SHOW_MODAL_ORDER
+});
+export const showModalThanks = () => ({
+  type: SHOW_MODAL_THANKS
 });
 
 export const hideModalOrder = () => ({
@@ -39,6 +43,7 @@ export const registrOrder = data => dispatch => {
   console.log(data);
   API.postData("/purchase/", data);
   dispatch(hideModalOrder());
+  dispatch( showModalThanks());
 };
 
 // export const removeBasketItemThunk = basketItem => dispatch => {

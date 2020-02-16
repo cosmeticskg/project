@@ -7,17 +7,18 @@ import CartList from "./cart-list";
 // import Spinner from "../../components/spinner/spinner";
 // import ErrorIndicator from "../../components/error-indicator";
 import { connect } from "react-redux";
-import postData from "../../API";
 import {
   productFinallyRemovedFromCart,
   productCountToggle,
   selectProductToBuy,
   clearTotalValue,
   showModalOrder,
+  showModalThanks,
   hideModalOrder,
   registrOrder
 } from "./actions";
-import ModalOrder from "./modal-order/modal-order";
+import ModalOrder from "./modal-order";
+import ModalThanks from './modal-thanks';
 
 class Cart extends Component {
   componentWillMount() {
@@ -30,6 +31,9 @@ class Cart extends Component {
   render() {
     const handleShow = () => {
       this.props.showModalOrder();
+    };
+    const showThanks = () => {
+      this.props.showModalThanks();
     };
     const handleHide = () => {
       this.props.hideModalOrder();
@@ -83,6 +87,11 @@ class Cart extends Component {
           show={this.props.showModalOrderValue}
           handleClose={handleHide}
           onSubmit={submit}
+          handleThanks={showThanks}
+        />
+        <ModalThanks 
+        show={this.props.showModalThanksValue}
+        handleClose={handleHide}
         />
       </Fragment>
     );
@@ -93,7 +102,8 @@ const mapStateToProps = state => {
   return {
     purchasedProducts: state.cart,
     total: state.cart.total,
-    showModalOrderValue: state.cart.showModalOrderValue
+    showModalOrderValue: state.cart.showModalOrderValue,
+    showModalThanksValue:state.cart.showModalThanksValue
   };
 };
 
@@ -112,6 +122,9 @@ const mapDispatchToProps = dispatch => ({
   },
   showModalOrder: () => {
     dispatch(showModalOrder());
+  },
+  showModalThanks: ()=>{
+    dispatch(showModalThanks());
   },
   hideModalOrder: () => {
     dispatch(hideModalOrder());

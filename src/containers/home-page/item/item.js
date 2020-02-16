@@ -8,12 +8,14 @@ function Item(props) {
   // console.log(props);
   const {name,current_price} = props.products;
   const {addProduct} = props;
+  console.log(props.products.image);
+  
   return (
     <div className="item__wrapper">
       <div className="item__img">
         <img 
-        src={itemPic}
-        // src={props.image}
+        // src={itemPic}
+        src={props.products.image}
          alt="item" />
       </div>
       <div className="item__info">
