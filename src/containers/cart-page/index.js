@@ -7,13 +7,15 @@ import CartList from "./cart-list";
 // import Spinner from "../../components/spinner/spinner";
 // import ErrorIndicator from "../../components/error-indicator";
 import { connect } from "react-redux";
+import postData from "../../API";
 import {
   productFinallyRemovedFromCart,
   productCountToggle,
   selectProductToBuy,
   clearTotalValue,
   showModalOrder,
-  hideModalOrder
+  hideModalOrder,
+  registrOrder
 } from "./actions";
 import ModalOrder from "./modal-order/modal-order";
 
@@ -32,6 +34,23 @@ class Cart extends Component {
     const handleHide = () => {
       this.props.hideModalOrder();
     };
+
+    const submit = values => {
+      let products = JSON.parse(localStorage.getItem("products"));
+      let selectedProducts = products.filter(item => item.is_purchased);
+      let pushProducts = selectedProducts.map(item => {
+        return (item = {
+          product: item.get_id,
+          count: item.quantity
+        });
+      });
+      let pushData = {
+        contacts: [values],
+        products: pushProducts
+      };
+      this.props.registrOrder(pushData);
+    };
+
     const { purchasedProducts } = this.props;
     return (
       <Fragment>
@@ -63,6 +82,7 @@ class Cart extends Component {
         <ModalOrder
           show={this.props.showModalOrderValue}
           handleClose={handleHide}
+          onSubmit={submit}
         />
       </Fragment>
     );
@@ -95,6 +115,9 @@ const mapDispatchToProps = dispatch => ({
   },
   hideModalOrder: () => {
     dispatch(hideModalOrder());
+  },
+  registrOrder: (data) => {
+    dispatch(registrOrder(data));
   }
 });
 

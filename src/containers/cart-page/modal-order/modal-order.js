@@ -1,37 +1,50 @@
 import React from "react";
 import "./modal-order.css";
+import { Field, reduxForm } from "redux-form";
 
-const ModalOrder = ({ show, handleClose }) => {
+const ModalOrder = props => {
+  const { show, handleClose,handleSubmit } = props;
+  // console.log(props);
+  
   const showClassName = show
     ? "modal-wrapper display-flex"
     : "modal-wrapper display-none";
+
+    
   return (
     <div className={showClassName}>
       <div className="modal-content">
         <button onClick={handleClose} className="modal-content-close">
           +
         </button>
-        <form>
+        <form onSubmit={handleSubmit}>
           <ul>
             <li>
-              <label><span>Имя:</span></label>
-              <input type="text"  required/>
+              <label htmlFor="name">
+                <span>Имя:</span>
+              </label>
+              <Field name="name" type="text" component="input" required />
             </li>
             <li>
-              <label>Телефон: </label>
-              <input type="tel" required />
+              <label htmlFor="phone_number">Телефон: </label>
+              <Field
+                name="phone_number"
+                type="tel"
+                component="input"
+                required
+              />
             </li>
             <li>
-              <label>E-mail: </label>
-              <input type="email" required />
+              <label htmlFor="email">E-mail: </label>
+              <Field name="email" type="email" component="input" required />
             </li>
             <li>
-              <label>Адрес: </label>
-              <input type="text" required />
+              <label htmlFor="address">Адрес: </label>
+              <Field name="address" type="text" component="input" required />
             </li>
             <li>
-              <label>Комментарий: </label>
-              <textarea /> 
+              <label htmlFor="comment">Комментарий: </label>
+              <Field name="comment" component="textarea" />
             </li>
           </ul>
           <button type="submit">Отправить</button>
@@ -41,4 +54,6 @@ const ModalOrder = ({ show, handleClose }) => {
   );
 };
 
-export default ModalOrder;
+export default reduxForm({
+  form: "contacts"  
+})(ModalOrder);
