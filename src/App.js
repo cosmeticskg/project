@@ -1,21 +1,19 @@
 import React from "react";
 import "./app.css";
-import Home from './containers/home-page';
-import Cart from './containers/cart-page/';  
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-// import { NotFound } from './containers/404'; 
-
-
+import Home from "./containers/home-page";
+import Cart from "./containers/cart-page/";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import { NotFound } from './containers/404';
 
 function App() {
   return (
     <Router>
-      <div className="main__wrapper" >
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/cart" component={Cart} />
-        {/* <Route path='*' component={NotFound} /> */}
-      </Switch>
+      <div className="main__wrapper">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/cart" component={Cart} />
+          {/* <Route path='*' component={NotFound} /> */}
+        </Switch>
       </div>
     </Router>
   );

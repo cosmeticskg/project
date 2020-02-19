@@ -4,8 +4,8 @@ import "./footer.css";
 function Footer() {
   return (
     <footer>
-      <p>Контактные данные: +996777123456</p>
-      <p>Адрес: Neobis clubs</p>
+      <span>Контактные данные: +996777123456</span>
+      <span><i>Адрес: Neobis clubs</i></span>
     </footer>
   );
 }

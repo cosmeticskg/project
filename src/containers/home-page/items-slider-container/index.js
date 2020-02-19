@@ -4,16 +4,14 @@ import ErrorIndicator from "../../../components/error-indicator";
 import { connect } from "react-redux";
 import { getProductsRequestThunk, addProductThunk } from "../actions";
 import ItemSlider from '../item-slider';
+import './home-container.css';
 
 class HomeContainer extends Component {
   componentDidMount() {
     this.props.fetchProducts();
-    console.log(this.props);
   }
 
   render() {
-    const { allProducts, loading, error,addProduct } = this.props;
-
     if (this.props.loading) {
       return <Spinner />;
     }
@@ -23,7 +21,7 @@ class HomeContainer extends Component {
     }
 
     return (
-      <div>
+      <div className="home_container__wrapper">
         <h3>Рекомендуемые товары :</h3>
         <ItemSlider {...this.props} />
         <h3>Хиты :</h3>

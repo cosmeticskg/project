@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./header-main.css";
-import cart from "../../img/shopping-cart.png";
-import favorites from "../../img/folder.png";
+import cart_inactive from "../../img/cart-black.svg";
+import cart_active from "../../img/shopping-cart.svg";
+import favorites_inactive from "../../img/heart-inactive.svg";
+import favorites_active from "../../img/heart-active.svg";
 import { Link } from "react-router-dom";
 
 function HeaderMain(props) {
@@ -14,11 +16,13 @@ function HeaderMain(props) {
       </div>
       <div className="header_buttons">
         <button>
-          <img src={favorites} alt="favorites" />
+          <img src={favorites_inactive} alt="favorites" />
+          <span>Избранное</span>
         </button>
         <Link to="/cart">
           <button>
-            <img src={cart} alt="cart" />
+            <img src={cart_inactive} alt="cart" />
+            <span>Корзина</span>
           </button>
         </Link>
       </div>

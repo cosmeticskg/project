@@ -1,50 +1,63 @@
+/* .item__slider .slick-active div{
+    width: 200px !important;
+    margin-left: 11px;
+} */
+
 .item__wrapper {
     display: block;
-    margin: 0;
     padding: 0;
-    max-width: 200px;
+    width: 180px;
+    padding: 10px;
     max-height: 500px;
-    border: 2px solid black;
+    /* border: 1px solid black; */
+    margin:10px 0 10px 0;
+    border-radius: 15px;
+    background-color: #fff;
 }
+
+.item__wrapper:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
 
 
 /* Picture block */
 .item__img {
-    border-bottom: 1px solid black;
+    margin: 0;
+    width: 180px;
+    /* border-bottom: 1px solid black; */
 }
 
 .item__img img {
-    width: 200px;
-    height: 200px;
+    border-radius: 15px;
+    width: 180px;
+    height: 180px;
 }
 
 /* Info about item */
 .item__info {
-    line-height: 2px;
-    max-height: 150px;
-    border-bottom: 1px solid black;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    /* border-bottom: 1px solid black; */
     font-size: 14px;
+    overflow: hidden;
 }
-
-/* .item__info h2 {
-    color: grey;
-    font-size: 16px;
-    font-style: italic;
-}
-
 .item__info p {
-    font-size: 14px;
-} */
+    padding: 0;
+    margin: 0;
+}
 
 /* Buttons */
 .item__buttons {
     display: flex;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     height: 40px;
 }
 
 .item__buttons__price {
-    border-right: 1px solid black;
+    /* border-right: 1px solid black; */
     width: 50%;
     text-align: center;
     display: flex;

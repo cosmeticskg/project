@@ -1,38 +1,56 @@
 header {
-    display: flex;
-    justify-content: center;
-    font-family: "Poppins", sans-serif;
-    background: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  background: #f8f8f8;
+  height: 32px;
 }
 
 header button {
-    color: black;
-    font-size: 35px;
-    background: none;
-    border: none;
-    cursor: pointer;
+  color: black;
+  font-size: 27px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }
 
 .header_name {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .header_buttons {
-    margin: 0;
-    padding: 0;
-    /* background-color: grey; */
-    width: 100px;
-    display: flex;
-    justify-content: flex-end ;
+  margin: 0;
+  padding: 0;
+  width: 100px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.header_buttons a {
+    text-decoration:  none;
 }
 
 .header_buttons button {
-    height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 1px;
+  margin: 1px 5px 0 0;
+  outline: none;
+  height: 30px;
+  font-size: 13px;
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none !important;
+}
+.header_buttons button span:hover {
+  color: #e62e04;
+  text-decoration: none !important;
 }
 
 .header_buttons img {
-    width: 35px;
-    height: 35px;
+  width: 25px;
+  height: 20px;
 }

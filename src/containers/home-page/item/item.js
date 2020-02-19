@@ -1,28 +1,20 @@
 import React from "react";
 import "./item.css";
-import itemPic from "../../../img/items/pomada.jpg";
-import cart from "../../../img/shopping-cart.png";
-import favorites from "../../../img/folder.png";
+import cart from "../../../img/cart-black.svg";
+import favorites from "../../../img/heart-inactive.svg";
 
 function Item(props) {
-  // console.log(props);
-  const {name,current_price} = props.products;
-  const {addProduct} = props;
-  console.log(props.products.image);
+  const {description,current_price} = props.products;
   
   return (
-    <div className="item__wrapper">
+    <div className="item__wrapper" >
       <div className="item__img">
         <img 
-        // src={itemPic}
         src={props.products.image}
          alt="item" />
       </div>
       <div className="item__info">
-        {/* <h2>Lebel</h2>
-        <p>Soft Ht / 700 мл.</p>
-        <p>Шампунь для волос/Proedit</p> */}
-        <p>{name}</p>
+        <p>{description}</p>
       </div>
       <div className="item__buttons">
         <div className="item__buttons__price">
