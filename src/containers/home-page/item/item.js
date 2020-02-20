@@ -4,7 +4,13 @@ import cart from "../../../img/cart-black.svg";
 import favorites from "../../../img/heart-inactive.svg";
 
 function Item(props) {
+  
   const {description,current_price} = props.products;
+  const {handleShow} = props; 
+  const {get_id} = props.products;
+  const handlePurchaseItem = (id) => {    
+    handleShow(id);
+  } 
   
   return (
     <div className="item__wrapper" >
@@ -32,7 +38,7 @@ function Item(props) {
         </div>
       </div>
       <div className="item__buy">
-        <button>Купить</button>
+        <button onClick={()=> (handlePurchaseItem(get_id))}>Купить</button>
       </div>
     </div>
   );

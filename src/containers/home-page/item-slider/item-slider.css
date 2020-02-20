@@ -1,5 +1,5 @@
 .item__slider .slick-slider {
-    width: 100%;
+    width: 99%;
 }
 .item__slider {
     background: #fafafa;
@@ -24,7 +24,7 @@
 }
 
 .item__slider .slick-next {
-    right: 20px !important;
+    right: 17px !important;
     z-index: 20;
 }
 

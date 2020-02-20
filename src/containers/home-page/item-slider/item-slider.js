@@ -15,8 +15,9 @@ const ItemSlider = props => {
     // autoplay: true,
     // autoplaySpeed: 3000
   };
+  
 
-  const { allProducts } = props;
+  const { allProducts, handleShow } = props;
 
   return (
     <div>
@@ -25,7 +26,7 @@ const ItemSlider = props => {
           {allProducts.products.map((items, i) => {
             return (
               <div className="item__slider__row">
-                <Item key={i} products={items} {...props} />
+                <Item key={i} products={items} {...props} handleShow={handleShow} />
               </div>
             );
           })}
