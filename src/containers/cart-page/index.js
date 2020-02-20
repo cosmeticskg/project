@@ -57,6 +57,7 @@ class Cart extends Component {
         products: pushProducts
       };
       this.props.registrOrder(pushData);
+      this.props.showModalThanks();
     };
 
     const { purchasedProducts } = this.props;

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./cart-item.css";
-// import itemPic from "../../../img/items/pomada.jpg";
 import trash from "../../../img/trash.svg";
 import heartInactive from "../../../img/heart-inactive.svg";
 
@@ -15,8 +14,6 @@ const CartItem = ({
   selectProduct,
   is_purchased
 }) => {
-  // const [viewCheck,setViewChecked] = useState(false);
-  console.log(image);
   
   
   const handleDelete = id => {
