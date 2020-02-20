@@ -18,7 +18,7 @@ import {
   registrOrder
 } from "./actions";
 import ModalOrder from "./modal-order";
-import ModalThanks from './modal-thanks';
+import ModalThanks from "./modal-thanks";
 
 class Cart extends Component {
   componentWillMount() {
@@ -30,7 +30,11 @@ class Cart extends Component {
 
   render() {
     const handleShow = () => {
-      this.props.showModalOrder();
+      if (this.props.total > 0) {
+        this.props.showModalOrder();
+      } else {
+        alert("Пожалуйста, выберите товар для покупки!");
+      }
     };
     const showThanks = () => {
       this.props.showModalThanks();
@@ -89,9 +93,9 @@ class Cart extends Component {
           onSubmit={submit}
           handleThanks={showThanks}
         />
-        <ModalThanks 
-        show={this.props.showModalThanksValue}
-        handleClose={handleHide}
+        <ModalThanks
+          show={this.props.showModalThanksValue}
+          handleClose={handleHide}
         />
       </Fragment>
     );
@@ -103,7 +107,7 @@ const mapStateToProps = state => {
     purchasedProducts: state.cart,
     total: state.cart.total,
     showModalOrderValue: state.cart.showModalOrderValue,
-    showModalThanksValue:state.cart.showModalThanksValue
+    showModalThanksValue: state.cart.showModalThanksValue
   };
 };
 
@@ -123,13 +127,13 @@ const mapDispatchToProps = dispatch => ({
   showModalOrder: () => {
     dispatch(showModalOrder());
   },
-  showModalThanks: ()=>{
+  showModalThanks: () => {
     dispatch(showModalThanks());
   },
   hideModalOrder: () => {
     dispatch(hideModalOrder());
   },
-  registrOrder: (data) => {
+  registrOrder: data => {
     dispatch(registrOrder(data));
   }
 });
