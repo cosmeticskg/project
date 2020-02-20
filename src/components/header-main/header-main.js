@@ -15,10 +15,12 @@ function HeaderMain(props) {
         </Link>
       </div>
       <div className="header_buttons">
-        <button>
-          <img src={favorites_inactive} alt="favorites" />
-          <span>Избранное</span>
-        </button>
+        <Link to="/favorite">
+          <button>
+            <img src={favorites_inactive} alt="favorites" />
+            <span>Избранное</span>
+          </button>
+        </Link>
         <Link to="/cart">
           <button>
             <img src={cart_inactive} alt="cart" />

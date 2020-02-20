@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Spinner from "../../../components/spinner/spinner";
 import ErrorIndicator from "../../../components/error-indicator";
 import { connect } from "react-redux";
-import { getProductsRequestThunk, addProductThunk } from "../actions";
+import { getProductsRequestThunk, addProductThunk,addProductToFavoritesThunk } from "../actions";
 import { showModalOrder, showModalThanks,hideModalOrder,registrOrder } from "../../cart-page/actions";
 import ModalOrder from "../../cart-page/modal-order";
 import ModalThanks from "../../cart-page/modal-thanks";
@@ -16,9 +16,8 @@ class HomeContainer extends Component {
 
   render() {
     const handleShow = (id) => {
-      console.log(id);
       let productToBuy = this.props.allProducts.products.find(item=> item.get_id === id);
-      let a = localStorage.setItem("productToBuy", JSON.stringify(productToBuy));
+      localStorage.setItem("productToBuy", JSON.stringify(productToBuy));
       this.props.showModalOrder();      
     };
     const showThanks = () => {
@@ -85,6 +84,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     fetchProducts: () => dispatch(getProductsRequestThunk()),
+    addProductToFavorites: product => dispatch(addProductToFavoritesThunk(product)),
     addProduct: product => dispatch(addProductThunk(product)),
     showModalOrder: () => {
       dispatch(showModalOrder());

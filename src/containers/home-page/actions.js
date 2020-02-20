@@ -5,6 +5,10 @@ export const GET_PRODUCT_SUCCESS = "[HOME-PAGE] GET_PRODUCT_SUCCESS";
 export const GET_PRODUCT_ERROR = "[HOME_PAGE] GET_PRODUCT_ERROR";
 export const ADD_PRODUCT = "[HOME_PAGE] ADD_PRODUCT ";
 
+export const addProduct = productId => ({
+  type: ADD_PRODUCT,
+  payload: productId
+});
 export const getProductsRequest = () => ({ type: GET_PRODUCT_REQUEST });
 
 export const getProductsSuccess = data => ({
@@ -14,10 +18,22 @@ export const getProductsSuccess = data => ({
 
 export const getProductsError = () => ({ type: GET_PRODUCT_ERROR });
 
-export const addProduct = productId => ({
-  type: ADD_PRODUCT,
-  payload: productId
-});
+export const addProductToFavoritesThunk = data => dispatch => {
+  let favoriteItemsInLocalStorage;
+  if (localStorage.getItem("favorites") === null) {
+    favoriteItemsInLocalStorage = [];
+  } else {
+    favoriteItemsInLocalStorage = JSON.parse(localStorage.getItem("favorites"));
+    favoriteItemsInLocalStorage = favoriteItemsInLocalStorage.filter(
+      productItem => productItem.get_id !== data.get_id
+    );//чтобы item не повторялись
+  }
+  favoriteItemsInLocalStorage.unshift(data);
+  localStorage.setItem(
+    "favorites",
+    JSON.stringify(favoriteItemsInLocalStorage)
+  );
+};
 
 export const addProductThunk = data => dispatch => {
   let a;

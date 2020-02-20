@@ -4,8 +4,6 @@ import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import "./index.css";
 import CartList from "./cart-list";
-// import Spinner from "../../components/spinner/spinner";
-// import ErrorIndicator from "../../components/error-indicator";
 import { connect } from "react-redux";
 import {
   productFinallyRemovedFromCart,
@@ -23,12 +21,15 @@ import ModalThanks from "./modal-thanks";
 class Cart extends Component {
   componentWillMount() {
     const products = JSON.parse(localStorage.getItem("products"));
+    if(products && products.length){
     products.map(product => (product.is_purchased = false));
     localStorage.setItem("products", JSON.stringify(products));
     this.props.clearTotal();
+    }
   }
 
   render() {
+    
     const handleShow = () => {
       if (this.props.total > 0) {
         this.props.showModalOrder();
@@ -71,7 +72,8 @@ class Cart extends Component {
               <div className="cart-name">
                 <p>
                   Корзина: (
-                  {JSON.parse(localStorage.getItem("products")).length})
+                  {JSON.parse(localStorage.getItem("products")).length || 0} 
+                  )
                 </p>
               </div>
               <CartList {...this.props} />

@@ -27,7 +27,7 @@ function Item(props) {
           <p>{current_price} сом</p>
         </div>
         <div className="item__buttons__favorites">
-          <button>
+          <button onClick={()=> props.addProductToFavorites(props.products)}>
             <img src={favorites} alt="favorites" />
           </button>
         </div>

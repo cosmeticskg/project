@@ -1,6 +1,4 @@
 const validate = values => {
-    console.log(values.name);
-    
   const errors = {};
   if (!values.name) {
     errors.name = "Required";
@@ -16,7 +14,7 @@ const validate = values => {
     errors.phone_number = "Required";
   } else if (isNaN(Number(values.phone_number))) {
     errors.phone_number = "Must be a number";
-  } else if (+values.phone_number.length < 6){
+  } else if (+values.phone_number.length < 6) {
     errors.phone_number = "minimal length of number is 6!";
   }
   if (!values.address) {

@@ -5,17 +5,6 @@ const http = Axios.create({
   baseURL: "https://cors-anywhere.herokuapp.com/https://eshop-dimash.herokuapp.com"
 });
 
-// export function postData(url,data){
-//    axios({
-//     method: 'post',
-//     url: http.post(`${url}`),
-//     data:  data,
-//     headers: {
-
-//     }
-//   })
-// }
-
 export default {
   getProducts: () => http.get("/product"),
   getProduct: id => http.get(`/product/${id}`),
