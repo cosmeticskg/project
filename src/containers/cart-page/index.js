@@ -17,6 +17,7 @@ import {
 } from "./actions";
 import ModalOrder from "./modal-order";
 import ModalThanks from "./modal-thanks";
+import {addProductToFavoritesThunk} from '../home-page/actions';
 
 class Cart extends Component {
   componentWillMount() {
@@ -115,6 +116,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  addProductToFavorites: product => dispatch(addProductToFavoritesThunk(product)),
   onToggle: (id, value) => {
     dispatch(productCountToggle(id, value));
   },

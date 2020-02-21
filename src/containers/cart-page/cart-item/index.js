@@ -3,29 +3,29 @@ import "./cart-item.css";
 import trash from "../../../img/trash.svg";
 import heartInactive from "../../../img/heart-inactive.svg";
 
-const CartItem = ({
-  onToggle,
-  onDelete,
-  image,
-  description,
-  current_price,
-  get_id,
-  quantity,
-  selectProduct,
-  is_purchased
-}) => {
-  
-  
+const CartItem = (props) => {
   const handleDelete = id => {
     onDelete(id);
   };
-  
+  console.log(props);
+
+  const {
+    onToggle,
+    onDelete,
+    image,
+    description,
+    current_price,
+    get_id,
+    quantity,
+    selectProduct,
+    is_purchased
+  } = props;
   return (
     <div className="cart-item-wrapper">
       <input
         onChange={() => selectProduct(get_id)}
         type="checkbox"
-        checked = {is_purchased}
+        checked={is_purchased}
         className="cart-checkbox"
       />
 
@@ -42,7 +42,10 @@ const CartItem = ({
       </div>
       <div className="cart-item-buttons">
         <div>
-          <button className="cart-like-trash-btn">
+          <button
+            onClick={() => props.addProductToFavorites(props.products)}
+            className="cart-like-trash-btn"
+          >
             <img src={heartInactive} alt="heart" />
           </button>
           <button

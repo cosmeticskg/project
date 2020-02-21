@@ -16,6 +16,8 @@ const CartList = props => {
               onToggle={props.onToggle}
               onDelete={props.onDelete}
               selectProduct={props.selectProduct}
+              products={product}
+              {...props}
             />
           );
         })

@@ -12,7 +12,6 @@ const FavoriteItem = (props) => {
     current_price,
     get_id
   } = props;
-  console.log(props);
   
     const handleDelete = id => {
       onDelete(id);
