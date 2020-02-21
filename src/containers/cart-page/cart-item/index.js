@@ -1,7 +1,10 @@
 import React from "react";
 import "./cart-item.css";
 import trash from "../../../img/trash.svg";
+import trashActive from "../../../img/trash-active.svg";
 import heartInactive from "../../../img/heart-inactive.svg";
+import heartActive from "../../../img/heart-active.svg";
+import HoverImage from 'react-hover-image';
 
 const CartItem = (props) => {
   const handleDelete = id => {
@@ -46,13 +49,13 @@ const CartItem = (props) => {
             onClick={() => props.addProductToFavorites(props.products)}
             className="cart-like-trash-btn"
           >
-            <img src={heartInactive} alt="heart" />
+            <HoverImage src={heartInactive} hoverSrc={heartActive} alt='fav' />
           </button>
           <button
             onClick={() => handleDelete(get_id)}
             className="cart-like-trash-btn"
           >
-            <img src={trash} alt="trash" />
+            <HoverImage src={trash} hoverSrc={trashActive} alt="trash" />
           </button>
         </div>
         <div className="cart-inc-dec">
