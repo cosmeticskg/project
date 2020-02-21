@@ -4,7 +4,7 @@ import Home from "./containers/home-page";
 import Cart from "./containers/cart-page/";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import FavoritePage from "./containers/favorite-page/favorite-page";
-// import { NotFound } from './containers/404';
+import NotFound from './components/404';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/favorite" component={FavoritePage} />
           <Route path="/cart" component={Cart} />
-          {/* <Route path='*' component={NotFound} /> */}
+          <Route path='*' component={NotFound} />
         </Switch>
       </div>
     </Router>

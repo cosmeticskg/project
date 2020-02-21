@@ -1,8 +1,7 @@
 import Axios from "axios";
-import axios from "axios";
 
 const http = Axios.create({
-  baseURL: "https://cors-anywhere.herokuapp.com/https://eshop-dimash.herokuapp.com"
+  baseURL: "https://eshop-dimash.herokuapp.com"
 });
 
 export default {
