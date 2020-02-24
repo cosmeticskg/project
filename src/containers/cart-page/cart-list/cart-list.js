@@ -7,10 +7,10 @@ const CartList = props => {
   return (
     <div className="cart-item-list">
       {purchasedProducts && purchasedProducts.length ? (
-        purchasedProducts.map((product, i) => {
+        purchasedProducts.map((product) => {
           return (
             <CartItem
-              key={product.get_id}
+              key={product.id}
               {...product}
               count={props.purchasedProducts.count}
               onToggle={props.onToggle}

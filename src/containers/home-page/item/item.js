@@ -7,9 +7,9 @@ import activeFavorites from "../../../img/heart-active.svg";
 import HoverImage from "react-hover-image";
 
 function Item(props) {
-  const { description, current_price } = props.products;
+  const { description, price } = props.products;
   const { handleShow } = props;
-  const { get_id } = props.products;
+  const { id } = props.products;
   const handlePurchaseItem = id => {
     handleShow(id);
   };
@@ -24,7 +24,7 @@ function Item(props) {
       </div>
       <div className="item__buttons">
         <div className="item__buttons__price">
-          <p>{current_price} сом</p>
+          <p>{price} сом</p>
         </div>
         <div className="item__buttons__favorites">
           <button onClick={() => props.addProductToFavorites(props.products)}>
@@ -42,7 +42,7 @@ function Item(props) {
         </div>
       </div>
       <div className="item__buy">
-        <button onClick={() => handlePurchaseItem(get_id)}>Купить</button>
+        <button onClick={() => handlePurchaseItem(id)}>Купить</button>
       </div>
     </div>
   );

@@ -10,15 +10,14 @@ const CartItem = (props) => {
   const handleDelete = id => {
     onDelete(id);
   };
-  console.log(props);
 
   const {
     onToggle,
     onDelete,
     image,
     description,
-    current_price,
-    get_id,
+    price,
+    id,
     quantity,
     selectProduct,
     is_purchased
@@ -26,7 +25,7 @@ const CartItem = (props) => {
   return (
     <div className="cart-item-wrapper">
       <input
-        onChange={() => selectProduct(get_id)}
+        onChange={() => selectProduct(id)}
         type="checkbox"
         checked={is_purchased}
         className="cart-checkbox"
@@ -40,7 +39,7 @@ const CartItem = (props) => {
           <span>{description}</span>
         </div>
         <div>
-          <p>{current_price} сом</p>
+          <p>{price} сом</p>
         </div>
       </div>
       <div className="cart-item-buttons">
@@ -52,7 +51,7 @@ const CartItem = (props) => {
             <HoverImage src={heartInactive} hoverSrc={heartActive} alt='fav' />
           </button>
           <button
-            onClick={() => handleDelete(get_id)}
+            onClick={() => handleDelete(id)}
             className="cart-like-trash-btn"
           >
             <HoverImage src={trash} hoverSrc={trashActive} alt="trash" />
@@ -61,7 +60,7 @@ const CartItem = (props) => {
         <div className="cart-inc-dec">
           <button
             onClick={() => {
-              quantity > 1 ? onToggle(get_id, -1) : console.log("");
+              quantity > 1 ? onToggle(id, -1) : console.log("");
             }}
           >
             -
@@ -69,7 +68,7 @@ const CartItem = (props) => {
           <span>{quantity}</span>
           <button
             onClick={() => {
-              onToggle(get_id, 1);
+              onToggle(id, 1);
             }}
           >
             +

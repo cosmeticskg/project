@@ -2,7 +2,7 @@ import {
   PRODUCT_COUNT_TOGGLE,
   PRODUCT_FINALLY_REMOVED_FROM_CART,
   SELECT_PRODUCT_TO_BUY,
-  CLEAR_TOTAL_VALUE,
+  COUNT_TOTAL_VALUE,
   SHOW_MODAL_ORDER,
   SHOW_MODAL_THANKS,
   HIDE_MODAL_ORDER
@@ -17,7 +17,7 @@ const initialState = {
 
 const IncDecCounter = (id, products, value) => {
   products = products.map(item => {
-    if (item.get_id === id) {
+    if (item.id === id) {
       item.quantity += value;
     }
     return item;
@@ -31,10 +31,10 @@ const cartReducer = (state = initialState, action) => {
       IncDecCounter(action.payload, products, action.value);
       let toggledProducts = products.filter(item => item.is_purchased);
       let Total = toggledProducts.reduce((total, item) => {
-        if (action.value == 1 && action.payload === item.get_id) {
-          total += item.current_price;
-        } else if (action.value == -1 && action.payload === item.get_id) {
-          total -= item.current_price;
+        if (action.value == 1 && action.payload === item.id) {
+          total += +item.price;
+        } else if (action.value == -1 && action.payload === item.id) {
+          total -= item.price;
         }
         return total;
       }, state.total);
@@ -46,16 +46,15 @@ const cartReducer = (state = initialState, action) => {
       };
 
     case PRODUCT_FINALLY_REMOVED_FROM_CART:
-      let itemId = action.payload;
       let removeProducts = products.filter(item => item.is_purchased);
       let removeTotal = removeProducts.reduce((total, item) => {
-        if (item.get_id === action.payload) {
-          total -= item.current_price * item.quantity;
+        if (item.id === action.payload) {
+          total -= item.price * item.quantity;
         }
         return total;
       }, state.total);
 
-      let newItems = products.filter(item => action.payload !== item.get_id);
+      let newItems = products.filter(item => action.payload !== item.id);
 
       localStorage.setItem("products", JSON.stringify(newItems));
       return {
@@ -66,7 +65,7 @@ const cartReducer = (state = initialState, action) => {
 
     case SELECT_PRODUCT_TO_BUY:
       products = products.map(item => {
-        if (item.get_id === action.payload) {
+        if (item.id === action.payload) {
           item.is_purchased = !item.is_purchased;
         }
         return item;
@@ -75,9 +74,9 @@ const cartReducer = (state = initialState, action) => {
       let selectTotal = selectedProducts.reduce((total, item) => {
         let sum = 0;
         if (item.is_purchased) {
-          sum += item.current_price * item.quantity;
+          sum += item.price * item.quantity;
         } else {
-          sum -= item.current_price * item.quantity;
+          sum -= item.price * item.quantity;
         }
         total += sum;
         return total;
@@ -90,10 +89,14 @@ const cartReducer = (state = initialState, action) => {
         total: selectTotal
       };
 
-    case CLEAR_TOTAL_VALUE:
+    case COUNT_TOTAL_VALUE:
+      let finalTotalForCount = products.reduce((total,item)=>{
+        total += item.price * item.quantity;
+        return total
+      },0);
       return {
         ...state,
-        total: 0
+        total: finalTotalForCount
       };
 
     case SHOW_MODAL_ORDER:

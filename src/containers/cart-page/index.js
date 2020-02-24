@@ -9,7 +9,7 @@ import {
   productFinallyRemovedFromCart,
   productCountToggle,
   selectProductToBuy,
-  clearTotalValue,
+  countTotalValue,
   showModalOrder,
   showModalThanks,
   hideModalOrder,
@@ -23,9 +23,9 @@ class Cart extends Component {
   componentWillMount() {
     const products = JSON.parse(localStorage.getItem("products"));
     if(products && products.length){
-    products.map(product => (product.is_purchased = false));
+    products.map(product => (product.is_purchased = true));
     localStorage.setItem("products", JSON.stringify(products));
-    this.props.clearTotal();
+    this.props.countTotal();
     }
   }
 
@@ -50,7 +50,7 @@ class Cart extends Component {
       let selectedProducts = products.filter(item => item.is_purchased);
       let pushProducts = selectedProducts.map(item => {
         return (item = {
-          product: item.get_id,
+          product: item.id,
           count: item.quantity
         });
       });
@@ -126,8 +126,8 @@ const mapDispatchToProps = dispatch => ({
   selectProduct: id => {
     dispatch(selectProductToBuy(id));
   },
-  clearTotal: () => {
-    dispatch(clearTotalValue());
+  countTotal: () => {
+    dispatch(countTotalValue());
   },
   showModalOrder: () => {
     dispatch(showModalOrder());

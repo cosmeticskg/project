@@ -10,7 +10,7 @@ const FavoriteList = (props) => {
         favoriteProducts.map((product) => {
           return (
             <FavoriteItem
-              key={product.get_id}
+              key={product.id}
               {...product}
               onDelete={props.onDelete}
               products={product}

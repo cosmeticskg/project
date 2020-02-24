@@ -25,7 +25,7 @@ export const addProductToFavoritesThunk = data => dispatch => {
   } else {
     favoriteItemsInLocalStorage = JSON.parse(localStorage.getItem("favorites"));
     favoriteItemsInLocalStorage = favoriteItemsInLocalStorage.filter(
-      productItem => productItem.get_id !== data.get_id
+      productItem => productItem.id !== data.id
     );//чтобы item не повторялись
   }
   favoriteItemsInLocalStorage.unshift(data);
@@ -41,7 +41,7 @@ export const addProductThunk = data => dispatch => {
     a = [];
   } else {
     a = JSON.parse(localStorage.getItem("products"));
-    a = a.filter(productItem => productItem.get_id !== data.get_id);
+    a = a.filter(productItem => productItem.id !== data.id);
   }
   a.unshift(data);
   dispatch(addProduct(a));
@@ -52,8 +52,13 @@ export const getProductsRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getProducts()
     .then(res => {
-      // console.log(res.data);
-      dispatch(getProductsSuccess(res.data));
+      let trueData = res.data.map(item => ({
+        ...item,
+        is_purchased: false,
+        quantity: 1
+      }));
+      
+      dispatch(getProductsSuccess(trueData));
     })
     .catch(err => {
       console.log(err, "ERROR FROM GET Products");

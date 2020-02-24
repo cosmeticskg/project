@@ -16,7 +16,7 @@ class HomeContainer extends Component {
 
   render() {
     const handleShow = (id) => {
-      let productToBuy = this.props.allProducts.products.find(item=> item.get_id === id);
+      let productToBuy = this.props.allProducts.products.find(item=> item.id === id);
       localStorage.setItem("productToBuy", JSON.stringify(productToBuy));
       this.props.showModalOrder();      
     };
@@ -31,7 +31,7 @@ class HomeContainer extends Component {
       let products = [JSON.parse(localStorage.getItem("productToBuy"))];
       let pushProducts = products.map(item => {
         return (item = {
-          product: item.get_id,
+          product: item.id,
           count: item.quantity
         });
       });

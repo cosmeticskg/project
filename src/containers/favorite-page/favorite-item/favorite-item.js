@@ -7,7 +7,7 @@ import cartActive from "../../../img/shopping-cart.svg";
 import HoverImage from "react-hover-image";
 
 const FavoriteItem = props => {
-  const { name, onDelete, image, description, current_price, get_id } = props;
+  const { name, onDelete, image, description, price, id } = props;
 
   const handleDelete = id => {
     onDelete(id);
@@ -27,7 +27,7 @@ const FavoriteItem = props => {
         </div>
       </div>
       <div>
-        <p>{current_price} сом</p>
+        <p>{price} сом</p>
       </div>
       <div className="cart-item-buttons">
         <div>
@@ -38,7 +38,7 @@ const FavoriteItem = props => {
             <HoverImage src={cartInactive} hoverSrc={cartActive} alt="cart" />
           </button>
           <button
-            onClick={() => handleDelete(get_id)}
+            onClick={() => handleDelete(id)}
             className="cart-like-trash-btn"
           >
             <HoverImage src={trash} hoverSrc={activeTrash} alt="trash" />
