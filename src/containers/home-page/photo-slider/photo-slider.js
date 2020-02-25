@@ -45,10 +45,10 @@ export default class PhotoSlider extends Component {
     return (
       <div className="App">
         <Slider {...settings}>
-          {photos.map(photo => {
+          {photos.map((photo,i) => {
             return (
-              <div>
-                <img width="100%" height="350px" src={photo.url} />
+              <div key={i}>
+                <img width="100%" height="350px" src={photo.url} alt="slider" />
               </div>
             );
           })}

@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import "./header-main.css";
 import cart_inactive from "../../img/cart-black.svg";
-import cart_active from "../../img/shopping-cart.svg";
+// import cart_active from "../../img/shopping-cart.svg";
 import favorites_inactive from "../../img/heart-inactive.svg";
-import favorites_active from "../../img/heart-active.svg";
+// import favorites_active from "../../img/heart-active.svg";
 import { Link } from "react-router-dom";
 
 function HeaderMain(props) {

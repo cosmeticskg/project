@@ -31,9 +31,9 @@ const cartReducer = (state = initialState, action) => {
       IncDecCounter(action.payload, products, action.value);
       let toggledProducts = products.filter(item => item.is_purchased);
       let Total = toggledProducts.reduce((total, item) => {
-        if (action.value == 1 && action.payload === item.id) {
+        if (action.value === 1 && action.payload === item.id) {
           total += +item.price;
-        } else if (action.value == -1 && action.payload === item.id) {
+        } else if (action.value === -1 && action.payload === item.id) {
           total -= item.price;
         }
         return total;

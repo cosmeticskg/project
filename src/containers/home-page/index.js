@@ -2,7 +2,6 @@ import React from "react";
 import HeaderMain from "../../components/header-main/";
 import Navbar from "../../components/navbar";
 import PhotoSlider from "./photo-slider";
-import ItemSlider from "./item-slider";
 import Footer from "../../components/footer";
 import './index.css';
 import HomeContainer from './items-slider-container/';

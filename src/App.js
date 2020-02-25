@@ -14,6 +14,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/favorite" component={FavoritePage} />
           <Route path="/cart" component={Cart} />
+          
           <Route path='*' component={NotFound} />
         </Switch>
       </div>

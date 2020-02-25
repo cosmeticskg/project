@@ -1,11 +1,6 @@
 import React from "react";
 import "./navbar.css";
 import navLogo from "../../img/menu.png";
-import firstLogo from "../../img/make-up.svg";
-import secongLogo from "../../img/cosmetic.svg";
-import thirdLogo from "../../img/lotion.svg";
-import fourthLogo from "../../img/perfume.svg";
-import fifthLogo from "../../img/pomada.svg";
 
 function Navbar(props) {
   return (
@@ -55,27 +50,21 @@ function Navbar(props) {
           </ul>
         </li>
         <li>
-          {/* <img src={firstLogo} alt="menu-icon" /> */}
           <a href="#">Dior</a>
         </li>
         <li>
-          {/* <img src={secongLogo} alt="menu-icon" /> */}
           <a href="#">Faberlic</a>
         </li>
         <li>
-          {/* <img src={thirdLogo} alt="menu-icon" /> */}
           <a href="#">Kylie</a>
         </li>
         <li>
-          {/* <img src={fourthLogo} alt="menu-icon" /> */}
           <a href="#">Oriflame</a>
         </li>
         <li>
-          {/* <img src={fifthLogo} alt="menu-icon" /> */}
           <a href="#">Clinique</a>
         </li>
         <li>
-          {/* <img src={fifthLogo} alt="menu-icon" /> */}
           <a href="#">Tony Moly</a>
         </li>
       </ul>

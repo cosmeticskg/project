@@ -25,7 +25,7 @@ const ItemSlider = props => {
         <Slider {...settings}>
           {allProducts.products.map((items, i) => {
             return (
-              <div className="item__slider__row">
+              <div key={i} className="item__slider__row">
                 <Item key={i} products={items} {...props} handleShow={handleShow} />
               </div>
             );
