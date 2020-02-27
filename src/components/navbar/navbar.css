@@ -30,11 +30,15 @@
 
 .main__nav>ul li a {
     display: block;
-    font-size: 28px;
+    font-size: 24px;
     text-decoration: none;
     color: white;
-    padding: 10px 0 10px 35px;
-    /* text-transform: uppercase; */
+    padding: 12px 0 12px 35px;
+    cursor: pointer;
+}
+
+.main__nav>ul li span {
+    font-size: 18px;
 }
 
 .main__nav>ul li>img {
@@ -43,13 +47,10 @@
     padding-top: 12px;
 }
 
-.main__nav>ul li .main__nav__category img {
-    padding-top: 12px;
-    width: 43px;
-}
+
 
 .main__nav .main__nav__category {
-    padding: 0 20px 0 11px;
+    padding: 0 37px 0 11px;
     border-right: 2px solid black;
 }
 
@@ -57,7 +58,7 @@
 
 .main__nav ul li ul {
     box-sizing: border-box;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     position: absolute;
     min-width: 200px;
     top: 50px;

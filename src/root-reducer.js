@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   form: formReducer,
   favorite: favoriteReducer,
-  filter: filterReducer
+  filter: filterReducer,
 });
 
 export default rootReducer;

@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./navbar.css";
 import navLogo from "../../img/menu.png";
+import { connect, useDispatch } from "react-redux";
+import {
+  getBrandsRequestThunk,
+  getCategoriesRequestThunk
+} from "../../containers/home-page/actions";
+import { Link } from "react-router-dom";
 
-function Navbar(props) {
+const Navbar = props => {
+  console.log(props);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBrandsRequestThunk());
+    dispatch(getCategoriesRequestThunk());
+  }, []);
+
+  const { brands, categories, subCategories } = props;
+
   return (
     <nav className="main__nav">
       <ul>
@@ -10,66 +25,59 @@ function Navbar(props) {
           <img src={navLogo} alt="menu-icon" />
           <a href="#">Категории</a>
           <ul>
-            <li>
-              <a href="#">Волосы</a>
-              <ul>
-                <li>
-                  <a href="#">Бальзамы</a>
-                </li>
-                <li>
-                  <a href="#">Крема</a>
-                </li>
-                <li>
-                  <a href="#">Химия</a>
-                </li>
-                <li>
-                  <a href="#">Маски</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">Глаза</a>
-              <ul>
-                <li>
-                  <a href="#">Капли</a>
-                </li>
-                <li>
-                  <a href="#">Лекарства</a>
-                </li>
-                <li>
-                  <a href="#">Химия</a>
-                </li>
-                <li>
-                  <a href="#">Очки</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">Ноги</a>
-            </li>
+            {categories && categories.length ? (
+              categories.map(item => {
+                if (item.parent === null) {
+                  return (
+                    <li key={item.id}>
+                      {/* <Link to="filters"> */}
+                      <a>{item.name}</a>
+                      <ul>
+                        {subCategories && subCategories.length
+                          ? subCategories.map(subItem => {
+                              if (subItem.parent === item.id) {
+                                return (
+                                  <li key={subItem.id}>
+                                    <a href="#">{subItem.name}</a>
+                                  </li>
+                                );
+                              }
+                            })
+                          : console.log("no items")}
+                      </ul>
+                      {/* </Link> */}
+                    </li>
+                  );
+                }
+              })
+            ) : (
+              <div>loading</div>
+            )}
           </ul>
         </li>
-        <li>
-          <a href="#">Dior</a>
-        </li>
-        <li>
-          <a href="#">Faberlic</a>
-        </li>
-        <li>
-          <a href="#">Kylie</a>
-        </li>
-        <li>
-          <a href="#">Oriflame</a>
-        </li>
-        <li>
-          <a href="#">Clinique</a>
-        </li>
-        <li>
-          <a href="#">Tony Moly</a>
-        </li>
+
+        {brands.map(item => {
+          return (
+            <li>
+              <a href="#">{item.name}</a>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
-}
+};
 
-export default Navbar;
+const mapStateToProps = state => ({
+  brands: state.home.brands,
+  categories: state.home.categories,
+  subCategories: state.home.categories
+});
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchBrands: () => dispatch(getBrandsRequestThunk()),
+//     fetchCategories: () => dispatch(getCategoriesRequestThunk()),
+//   };
+// };
+export default connect(mapStateToProps)(Navbar);

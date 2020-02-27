@@ -2,8 +2,17 @@ import React, { Component } from "react";
 import Spinner from "../../../components/spinner/spinner";
 import ErrorIndicator from "../../../components/error-indicator";
 import { connect } from "react-redux";
-import { getProductsRequestThunk, addProductThunk,addProductToFavoritesThunk } from "../actions";
-import { showModalOrder, showModalThanks,hideModalOrder,registrOrder } from "../../cart-page/actions";
+import {
+  getProductsRequestThunk,
+  addProductThunk,
+  addProductToFavoritesThunk
+} from "../actions";
+import {
+  showModalOrder,
+  showModalThanks,
+  hideModalOrder,
+  registrOrder
+} from "../../cart-page/actions";
 import ModalOrder from "../../cart-page/modal-order";
 import ModalThanks from "../../cart-page/modal-thanks";
 import ItemSlider from "../item-slider";
@@ -15,10 +24,12 @@ class HomeContainer extends Component {
   }
 
   render() {
-    const handleShow = (id) => {
-      let productToBuy = this.props.allProducts.products.find(item=> item.id === id);
+    const handleShow = id => {
+      let productToBuy = this.props.allProducts.products.find(
+        item => item.id === id
+      );
       localStorage.setItem("productToBuy", JSON.stringify(productToBuy));
-      this.props.showModalOrder();      
+      this.props.showModalOrder();
     };
     const showThanks = () => {
       this.props.showModalThanks();
@@ -51,23 +62,26 @@ class HomeContainer extends Component {
     }
 
     return (
-      <div className="home_container__wrapper">
-        <h3>Рекомендуемые товары :</h3>
-        <ItemSlider {...this.props} handleShow={handleShow} />
-        <h3>Хиты :</h3>
-        <ItemSlider {...this.props} handleShow={handleShow} />
-        <h3>Скидки:</h3>
-        <ItemSlider {...this.props} handleShow={handleShow} />
-        <ModalOrder
-          show={this.props.showModalOrderValue}
-          handleClose={handleHide}
-          onSubmit={submit}
-          handleThanks={showThanks}
-        />
-        <ModalThanks
-          show={this.props.showModalThanksValue}
-          handleClose={handleHide}
-        />
+      <div className="main__wrapper">
+        <div className="home_container__wrapper">
+          
+          <h3>Рекомендуемые товары :</h3>
+          <ItemSlider {...this.props} handleShow={handleShow} />
+          <h3>Хиты :</h3>
+          <ItemSlider {...this.props} handleShow={handleShow} />
+          <h3>Скидки:</h3>
+          <ItemSlider {...this.props} handleShow={handleShow} />
+          <ModalOrder
+            show={this.props.showModalOrderValue}
+            handleClose={handleHide}
+            onSubmit={submit}
+            handleThanks={showThanks}
+          />
+          <ModalThanks
+            show={this.props.showModalThanksValue}
+            handleClose={handleHide}
+          />
+        </div>
       </div>
     );
   }
@@ -84,7 +98,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     fetchProducts: () => dispatch(getProductsRequestThunk()),
-    addProductToFavorites: product => dispatch(addProductToFavoritesThunk(product)),
+    addProductToFavorites: product =>
+      dispatch(addProductToFavoritesThunk(product)),
     addProduct: product => dispatch(addProductThunk(product)),
     showModalOrder: () => {
       dispatch(showModalOrder());

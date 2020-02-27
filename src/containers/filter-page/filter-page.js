@@ -5,9 +5,19 @@ import Footer from "../../components/footer";
 
 const FilterPage = () => {
   return (
-    <div>
+    <div >
       <HeaderMain />
-        
+      <div className="filter_wrapper">
+        <div className="filter__buttons__wrapper"> 
+          <div className="filter_button">
+            <select>
+              <option>Крема</option>
+              <option>Бальзамы</option>
+            </select>
+          </div>
+          
+        </div>
+      </div>
       <Footer />
     </div>
   );

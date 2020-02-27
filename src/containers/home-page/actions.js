@@ -2,6 +2,8 @@ import API from "../../API";
 
 export const GET_PRODUCT_REQUEST = "[HOME_PAGE] GET_PRODUCT_REQUEST";
 export const GET_PRODUCT_SUCCESS = "[HOME-PAGE] GET_PRODUCT_SUCCESS";
+export const GET_CATEGORIES_SUCCESS = "[HOME-PAGE] GET_CATEGORIES_SUCCESS";
+export const GET_BRANDS_SUCCESS = "[HOME-PAGE] GET_BRANDS_SUCCESS";
 export const GET_PRODUCT_ERROR = "[HOME_PAGE] GET_PRODUCT_ERROR";
 export const ADD_PRODUCT = "[HOME_PAGE] ADD_PRODUCT ";
 
@@ -13,6 +15,16 @@ export const getProductsRequest = () => ({ type: GET_PRODUCT_REQUEST });
 
 export const getProductsSuccess = data => ({
   type: GET_PRODUCT_SUCCESS,
+  payload: data
+});
+
+export const getCategoriesSuccess = data => ({
+  type: GET_CATEGORIES_SUCCESS,
+  payload: data
+});
+
+export const getBrandsSuccess = data => ({
+  type: GET_BRANDS_SUCCESS,
   payload: data
 });
 
@@ -65,3 +77,28 @@ export const getProductsRequestThunk = () => dispatch => {
       dispatch(getProductsError());
     });
 };
+
+export const getCategoriesRequestThunk = () => dispatch => {
+  return API.getCategories()
+    .then(res => {
+      let categories = res.data;      
+      dispatch(getCategoriesSuccess(categories));
+    })
+    .catch(err => {
+      console.log(err, "ERROR FROM GET CATEGORIES");
+      dispatch(getProductsError());
+    });
+};
+
+export const getBrandsRequestThunk = () => dispatch => {
+  return API.getBrands()
+    .then(res => {
+      let brands = res.data;
+      dispatch(getBrandsSuccess(brands));
+    })
+    .catch(err => {
+      console.log(err, "ERROR FROM GET BRANDS");
+      dispatch(getProductsError());
+    });
+};
+

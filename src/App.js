@@ -5,6 +5,7 @@ import Cart from "./containers/cart-page/";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import FavoritePage from "./containers/favorite-page/favorite-page";
 import NotFound from './components/404';
+import FilterPage from './containers/filter-page';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/favorite" component={FavoritePage} />
           <Route path="/cart" component={Cart} />
-          
+          <Route path="/filters" component={FilterPage} />
           <Route path='*' component={NotFound} />
         </Switch>
       </div>

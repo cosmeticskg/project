@@ -1,0 +1,16 @@
+.filter_wrapper{
+    height: 547px;
+    background-color: #f8f8f8;
+}
+
+.filter__buttons__wrapper{
+    height: 60px;
+    background-color: #1C1C1C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter__button{
+
+}
