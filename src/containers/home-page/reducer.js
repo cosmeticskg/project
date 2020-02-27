@@ -10,7 +10,6 @@ const initialState = {
   products: [],
   brands: [],
   categories: [],
-  subCategories: [],
   error: false,
   loading: false
 };

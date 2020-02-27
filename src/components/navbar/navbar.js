@@ -33,8 +33,8 @@ const Navbar = props => {
                       {/* <Link to="filters"> */}
                       <a>{item.name}</a>
                       <ul>
-                        {subCategories && subCategories.length
-                          ? subCategories.map(subItem => {
+                        {categories && categories.length
+                          ? categories.map(subItem => {
                               if (subItem.parent === item.id) {
                                 return (
                                   <li key={subItem.id}>
@@ -71,7 +71,6 @@ const Navbar = props => {
 const mapStateToProps = state => ({
   brands: state.home.brands,
   categories: state.home.categories,
-  subCategories: state.home.categories
 });
 
 // const mapDispatchToProps = dispatch => {
