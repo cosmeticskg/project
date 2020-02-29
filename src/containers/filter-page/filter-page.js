@@ -4,7 +4,11 @@ import HeaderMain from "../../components/header-main";
 import Footer from "../../components/footer";
 import FilterList from "./filter-list/filter-list";
 import { connect, useDispatch } from "react-redux";
-import { getProductsRequestThunk } from "../home-page/actions";
+import {
+  getProductsRequestThunk,
+  getBrandsRequestThunk,
+  getCategoriesRequestThunk
+} from "./actions";
 import ModalOrder from "../cart-page/modal-order";
 import ModalThanks from "../cart-page/modal-thanks/";
 import {
@@ -17,11 +21,14 @@ import {
   addProductThunk,
   addProductToFavoritesThunk
 } from "../home-page/actions";
+import { filterProductsByBrandThunk } from "./actions";
 
 const FilterPage = props => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductsRequestThunk());
+    dispatch(getBrandsRequestThunk());
+    dispatch(getCategoriesRequestThunk());
   }, []);
 
   const handleShow = id => {
@@ -50,23 +57,55 @@ const FilterPage = props => {
     props.registrOrder(pushData);
   };
 
+  const handleChangeCategories = e => {
+    console.log(e.target.value);
+    console.log(props.allProducts);
+
+    dispatch(filterProductsByBrandThunk(props.allProducts, e.target.value));
+  };
+
+  const { categories, brands } = props;
+
   return (
     <div>
       <HeaderMain />
       <div className="filter_wrapper">
         <div className="filter__buttons__wrapper">
           <div className="filter_buttons">
-            <select>
-              <option>Тело</option>
-              <option>Лицо</option>
+            <select
+              value={props.categories}
+              onChange={handleChangeCategories}
+              name="category"
+            >
+              <option>Все категории</option>
+              {categories && categories.length ? (
+                props.categories.map(item => {
+                  if (item.parent === null) {
+                    return <option value={item.id}> {item.name} </option>;
+                  }
+                })
+              ) : (
+                <p>loading</p>
+              )}
             </select>
-            <select>
+            <select name="subCategory">
+              <option>Все подкатегории</option>
               <option>Крема</option>
               <option>Бальзамы</option>
             </select>
-            <select>
-              <option>Tony Moly</option>
-              <option>Kylie</option>
+            <select name="brand">
+              <option
+              //  defaultValue={props.brandId}
+              >
+                Все Бренды
+              </option>
+              {brands && brands.length ? (
+                brands.map(item => {
+                  return <option value={item.name}> {item.name} </option>;
+                })
+              ) : (
+                <p>loading</p>
+              )}
             </select>
           </div>
         </div>
@@ -78,17 +117,17 @@ const FilterPage = props => {
         onSubmit={submit}
         handleThanks={showThanks}
       />
-      <ModalThanks
-        show={props.showModalThanksValue}
-        handleClose={handleHide}
-      />
+      <ModalThanks show={props.showModalThanksValue} handleClose={handleHide} />
       <Footer />
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  allProducts: state.home.products,
+  allProducts: state.filter.products,
+  filteredProducts: state.filter.filterProducts,
+  brands: state.filter.brands,
+  categories: state.filter.categories,
   showModalOrderValue: state.cart.showModalOrderValue,
   showModalThanksValue: state.cart.showModalThanksValue
 });
@@ -109,6 +148,9 @@ const mapDispatchToProps = dispatch => {
     },
     registrOrder: data => {
       dispatch(registrOrder(data));
+    },
+    filterProductsByBrand: () => {
+      dispatch(filterProductsByBrandThunk());
     }
   };
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import "./footer.css";
+import HeaderMain from "../header-main";
 
 function Footer() {
   return (

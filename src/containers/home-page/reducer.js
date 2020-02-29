@@ -46,6 +46,7 @@ const homeReducer = (state = initialState, action) => {
         loading: false,
         error: true
       };
+    
     default:
       return state;
   }
