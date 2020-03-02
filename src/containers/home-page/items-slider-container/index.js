@@ -5,7 +5,9 @@ import { connect } from "react-redux";
 import {
   getProductsRequestThunk,
   addProductThunk,
-  addProductToFavoritesThunk
+  addProductToFavoritesThunk,
+  getHitsRequestThunk,
+  getSalesRequestThunk
 } from "../actions";
 import {
   showModalOrder,
@@ -20,7 +22,9 @@ import "./home-container.css";
 
 class HomeContainer extends Component {
   componentDidMount() {
-    this.props.fetchProducts();
+    // this.props.fetchProducts();
+    // this.props.fetchHits();
+    // this.props.fetchSales();
   }
 
   render() {
@@ -61,16 +65,18 @@ class HomeContainer extends Component {
       return <ErrorIndicator />;
     }
 
+    const {products,sales,hits} = this.props.allProducts;
+
     return (
       <div className="main__wrapper">
         <div className="home_container__wrapper">
           
           <h3>Рекомендуемые товары :</h3>
-          <ItemSlider {...this.props} handleShow={handleShow} />
+          <ItemSlider {...this.props} mapArray={products} handleShow={handleShow} />
           <h3>Хиты :</h3>
-          <ItemSlider {...this.props} handleShow={handleShow} />
+          <ItemSlider {...this.props} mapArray={hits} handleShow={handleShow} />
           <h3>Скидки:</h3>
-          <ItemSlider {...this.props} handleShow={handleShow} />
+          <ItemSlider {...this.props} mapArray={sales} handleShow={handleShow} />
           <ModalOrder
             show={this.props.showModalOrderValue}
             handleClose={handleHide}
@@ -98,6 +104,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     fetchProducts: () => dispatch(getProductsRequestThunk()),
+    fetchHits: () => dispatch(getHitsRequestThunk()),
+    fetchSales: () => dispatch(getSalesRequestThunk()),
     addProductToFavorites: product =>
       dispatch(addProductToFavoritesThunk(product)),
     addProduct: product => dispatch(addProductThunk(product)),

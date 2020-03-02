@@ -2,6 +2,8 @@ import API from "../../API";
 
 export const GET_PRODUCT_REQUEST = "[HOME_PAGE] GET_PRODUCT_REQUEST";
 export const GET_PRODUCT_SUCCESS = "[HOME-PAGE] GET_PRODUCT_SUCCESS";
+export const GET_SALES_SUCCESS = "[HOME-PAGE] GET_SALES_SUCCESS";
+export const GET_HITS_SUCCESS = "[HOME-PAGE] GET_HITS_SUCCESS";
 export const GET_CATEGORIES_SUCCESS = "[HOME-PAGE] GET_CATEGORIES_SUCCESS";
 export const GET_BRANDS_SUCCESS = "[HOME-PAGE] GET_BRANDS_SUCCESS";
 export const GET_PRODUCT_ERROR = "[HOME_PAGE] GET_PRODUCT_ERROR";
@@ -15,6 +17,16 @@ export const getProductsRequest = () => ({ type: GET_PRODUCT_REQUEST });
 
 export const getProductsSuccess = data => ({
   type: GET_PRODUCT_SUCCESS,
+  payload: data
+});
+
+export const getSalesSuccess = data => ({
+  type: GET_SALES_SUCCESS,
+  payload: data
+});
+
+export const getHitsSuccess = data => ({
+  type: GET_HITS_SUCCESS,
   payload: data
 });
 
@@ -64,13 +76,52 @@ export const getProductsRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getProducts()
     .then(res => {
-      let trueData = res.data.map(item => ({
+      
+      let trueData = res.data.results.map(item => ({
         ...item,
         is_purchased: false,
         quantity: 1
       }));
       
       dispatch(getProductsSuccess(trueData));
+    })
+    .catch(err => {
+      console.log(err, "ERROR FROM GET Products");
+      dispatch(getProductsError());
+    });
+};
+
+export const getSalesRequestThunk = () => dispatch => {
+  dispatch(getProductsRequest());
+  return API.getSales()
+    .then(res => {
+      
+      let trueData = res.data.results.map(item => ({
+        ...item,
+        is_purchased: false,
+        quantity: 1
+      }));
+      
+      dispatch(getSalesSuccess(trueData));
+    })
+    .catch(err => {
+      console.log(err, "ERROR FROM GET Products");
+      dispatch(getProductsError());
+    });
+};
+
+export const getHitsRequestThunk = () => dispatch => {
+  dispatch(getProductsRequest());
+  return API.getHits()
+    .then(res => {
+      
+      let trueData = res.data.results.map(item => ({
+        ...item,
+        is_purchased: false,
+        quantity: 1
+      }));
+      
+      dispatch(getHitsSuccess(trueData));
     })
     .catch(err => {
       console.log(err, "ERROR FROM GET Products");

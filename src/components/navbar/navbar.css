@@ -37,7 +37,7 @@
     cursor: pointer;
 }
 
-.main__nav>ul li span {
+.main__nav>ul li>span {
     font-size: 18px;
 }
 
@@ -63,29 +63,25 @@
     min-width: 200px;
     top: 50px;
     left: -2px;
-    display: none;
-    /* border: 1px solid black; */
     text-align: center;
     background: white;
+    display: none;
 }
 
 .main__nav li>ul li {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    /* border: 1px solid black; */
     height: 36px;
 }
 
-
-
-.main__nav li ul li a {
+.main__nav li ul li span {
     text-align: center;
     font-size: 20px;
     color: #717171;
 }
 
-.main__nav li ul li a:hover {
+.main__nav li ul li span:hover {
     color: #e62e40;
 }
 
@@ -93,9 +89,12 @@
     display: block;
 }
 
+.main__nav li ul li:hover ul {
+    display: block;
+}
+
 .main__nav li>ul li ul {
     position: absolute;
-    left: 256px;
     left: 100%;
 }
 
@@ -107,8 +106,8 @@
     height: 30px;
 }
 
-.main__nav li ul li ul li a {
-    font-size: 16px;
+.main__nav li ul li ul li span {
+    font-size: 17px;
 }
 
 .main__nav li ul li ul li a:hover {

@@ -12,8 +12,8 @@ const Navbar = props => {
   console.log(props);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getBrandsRequestThunk());
-    dispatch(getCategoriesRequestThunk());
+    // dispatch(getBrandsRequestThunk());
+    // dispatch(getCategoriesRequestThunk());
   }, []);
 
   const { brands, categories, subCategories } = props;
@@ -30,22 +30,24 @@ const Navbar = props => {
                 if (item.parent === null) {
                   return (
                     <li key={item.id}>
-                      {/* <Link to="filters"> */}
-                      <a>{item.name}</a>
-                      <ul>
-                        {categories && categories.length
-                          ? categories.map(subItem => {
-                              if (subItem.parent === item.id) {
-                                return (
-                                  <li key={subItem.id}>
-                                    <a href="#">{subItem.name}</a>
-                                  </li>
-                                );
-                              }
-                            })
-                          : console.log("no items")}
-                      </ul>
-                      {/* </Link> */}
+                      <Link to="/filters">
+                        <span>{item.name}</span>
+                        <ul>
+                          {categories && categories.length
+                            ? categories.map(subItem => {
+                                if (subItem.parent === item.id) {
+                                  return (
+                                    <li key={subItem.id}>
+                                      <Link to="/filters">
+                                        <span>{subItem.name}</span>
+                                      </Link>
+                                    </li>
+                                  );
+                                }
+                              })
+                            : console.log("no items")}
+                        </ul>
+                      </Link>
                     </li>
                   );
                 }
@@ -59,7 +61,9 @@ const Navbar = props => {
         {brands.map(item => {
           return (
             <li>
-              <a href="#">{item.name}</a>
+              <Link to="/filters">
+                <span>{item.name}</span>
+              </Link>
             </li>
           );
         })}
@@ -70,7 +74,7 @@ const Navbar = props => {
 
 const mapStateToProps = state => ({
   brands: state.home.brands,
-  categories: state.home.categories,
+  categories: state.home.categories
 });
 
 // const mapDispatchToProps = dispatch => {

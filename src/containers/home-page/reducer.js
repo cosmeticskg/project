@@ -3,11 +3,15 @@ import {
   GET_PRODUCT_SUCCESS,
   GET_PRODUCT_ERROR,
   GET_BRANDS_SUCCESS,
-  GET_CATEGORIES_SUCCESS
+  GET_CATEGORIES_SUCCESS,
+  GET_HITS_SUCCESS,
+  GET_SALES_SUCCESS
 } from "./actions";
 
 const initialState = {
   products: [],
+  hits: [],
+  sales: [],
   brands: [],
   categories: [],
   error: false,
@@ -40,13 +44,25 @@ const homeReducer = (state = initialState, action) => {
         loading: false,
         products: action.payload
       };
+    case GET_SALES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        sales: action.payload
+      };
+    case GET_HITS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        hits: action.payload
+      };
     case GET_PRODUCT_ERROR:
       return {
         ...state,
         loading: false,
         error: true
       };
-    
+
     default:
       return state;
   }

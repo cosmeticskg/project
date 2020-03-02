@@ -5,12 +5,13 @@ const http = Axios.create({
 });
 
 export default {
-  getProducts: () => http.get("/product"),
+  getProducts: () => http.get("/product/?limit=6"),
+  getRecomendations: () => http.get("/product/recommended/?limit=6"),
   getProduct: id => http.get(`/product/${id}`),
-  getHits: () => http.get("/product/hits/"),
+  getHits: () => http.get("/product/hits/?limit=6"),
   getBrands: () => http.get('/brand/'),
   getCategories: () => http.get('/category/'),
-  getSales: () => http.get('/product/sales/'),
+  getSales: () => http.get('/product/sales/?limit=6'),
   postData: (url, data) =>
     http.post(`${url}`, data, {
       headers: {

@@ -24,6 +24,8 @@ import {
 import { filterProductsByBrandThunk } from "./actions";
 
 const FilterPage = props => {
+  console.log(props);
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductsRequestThunk());
@@ -81,11 +83,11 @@ const FilterPage = props => {
               {categories && categories.length ? (
                 props.categories.map(item => {
                   if (item.parent === null) {
-                    return <option value={item.id}> {item.name} </option>;
+                    return <option key={item.id} value={item.id}> {item.name} </option>;
                   }
                 })
               ) : (
-                <p>loading</p>
+                <option>loading...</option>
               )}
             </select>
             <select name="subCategory">
@@ -101,10 +103,10 @@ const FilterPage = props => {
               </option>
               {brands && brands.length ? (
                 brands.map(item => {
-                  return <option value={item.name}> {item.name} </option>;
+                  return <option key={item.id} value={item.name}> {item.name} </option>;
                 })
               ) : (
-                <p>loading</p>
+                <option>loading...</option>
               )}
             </select>
           </div>
@@ -129,7 +131,9 @@ const mapStateToProps = state => ({
   brands: state.filter.brands,
   categories: state.filter.categories,
   showModalOrderValue: state.cart.showModalOrderValue,
-  showModalThanksValue: state.cart.showModalThanksValue
+  showModalThanksValue: state.cart.showModalThanksValue,
+  pageLimit: state.filter.pageLimit,
+  currentPage: state.filter.currentPage
 });
 
 const mapDispatchToProps = dispatch => {

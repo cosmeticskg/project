@@ -15,7 +15,9 @@ const initialState = {
   brands: [],
   categories: [],
   loading: true,
-  error: false
+  error: false,
+  pageLimit: 4,
+  currentPage: 1
 };
 
 const filterReducer = (state = initialState, action) => {
