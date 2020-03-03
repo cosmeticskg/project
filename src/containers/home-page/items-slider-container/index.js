@@ -24,7 +24,7 @@ class HomeContainer extends Component {
   componentDidMount() {
     // this.props.fetchProducts();
     // this.props.fetchHits();
-    this.props.fetchSales();
+    // this.props.fetchSales();
   }
 
   render() {

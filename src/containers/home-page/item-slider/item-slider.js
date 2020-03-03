@@ -10,8 +10,8 @@ const ItemSlider = props => {
     infinite: true,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 1
-    // rows: 1,
+    slidesToScroll: 1,
+    rows: 1
     // autoplay: true,
     // autoplaySpeed: 3000
   };
@@ -20,10 +20,10 @@ const ItemSlider = props => {
     <div>
       <div className="item__slider">
         <Slider {...settings}>
-          {mapArray.map((items, i) => {
+          {mapArray.map((item, i) => {
             return (
               <div key={i} className="item__slider__row">
-                <Item key={i} products={items} {...props} handleShow={handleShow} />
+                <Item key={i} products={item} {...props} handleShow={handleShow} />
               </div>
             );
           })}

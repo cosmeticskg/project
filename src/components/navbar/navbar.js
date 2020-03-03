@@ -9,7 +9,6 @@ import {
 import { Link } from "react-router-dom";
 
 const Navbar = props => {
-  console.log(props);
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(getBrandsRequestThunk());

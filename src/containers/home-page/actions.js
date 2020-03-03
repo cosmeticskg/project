@@ -50,7 +50,7 @@ export const addProductToFavoritesThunk = data => dispatch => {
     favoriteItemsInLocalStorage = JSON.parse(localStorage.getItem("favorites"));
     favoriteItemsInLocalStorage = favoriteItemsInLocalStorage.filter(
       productItem => productItem.id !== data.id
-    );//чтобы item не повторялись
+    ); //чтобы item не повторялись
   }
   favoriteItemsInLocalStorage.unshift(data);
   localStorage.setItem(
@@ -76,13 +76,12 @@ export const getProductsRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getProducts()
     .then(res => {
-      
       let trueData = res.data.results.map(item => ({
         ...item,
         is_purchased: false,
         quantity: 1
       }));
-      
+
       dispatch(getProductsSuccess(trueData));
     })
     .catch(err => {
@@ -95,14 +94,24 @@ export const getSalesRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getSales()
     .then(res => {
-      
-      let trueData = res.data.results.map(item => ({
-        ...item,
-        is_purchased: false,
-        quantity: 1
-      }));
-      
-      dispatch(getSalesSuccess(trueData));
+      // console.log("res data results -->",res.data.results);
+      let arr = [];
+      res.data.results.forEach((item, i) => {
+        item.products.forEach(elem => {
+          let newPrice = elem.new_price.toFixed();
+          let subArr = {
+            ...elem.product,
+            is_purchased: false,
+            quantity: 1,
+            price: newPrice,
+            isSaleProduct: true,
+            old_price: elem.old_price
+          };
+          arr.push(subArr);
+        });
+      });
+
+      dispatch(getSalesSuccess(arr));
     })
     .catch(err => {
       console.log(err, "ERROR FROM GET Products");
@@ -114,13 +123,12 @@ export const getHitsRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getHits()
     .then(res => {
-      
       let trueData = res.data.results.map(item => ({
         ...item,
         is_purchased: false,
         quantity: 1
       }));
-      
+
       dispatch(getHitsSuccess(trueData));
     })
     .catch(err => {
@@ -132,7 +140,7 @@ export const getHitsRequestThunk = () => dispatch => {
 export const getCategoriesRequestThunk = () => dispatch => {
   return API.getCategories()
     .then(res => {
-      let categories = res.data;      
+      let categories = res.data;
       dispatch(getCategoriesSuccess(categories));
     })
     .catch(err => {
@@ -152,4 +160,3 @@ export const getBrandsRequestThunk = () => dispatch => {
       dispatch(getProductsError());
     });
 };
-
