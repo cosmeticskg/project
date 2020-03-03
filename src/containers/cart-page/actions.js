@@ -6,6 +6,7 @@ export const SELECT_PRODUCT_TO_BUY = "[CART_PAGE] SELECT_PRODUCT_TO_BUY ";
 export const COUNT_TOTAL_VALUE = "[CART_PAGE] COUNT_TOTAL_VALUE ";
 export const SHOW_MODAL_ORDER = "[CART_PAGE] SHOW_MODAL_ORDER ";
 export const SHOW_MODAL_THANKS = "[CART_PAGE] SHOW_MODAL_THANKS ";
+export const SHOW_ALERT_ON_EMPTY_CART = "[CART_PAGE] SHOW_ALERT_ON_EMPTY_CART ";
 export const HIDE_MODAL_ORDER = "[CART_PAGE] HIDE_MODAL_ORDER ";
 
 export const productCountToggle = (productId, value) => ({
@@ -23,6 +24,9 @@ export const showModalOrder = () => ({
 });
 export const showModalThanks = () => ({
   type: SHOW_MODAL_THANKS
+});
+export const showAlertOnEmptyCart = () => ({
+  type: SHOW_ALERT_ON_EMPTY_CART
 });
 
 export const hideModalOrder = () => ({
@@ -45,10 +49,3 @@ export const registrOrder = data => dispatch => {
   dispatch(hideModalOrder());
   dispatch( showModalThanks());
 };
-
-// export const removeBasketItemThunk = basketItem => dispatch => {
-//   let items = JSON.parse(localStorage.getItem("products"));
-//   items.splice(basketItem, 1);
-//   localStorage.setItem("products", JSON.stringify(items));
-//   dispatch(productFinallyRemovedFromCart(items));
-// };

@@ -5,6 +5,7 @@ import {
   COUNT_TOTAL_VALUE,
   SHOW_MODAL_ORDER,
   SHOW_MODAL_THANKS,
+  SHOW_ALERT_ON_EMPTY_CART,
   HIDE_MODAL_ORDER
 } from "./actions";
 
@@ -12,7 +13,8 @@ const initialState = {
   purchasedProducts: JSON.parse(localStorage.getItem("products")) || [],
   total: 0,
   showModalOrderValue: false,
-  showModalThanksValue: false
+  showModalThanksValue: false,
+  showAlertOnEmptyCartValue: false
 };
 
 const IncDecCounter = (id, products, value) => {
@@ -110,11 +112,17 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         showModalThanksValue: true
       };
+    case SHOW_ALERT_ON_EMPTY_CART:
+      return {
+        ...state,
+        showAlertOnEmptyCartValue: true
+      }
     case HIDE_MODAL_ORDER:
       return {
         ...state,
         showModalOrderValue: false,
-        showModalThanksValue: false
+        showModalThanksValue: false,
+        showAlertOnEmptyCartValue: false
       };
 
     default:

@@ -11,31 +11,35 @@ import {
   selectProductToBuy,
   countTotalValue,
   showModalOrder,
+  showAlertOnEmptyCart,
   showModalThanks,
   hideModalOrder,
   registrOrder
 } from "./actions";
 import ModalOrder from "./modal-order";
 import ModalThanks from "./modal-thanks";
-import {addProductToFavoritesThunk} from '../home-page/actions';
+import ModalAlert from "./modal-thanks/modal-alert";
+
+import { addProductToFavoritesThunk } from "../home-page/actions";
 
 class Cart extends Component {
   componentWillMount() {
+    console.log(this.props);
+    
     const products = JSON.parse(localStorage.getItem("products"));
-    if(products && products.length){
-    products.map(product => (product.is_purchased = true));
-    localStorage.setItem("products", JSON.stringify(products));
-    this.props.countTotal();
+    if (products && products.length) {
+      products.map(product => (product.is_purchased = true));
+      localStorage.setItem("products", JSON.stringify(products));
+      this.props.countTotal();
     }
   }
 
   render() {
-    
     const handleShow = () => {
       if (this.props.total > 0) {
         this.props.showModalOrder();
       } else {
-        alert("Пожалуйста, выберите товар для покупки!");
+        this.props.showAlertOnEmptyCart();
       }
     };
     const showThanks = () => {
@@ -73,8 +77,7 @@ class Cart extends Component {
               <div className="cart-name">
                 <p>
                   Корзина: (
-                  {JSON.parse(localStorage.getItem("products")).length || 0} 
-                  )
+                  {JSON.parse(localStorage.getItem("products")).length || 0})
                 </p>
               </div>
               <CartList {...this.props} />
@@ -91,6 +94,10 @@ class Cart extends Component {
           </div>
           <Footer />
         </div>
+        <ModalAlert
+           show={this.props.showAlertOnEmptyCartValue}
+           handleClose={handleHide}
+        />
         <ModalOrder
           show={this.props.showModalOrderValue}
           handleClose={handleHide}
@@ -111,12 +118,14 @@ const mapStateToProps = state => {
     purchasedProducts: state.cart,
     total: state.cart.total,
     showModalOrderValue: state.cart.showModalOrderValue,
-    showModalThanksValue: state.cart.showModalThanksValue
+    showModalThanksValue: state.cart.showModalThanksValue,
+    showAlertOnEmptyCartValue: state.cart.showAlertOnEmptyCartValue
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  addProductToFavorites: product => dispatch(addProductToFavoritesThunk(product)),
+  addProductToFavorites: product =>
+    dispatch(addProductToFavoritesThunk(product)),
   onToggle: (id, value) => {
     dispatch(productCountToggle(id, value));
   },
@@ -140,6 +149,9 @@ const mapDispatchToProps = dispatch => ({
   },
   registrOrder: data => {
     dispatch(registrOrder(data));
+  },
+  showAlertOnEmptyCart: () => {
+    dispatch(showAlertOnEmptyCart());
   }
 });
 
