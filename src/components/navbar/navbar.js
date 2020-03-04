@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 
 const Navbar = props => {
+  console.log(props);
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(getBrandsRequestThunk());
@@ -16,6 +17,7 @@ const Navbar = props => {
   }, []);
 
   const { brands, categories, subCategories } = props;
+  let brandsForNavBar = brands.slice(0, 6);
 
   return (
     <nav className="main__nav">
@@ -24,6 +26,24 @@ const Navbar = props => {
           <img src={navLogo} alt="menu-icon" />
           <a href="#">Категории</a>
           <ul>
+            <li key="allBrands">
+              <Link to="/filters">
+                <span>Бренды</span>
+                <ul>
+                  {brands && brands.length
+                    ? brands.map(brand => {
+                        return (
+                          <li key={brand.id}>
+                            <Link to="/filters">
+                              <span>{brand.name}</span>
+                            </Link>
+                          </li>
+                        );
+                      })
+                    : console.log("")}
+                </ul>
+              </Link>
+            </li>
             {categories && categories.length ? (
               categories.map(item => {
                 if (item.parent === null) {
@@ -57,7 +77,7 @@ const Navbar = props => {
           </ul>
         </li>
 
-        {brands.map(item => {
+        {brandsForNavBar.map(item => {
           return (
             <li>
               <Link to="/filters">

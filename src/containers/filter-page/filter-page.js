@@ -28,9 +28,9 @@ const FilterPage = props => {
   
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProductsRequestThunk());
-    dispatch(getBrandsRequestThunk());
-    dispatch(getCategoriesRequestThunk());
+    // dispatch(getProductsRequestThunk());
+    // dispatch(getBrandsRequestThunk());
+    // dispatch(getCategoriesRequestThunk());
   }, []);
 
   const handleShow = id => {

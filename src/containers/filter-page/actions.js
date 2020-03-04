@@ -45,7 +45,9 @@ export const getProductsRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getProducts()
     .then(res => {
-      let trueData = res.data.map(item => ({
+      console.log(res.data);
+      
+      let trueData = res.data.results.map(item => ({
         ...item,
         is_purchased: false,
         quantity: 1
