@@ -17,8 +17,8 @@ export default {
   getSales: () => http.get("/product/sales/?limit=6"),
   getBrands: () => http.get("/brand/"),
   getCategories: () => http.get("/category/"),
-  getProductsForFilter: (pageSize, currentPage) =>
-    http.get(`/product/?limit=${pageSize}&offset=${currentPage}`),
+  getProductsForFilter: (brand,pageSize, currentPage) =>
+    http.get(`/product/?brand=${brand}&limit=${pageSize}&offset=${currentPage}`),
   postData: (url, data) =>
     http.post(`${url}`, data)
 };

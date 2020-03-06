@@ -6,7 +6,8 @@ import {
   GET_PRODUCT_ERROR,
   GET_BRANDS_SUCCESS,
   GET_CATEGORIES_SUCCESS,
-  SET_CURRENT_PAGE
+  SET_CURRENT_PAGE,
+  SET_BRAND
 } from "./actions";
 import {} from "./actions";
 
@@ -18,8 +19,9 @@ const initialState = {
   categories: [],
   loading: true,
   error: false,
-  pageSize: 3,
-  currentPage: 0
+  pageSize: 4,
+  currentPage: 0,
+  currentBrand: null
 };
 
 const filterReducer = (state = initialState, action) => {
@@ -60,6 +62,11 @@ const filterReducer = (state = initialState, action) => {
           ...state,
           currentPage: action.payload
           
+        }
+      case SET_BRAND:
+        return {
+          ...state,
+          currentBrand: action.payload
         }
     case FILTER_PRODUCTS_BY_CATEGORIES:
       return {

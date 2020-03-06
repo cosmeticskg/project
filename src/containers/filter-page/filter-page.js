@@ -9,7 +9,8 @@ import {
   getProductsRequestThunk,
   getBrandsRequestThunk,
   getCategoriesRequestThunk,
-  setCurrentPage
+  setCurrentPage,
+  setBrand
 } from "./actions";
 import ModalOrder from "../cart-page/modal-order";
 import ModalThanks from "../cart-page/modal-thanks/";
@@ -27,17 +28,17 @@ import { filterProductsByBrandThunk } from "./actions";
 
 const FilterPage = props => {
   const dispatch = useDispatch();
-  const { pageSize, currentPage } = props;
+  const { pageSize, currentPage, currentBrand,setBrand } = props;
   useEffect(() => {
     // API.getProductsForFilter(props.pageSize,props.currentPage)
     //   .then(res => {
     //   console.log("res data ", res.data.results)
 
     //   })
-    dispatch(getProductsRequestThunk(pageSize, currentPage));
-    // dispatch(getBrandsRequestThunk());
+    dispatch(getProductsRequestThunk(currentBrand, pageSize, currentPage));
+    dispatch(getBrandsRequestThunk());
     // dispatch(getCategoriesRequestThunk());
-  }, []);
+  }, [currentBrand,pageSize,currentPage]);
 
   const handleShow = id => {
     let productToBuy = props.allProducts.find(item => item.id === id);
@@ -106,7 +107,7 @@ const FilterPage = props => {
               <option>Крема</option>
               <option>Бальзамы</option>
             </select>
-            <select name="brand">
+            <select name="brand" onChange={e=>{setBrand(e.target.value)}}>
               <option
               //  defaultValue={props.brandId}
               >
@@ -115,7 +116,7 @@ const FilterPage = props => {
               {brands && brands.length ? (
                 brands.map(item => {
                   return (
-                    <option key={item.id} value={item.name}>
+                    <option key={item.id} value={item.id}>
                       {" "}
                       {item.name}{" "}
                     </option>
@@ -150,7 +151,8 @@ const mapStateToProps = state => ({
   showModalThanksValue: state.cart.showModalThanksValue,
   pageSize: state.filter.pageSize,
   currentPage: state.filter.currentPage,
-  totalProducts: state.filter.totalProducts
+  totalProducts: state.filter.totalProducts,
+  currentBrand: state.filter.currentBrand
 });
 
 const mapDispatchToProps = dispatch => {
@@ -175,6 +177,9 @@ const mapDispatchToProps = dispatch => {
     },
     setCurrentPage: page => {
       dispatch(setCurrentPage(page));
+    },
+    setBrand: brandId => {
+      dispatch(setBrand(brandId));
     }
   };
 };

@@ -28,4 +28,11 @@
     width: 30px;
     height: 30px;
     border: 1px solid red;
+    position: relative;
+}
+.filter_list_paginator div span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

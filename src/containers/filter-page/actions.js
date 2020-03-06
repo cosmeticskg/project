@@ -10,6 +10,7 @@ export const GET_CATEGORIES_SUCCESS = "[FILTER_PAGE] GET_CATEGORIES_SUCCESS";
 export const GET_BRANDS_SUCCESS = "[FILTER_PAGE] GET_BRANDS_SUCCESS";
 export const GET_PRODUCT_ERROR = "[FILTER_PAGE] GET_PRODUCT_ERROR";
 export const SET_CURRENT_PAGE = "[FILTER_PAGE] SET_CURRENT_PAGE";
+export const SET_BRAND = "[FILTER_PAGE] SET_BRAND";
 
 
 export const filterProductsByBrandThunk = (
@@ -31,6 +32,11 @@ export const setCurrentPage = (page) => ({
   payload: page
 })
 
+export const setBrand = (brandId) => ({
+  type: SET_BRAND,
+  payload: +brandId
+})
+
 export const getProductsSuccess = data => ({
   type: GET_PRODUCT_SUCCESS,
   payload: data
@@ -48,9 +54,9 @@ export const getBrandsSuccess = data => ({
 
 export const getProductsError = () => ({ type: GET_PRODUCT_ERROR });
 
-export const getProductsRequestThunk = (pageSize,currentPage) => dispatch => {
+export const getProductsRequestThunk = (brand,pageSize,currentPage) => dispatch => {
   dispatch(getProductsRequest());
-  return API.getProductsForFilter(pageSize,currentPage * pageSize)
+  return API.getProductsForFilter(brand,pageSize,currentPage * pageSize)
     .then(res => {
       let trueData = res.data.results.map(item => ({
         ...item,
