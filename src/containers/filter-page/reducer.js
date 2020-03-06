@@ -5,19 +5,21 @@ import {
   GET_PRODUCT_SUCCESS,
   GET_PRODUCT_ERROR,
   GET_BRANDS_SUCCESS,
-  GET_CATEGORIES_SUCCESS
+  GET_CATEGORIES_SUCCESS,
+  SET_CURRENT_PAGE
 } from "./actions";
 import {} from "./actions";
 
 const initialState = {
+  totalProducts: 6,
   products: [],
   filterProducts: [],
   brands: [],
   categories: [],
   loading: true,
   error: false,
-  pageLimit: 4,
-  currentPage: 1
+  pageSize: 3,
+  currentPage: 0
 };
 
 const filterReducer = (state = initialState, action) => {
@@ -53,6 +55,12 @@ const filterReducer = (state = initialState, action) => {
           loading: false,
           error: true
         };
+      case SET_CURRENT_PAGE:
+        return {
+          ...state,
+          currentPage: action.payload
+          
+        }
     case FILTER_PRODUCTS_BY_CATEGORIES:
       return {
         ...state,

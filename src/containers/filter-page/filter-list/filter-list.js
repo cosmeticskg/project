@@ -1,32 +1,61 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./filter-list.css";
 import Item from "../../home-page/item";
+import styles from "./filter-list.module.css";
 
 const FilterList = props => {
-  const allProducts = props.allProducts;
-  const filteredProducts = props.filteredProducts;
+  console.log("props", props);
+  const {
+    allProducts,
+    filteredProducts,
+    currentPage,
+    pageSize,
+    totalProducts
+  } = props;
 
-  let pagesCount = Math.ceil(props.products / props.pageLimit);
+  let pagesCount = Math.ceil(totalProducts / pageSize);
+  let pages = [];
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
+  }
 
   return (
-    <div className="filter_list_wrapper">
-      <div className="filter_list__item_container">
-        {filteredProducts && filteredProducts.length ? (
-          filteredProducts.map(item => {
-            return (
-              <Item
-                key={item.id}
-                products={item}
-                {...props}
-                handleShow={props.handleShow}
-              />
-            );
-          })
-        ) : (
-          <p>Empty</p>
-        )}
+    <Fragment>
+      <div className="filter_list_paginator">
+        {pages.map(page => {
+          return (
+            <div>
+              <span
+                className={currentPage + 1 === page && styles.selectedPage}
+                onClick={() => {
+                  props.setCurrentPage(page - 1);
+                }}
+              >
+                {page}
+              </span>
+            </div>
+          );
+        })}
       </div>
-    </div>
+      <div className="filter_list_wrapper">
+        <div className="filter_list__item_container">
+          {filteredProducts && filteredProducts.length ? (
+            filteredProducts.map(item => {
+              return (
+                <Item
+                  key={item.id}
+                  products={item}
+                  {...props}
+                  handleShow={props.handleShow}
+                />
+              );
+            })
+          ) : (
+            <p>Empty</p>
+          )}
+        </div>
+      </div>
+    </Fragment>
   );
 };
 

@@ -4,10 +4,12 @@ import HeaderMain from "../../components/header-main";
 import Footer from "../../components/footer";
 import FilterList from "./filter-list/filter-list";
 import { connect, useDispatch } from "react-redux";
+import API from "../../API";
 import {
   getProductsRequestThunk,
   getBrandsRequestThunk,
-  getCategoriesRequestThunk
+  getCategoriesRequestThunk,
+  setCurrentPage
 } from "./actions";
 import ModalOrder from "../cart-page/modal-order";
 import ModalThanks from "../cart-page/modal-thanks/";
@@ -24,11 +26,15 @@ import {
 import { filterProductsByBrandThunk } from "./actions";
 
 const FilterPage = props => {
-  console.log(props);
-  
   const dispatch = useDispatch();
+  const { pageSize, currentPage } = props;
   useEffect(() => {
-    // dispatch(getProductsRequestThunk());
+    // API.getProductsForFilter(props.pageSize,props.currentPage)
+    //   .then(res => {
+    //   console.log("res data ", res.data.results)
+
+    //   })
+    dispatch(getProductsRequestThunk(pageSize, currentPage));
     // dispatch(getBrandsRequestThunk());
     // dispatch(getCategoriesRequestThunk());
   }, []);
@@ -83,7 +89,12 @@ const FilterPage = props => {
               {categories && categories.length ? (
                 props.categories.map(item => {
                   if (item.parent === null) {
-                    return <option key={item.id} value={item.id}> {item.name} </option>;
+                    return (
+                      <option key={item.id} value={item.id}>
+                        {" "}
+                        {item.name}{" "}
+                      </option>
+                    );
                   }
                 })
               ) : (
@@ -103,7 +114,12 @@ const FilterPage = props => {
               </option>
               {brands && brands.length ? (
                 brands.map(item => {
-                  return <option key={item.id} value={item.name}> {item.name} </option>;
+                  return (
+                    <option key={item.id} value={item.name}>
+                      {" "}
+                      {item.name}{" "}
+                    </option>
+                  );
                 })
               ) : (
                 <option>loading...</option>
@@ -132,8 +148,9 @@ const mapStateToProps = state => ({
   categories: state.filter.categories,
   showModalOrderValue: state.cart.showModalOrderValue,
   showModalThanksValue: state.cart.showModalThanksValue,
-  pageLimit: state.filter.pageLimit,
-  currentPage: state.filter.currentPage
+  pageSize: state.filter.pageSize,
+  currentPage: state.filter.currentPage,
+  totalProducts: state.filter.totalProducts
 });
 
 const mapDispatchToProps = dispatch => {
@@ -155,6 +172,9 @@ const mapDispatchToProps = dispatch => {
     },
     filterProductsByBrand: () => {
       dispatch(filterProductsByBrandThunk());
+    },
+    setCurrentPage: page => {
+      dispatch(setCurrentPage(page));
     }
   };
 };
