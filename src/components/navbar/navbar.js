@@ -7,16 +7,16 @@ import {
   getCategoriesRequestThunk
 } from "../../containers/home-page/actions";
 import { Link } from "react-router-dom";
+import { setBrand } from "../../containers/filter-page/actions";
 
 const Navbar = props => {
-  console.log(props);
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(getBrandsRequestThunk());
     // dispatch(getCategoriesRequestThunk());
   }, []);
 
-  const { brands, categories, subCategories } = props;
+  const { brands, categories, setBrand } = props;
   let brandsForNavBar = brands.slice(0, 6);
 
   return (
@@ -35,7 +35,14 @@ const Navbar = props => {
                         return (
                           <li key={brand.id}>
                             <Link to="/filters">
-                              <span>{brand.name}</span>
+                              <span
+                                value={brand.id}
+                                onClick={e => {
+                                  setBrand(brand.id);
+                                }}
+                              >
+                                {brand.name}
+                              </span>
                             </Link>
                           </li>
                         );
@@ -81,7 +88,14 @@ const Navbar = props => {
           return (
             <li>
               <Link to="/filters">
-                <span>{item.name}</span>
+                <span
+                  value={item.id}
+                  onClick={e => {
+                    setBrand(item.id);
+                  }}
+                >
+                  {item.name}
+                </span>
               </Link>
             </li>
           );
@@ -93,13 +107,13 @@ const Navbar = props => {
 
 const mapStateToProps = state => ({
   brands: state.home.brands,
-  categories: state.home.categories
+  categories: state.home.categories,
+  currentBrand: state.filter.currentBrand
 });
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchBrands: () => dispatch(getBrandsRequestThunk()),
-//     fetchCategories: () => dispatch(getCategoriesRequestThunk()),
-//   };
-// };
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = dispatch => {
+  return {
+    setBrand: brandId => dispatch(setBrand(brandId))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

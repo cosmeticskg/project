@@ -28,17 +28,12 @@ import { filterProductsByBrandThunk } from "./actions";
 
 const FilterPage = props => {
   const dispatch = useDispatch();
-  const { pageSize, currentPage, currentBrand,setBrand } = props;
+  const { pageSize, currentPage, currentBrand, setBrand } = props;
   useEffect(() => {
-    // API.getProductsForFilter(props.pageSize,props.currentPage)
-    //   .then(res => {
-    //   console.log("res data ", res.data.results)
-
-    //   })
-    dispatch(getProductsRequestThunk(currentBrand, pageSize, currentPage));
-    dispatch(getBrandsRequestThunk());
+    // dispatch(getProductsRequestThunk(currentBrand, pageSize, currentPage));
+    // dispatch(getBrandsRequestThunk());
     // dispatch(getCategoriesRequestThunk());
-  }, [currentBrand,pageSize,currentPage]);
+  }, [currentBrand, pageSize, currentPage]);
 
   const handleShow = id => {
     let productToBuy = props.allProducts.find(item => item.id === id);
@@ -107,7 +102,13 @@ const FilterPage = props => {
               <option>Крема</option>
               <option>Бальзамы</option>
             </select>
-            <select name="brand" onChange={e=>{setBrand(e.target.value)}}>
+            <select
+              name="brand"
+              onChange={e => {
+                setBrand(e.target.value);
+              }}
+              defaultValue={currentBrand}
+            >
               <option
               //  defaultValue={props.brandId}
               >
