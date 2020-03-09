@@ -3,6 +3,7 @@ import "./photo-slider.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 
 const photos = [
   {
@@ -42,14 +43,33 @@ export default class PhotoSlider extends Component {
       autoplaySpeed: 3000
       // cssEase: "linear"
     };
+    console.log(this.props.allProducts.sliderImages);
+    const { sliderImages } = this.props.allProducts;
+
     return (
       <div className="App">
         <Slider {...settings}>
-          {photos.map((photo,i) => {
+          {/* {sliderImages.map((photo,i) => {
             return (
+              <Link to='/stocks'>
               <div key={i}>
-                <img width="100%" height="350px" src={photo.url} alt="slider" />
+                <img width="100%" height="350px" src={photo.image} alt="slider" />
               </div>
+              </Link>
+            );
+          })} */}
+          {photos.map((photo, i) => {
+            return (
+              <Link to="/stocks">
+                <div key={i}>
+                  <img
+                    width="100%"
+                    height="350px"
+                    src={photo.url}
+                    alt="slider"
+                  />
+                </div>
+              </Link>
             );
           })}
         </Slider>

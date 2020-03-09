@@ -13,6 +13,7 @@ export default {
   getProducts: () => http.get("/product/?limit=6"),
   getRecomendations: () => http.get("/product/recommended/?limit=6"),
   getProduct: id => http.get(`/product/${id}`),
+  getSliderImages: () => http.get(`/slider/?limit=5`),
   getHits: () => http.get("/product/hits/?limit=6"),
   getSales: () => http.get("/product/sales/?limit=6"),
   getBrands: () => http.get("/brand/"),

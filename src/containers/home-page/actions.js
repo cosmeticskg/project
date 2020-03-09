@@ -6,6 +6,8 @@ export const GET_SALES_SUCCESS = "[HOME-PAGE] GET_SALES_SUCCESS";
 export const GET_HITS_SUCCESS = "[HOME-PAGE] GET_HITS_SUCCESS";
 export const GET_CATEGORIES_SUCCESS = "[HOME-PAGE] GET_CATEGORIES_SUCCESS";
 export const GET_BRANDS_SUCCESS = "[HOME-PAGE] GET_BRANDS_SUCCESS";
+export const GET_SLIDER_IMAGES_SUCCESS =
+  "[HOME-PAGE] GET_SLIDER_IMAGES_SUCCESS";
 export const GET_PRODUCT_ERROR = "[HOME_PAGE] GET_PRODUCT_ERROR";
 export const ADD_PRODUCT = "[HOME_PAGE] ADD_PRODUCT ";
 
@@ -40,6 +42,11 @@ export const getBrandsSuccess = data => ({
   payload: data
 });
 
+export const getSliderImagesSuccess = data => ({
+  type: GET_SLIDER_IMAGES_SUCCESS,
+  payload: data
+});
+
 export const getProductsError = () => ({ type: GET_PRODUCT_ERROR });
 
 export const addProductToFavoritesThunk = data => dispatch => {
@@ -59,6 +66,14 @@ export const addProductToFavoritesThunk = data => dispatch => {
   );
 };
 
+export const getSliderImagesRequestThunk = () => dispatch => {
+  dispatch(getProductsRequest());
+  return API.getSliderImages().then(res => {
+    let sliderImagesArr = res.data.results;
+    dispatch(getSliderImagesSuccess(sliderImagesArr));
+  });
+};
+
 export const addProductThunk = data => dispatch => {
   let a;
   if (localStorage.getItem("products") === null) {
@@ -76,12 +91,16 @@ export const getProductsRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getProducts()
     .then(res => {
-      let trueData = res.data.results.map(item => ({
-        ...item,
-        is_purchased: false,
-        quantity: 1
-      }));
-
+      let trueData = res.data.results.map(item => {
+        let newPrice = +item.price;
+        newPrice.toFixed();
+        return {
+          ...item,
+          is_purchased: false,
+          quantity: 1,
+          price: newPrice
+        };
+      });
       dispatch(getProductsSuccess(trueData));
     })
     .catch(err => {
@@ -94,7 +113,6 @@ export const getSalesRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getSales()
     .then(res => {
-      // console.log("res data results -->",res.data.results);
       let arr = [];
       res.data.results.forEach((item, i) => {
         item.products.forEach(elem => {

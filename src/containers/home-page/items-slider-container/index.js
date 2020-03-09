@@ -7,7 +7,8 @@ import {
   addProductThunk,
   addProductToFavoritesThunk,
   getHitsRequestThunk,
-  getSalesRequestThunk
+  getSalesRequestThunk,
+  getSliderImagesRequestThunk
 } from "../actions";
 import {
   showModalOrder,
@@ -19,12 +20,14 @@ import ModalOrder from "../../cart-page/modal-order";
 import ModalThanks from "../../cart-page/modal-thanks";
 import ItemSlider from "../item-slider";
 import "./home-container.css";
+import PhotoSlider from "../photo-slider/photo-slider";
 
 class HomeContainer extends Component {
   componentDidMount() {
-    // this.props.fetchProducts();
+    this.props.fetchProducts();
     // this.props.fetchHits();
     // this.props.fetchSales();
+    // this.props.fetchSliderImages();
   }
 
   render() {
@@ -69,6 +72,7 @@ class HomeContainer extends Component {
 
     return (
       <div className="main__wrapper">
+        <PhotoSlider {...this.props} />
         <div className="home_container__wrapper">
           
           <h3>Рекомендуемые товары :</h3>
@@ -104,6 +108,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     fetchProducts: () => dispatch(getProductsRequestThunk()),
+    fetchSliderImages: () => dispatch(getSliderImagesRequestThunk()),
     fetchHits: () => dispatch(getHitsRequestThunk()),
     fetchSales: () => dispatch(getSalesRequestThunk()),
     addProductToFavorites: product =>

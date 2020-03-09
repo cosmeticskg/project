@@ -11,7 +11,7 @@ function Home() {
     <div className="main__wrapper">
       <HeaderMain />
       <Navbar />
-      <PhotoSlider />
+      {/* <PhotoSlider />  */}
       <HomeContainer />
       <Footer />
     </div>
