@@ -30,9 +30,9 @@ const FilterPage = props => {
   const dispatch = useDispatch();
   const { pageSize, currentPage, currentBrand, setBrand } = props;
   useEffect(() => {
-    // dispatch(getProductsRequestThunk(currentBrand, pageSize, currentPage));
-    // dispatch(getBrandsRequestThunk());
-    // dispatch(getCategoriesRequestThunk());
+    dispatch(getProductsRequestThunk(currentBrand, pageSize, currentPage));
+    dispatch(getBrandsRequestThunk());
+    dispatch(getCategoriesRequestThunk());
   }, [currentBrand, pageSize, currentPage]);
 
   const handleShow = id => {
@@ -62,9 +62,8 @@ const FilterPage = props => {
   };
 
   const handleChangeCategories = e => {
-    console.log(e.target.value);
-    console.log(props.allProducts);
-
+    // console.log(e.target.value);
+    // console.log(props.allProducts);
     dispatch(filterProductsByBrandThunk(props.allProducts, e.target.value));
   };
 
@@ -109,11 +108,7 @@ const FilterPage = props => {
               }}
               defaultValue={currentBrand}
             >
-              <option
-              //  defaultValue={props.brandId}
-              >
-                Все Бренды
-              </option>
+              <option>Все Бренды</option>
               {brands && brands.length ? (
                 brands.map(item => {
                   return (

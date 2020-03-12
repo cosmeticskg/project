@@ -43,7 +43,6 @@ export default class PhotoSlider extends Component {
       autoplaySpeed: 3000
       // cssEase: "linear"
     };
-    console.log(this.props.allProducts.sliderImages);
     const { sliderImages } = this.props.allProducts;
 
     return (

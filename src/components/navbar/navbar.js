@@ -47,7 +47,7 @@ const Navbar = props => {
                           </li>
                         );
                       })
-                    : console.log("")}
+                    : <span>loading...</span>}
                 </ul>
               </Link>
             </li>
@@ -71,7 +71,7 @@ const Navbar = props => {
                                   );
                                 }
                               })
-                            : console.log("no items")}
+                            : <span>loading...</span>}
                         </ul>
                       </Link>
                     </li>
