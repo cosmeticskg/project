@@ -1,18 +1,28 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./stock-item.css";
+import API from '../../../API';
 
-const StockItem = () => {
+const StockItem = (props) => {
+  const [currentProduct,SetCurrentProduct] = useState({});
+  useEffect(()=>{
+    API.getProduct(props.product)
+    .then(res=>{
+      SetCurrentProduct(res.data)
+    })
+  },[]);
+
+  const {price} = props
   return (
     <div className="cart-item-wrapper">
       <div>
-        <img className="cart-product-img" src="" alt="item-pic" />
+        <img className="cart-product-img" src={currentProduct.image} alt="item-pic" />
       </div>
       <div className="cart-item-description">
         <div>
-          <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium tempora molestiae est aliquam deserunt ducimus doloribus ipsum neque quibusdam dolores.</span>
+          <span>{currentProduct.description}</span>
         </div>
         <div>
-          <p>999 сом</p>
+          <p>{price} сом</p>
         </div>
       </div>
     </div>

@@ -11,10 +11,12 @@ export const GET_SLIDER_IMAGES_SUCCESS =
 export const GET_PRODUCT_ERROR = "[HOME_PAGE] GET_PRODUCT_ERROR";
 export const ADD_PRODUCT = "[HOME_PAGE] ADD_PRODUCT ";
 
+
 export const addProduct = productId => ({
   type: ADD_PRODUCT,
   payload: productId
 });
+
 export const getProductsRequest = () => ({ type: GET_PRODUCT_REQUEST });
 
 export const getProductsSuccess = data => ({

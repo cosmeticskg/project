@@ -38,26 +38,24 @@ export default class PhotoSlider extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       rows: 1,
-      // className: "",
       autoplay: true,
       autoplaySpeed: 3000
       // cssEase: "linear"
     };
     const { sliderImages } = this.props.allProducts;
-
     return (
       <div className="App">
         <Slider {...settings}>
-          {/* {sliderImages.map((photo,i) => {
+          {sliderImages.map((photo,i) => {
             return (
               <Link to='/stocks'>
-              <div key={i}>
+              <div key={i} onClick={e => this.props.handleCurrentSaleBundle(photo.salebundle,photo.image)}>
                 <img width="100%" height="350px" src={photo.image} alt="slider" />
               </div>
               </Link>
             );
-          })} */}
-          {photos.map((photo, i) => {
+          })}
+          {/* {photos.map((photo, i) => {
             return (
               <Link to="/stocks">
                 <div key={i}>
@@ -70,7 +68,7 @@ export default class PhotoSlider extends Component {
                 </div>
               </Link>
             );
-          })}
+          })} */}
         </Slider>
       </div>
     );

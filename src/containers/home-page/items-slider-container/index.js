@@ -16,6 +16,7 @@ import {
   hideModalOrder,
   registrOrder
 } from "../../cart-page/actions";
+import { setCurrentSaleBundle } from "../../stocks-page/actions";
 import ModalOrder from "../../cart-page/modal-order";
 import ModalThanks from "../../cart-page/modal-thanks";
 import ItemSlider from "../item-slider";
@@ -24,13 +25,21 @@ import PhotoSlider from "../photo-slider/photo-slider";
 
 class HomeContainer extends Component {
   componentDidMount() {
-    // this.props.fetchProducts();
+    this.props.fetchProducts();
     // this.props.fetchHits();
     // this.props.fetchSales();
-    // this.props.fetchSliderImages();
+    this.props.fetchSliderImages();
   }
 
   render() {
+    const handleCurrentSaleBundle = (id, imageUrl) => {
+      let data = {
+        id,
+        imageUrl
+      };
+      localStorage.setItem("currentSaleBundle", JSON.stringify(data));
+      this.props.setCurrentSaleBundle(data);
+    };
     const handleShow = id => {
       let productToBuy = this.props.allProducts.products.find(
         item => item.id === id
@@ -68,19 +77,29 @@ class HomeContainer extends Component {
       return <ErrorIndicator />;
     }
 
-    const {products,sales,hits} = this.props.allProducts;
+    const { products, sales, hits } = this.props.allProducts;
 
     return (
       <div className="main__wrapper">
-        <PhotoSlider {...this.props} />
+        <PhotoSlider
+          {...this.props}
+          handleCurrentSaleBundle={handleCurrentSaleBundle}
+        />
         <div className="home_container__wrapper">
-          
           <h3>Рекомендуемые товары :</h3>
-          <ItemSlider {...this.props} mapArray={products} handleShow={handleShow} />
+          <ItemSlider
+            {...this.props}
+            mapArray={products}
+            handleShow={handleShow}
+          />
           <h3>Хиты :</h3>
           <ItemSlider {...this.props} mapArray={hits} handleShow={handleShow} />
           <h3>Скидки:</h3>
-          <ItemSlider {...this.props} mapArray={sales} handleShow={handleShow} />
+          <ItemSlider
+            {...this.props}
+            mapArray={sales}
+            handleShow={handleShow}
+          />
           <ModalOrder
             show={this.props.showModalOrderValue}
             handleClose={handleHide}
@@ -125,6 +144,9 @@ const mapDispatchToProps = dispatch => {
     },
     registrOrder: data => {
       dispatch(registrOrder(data));
+    },
+    setCurrentSaleBundle: saleId => {
+      dispatch(setCurrentSaleBundle(saleId));
     }
   };
 };

@@ -12,7 +12,7 @@ const http = Axios.create({
 export default {
   getProducts: () => http.get("/product/?limit=6"),
   getRecomendations: () => http.get("/product/recommended/?limit=6"),
-  getProduct: id => http.get(`/product/${id}`),
+  getProduct: id => http.get(`/product/${id}/`),
   getSliderImages: () => http.get(`/slider/?limit=5`),
   getStocks: () => http.get("/product/salebundles/"),
   getHits: () => http.get("/product/hits/?limit=6"),
