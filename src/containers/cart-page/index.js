@@ -24,8 +24,10 @@ import { addProductToFavoritesThunk } from "../home-page/actions";
 
 class Cart extends Component {
   componentWillMount() {
-    console.log(this.props);
-    
+    let productsArr = [];
+    if (localStorage.getItem('products') === null){
+      localStorage.setItem('products',JSON.stringify(productsArr));
+    }
     const products = JSON.parse(localStorage.getItem("products"));
     if (products && products.length) {
       products.map(product => (product.is_purchased = true));

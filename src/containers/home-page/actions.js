@@ -5,12 +5,12 @@ export const GET_PRODUCT_SUCCESS = "[HOME-PAGE] GET_PRODUCT_SUCCESS";
 export const GET_SALES_SUCCESS = "[HOME-PAGE] GET_SALES_SUCCESS";
 export const GET_HITS_SUCCESS = "[HOME-PAGE] GET_HITS_SUCCESS";
 export const GET_CATEGORIES_SUCCESS = "[HOME-PAGE] GET_CATEGORIES_SUCCESS";
+export const GET_SUBCATEGORIES_SUCCESS = "[HOME-PAGE] GET_SUBCATEGORIES_SUCCESS";
 export const GET_BRANDS_SUCCESS = "[HOME-PAGE] GET_BRANDS_SUCCESS";
 export const GET_SLIDER_IMAGES_SUCCESS =
   "[HOME-PAGE] GET_SLIDER_IMAGES_SUCCESS";
 export const GET_PRODUCT_ERROR = "[HOME_PAGE] GET_PRODUCT_ERROR";
 export const ADD_PRODUCT = "[HOME_PAGE] ADD_PRODUCT ";
-
 
 export const addProduct = productId => ({
   type: ADD_PRODUCT,
@@ -48,6 +48,10 @@ export const getSliderImagesSuccess = data => ({
   type: GET_SLIDER_IMAGES_SUCCESS,
   payload: data
 });
+export const getSubcategoriesSuccess = data => ({
+  type: GET_SUBCATEGORIES_SUCCESS,
+  payload: data
+})
 
 export const getProductsError = () => ({ type: GET_PRODUCT_ERROR });
 
@@ -165,6 +169,18 @@ export const getCategoriesRequestThunk = () => dispatch => {
     })
     .catch(err => {
       console.log(err, "ERROR FROM GET CATEGORIES");
+      dispatch(getProductsError());
+    });
+};
+
+export const getSubcategoriesRequestThunk = () => dispatch => {
+  return API.getSubcategories()
+    .then(res => {
+      let subCategories = res.data;
+      dispatch(getSubcategoriesSuccess(subCategories));
+    })
+    .catch(err => {
+      console.log(err, "ERROR FROM GET SUBCATEGORIES");
       dispatch(getProductsError());
     });
 };

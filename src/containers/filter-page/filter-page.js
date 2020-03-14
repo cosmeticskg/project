@@ -104,11 +104,15 @@ const FilterPage = props => {
             <select
               name="brand"
               onChange={e => {
+                console.log(e.target.value);
+                
                 setBrand(e.target.value);
               }}
               defaultValue={currentBrand}
             >
-              <option>Все Бренды</option>
+              <option key="0" defaultValue='' value=''>
+                Все Бренды
+              </option>
               {brands && brands.length ? (
                 brands.map(item => {
                   return (

@@ -67,7 +67,7 @@ export const getProductsRequestThunk = (brand,pageSize,currentPage) => dispatch 
       dispatch(getProductsSuccess(trueData));
     })
     .catch(err => {
-      console.log(err, "ERROR FROM GET Products");
+      console.log(err, "ERROR FROM GET Products BY FILTER");
       dispatch(getProductsError());
     });
 };

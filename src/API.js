@@ -19,6 +19,7 @@ export default {
   getSales: () => http.get("/product/sales/?limit=6"),
   getBrands: () => http.get("/brand/"),
   getCategories: () => http.get("/category/"),
+  getSubcategories: () => http.get("/subcategory/"),
   getProductsForFilter: (brand, pageSize, currentPage) =>
     http.get(
       `/product/?brand=${brand}&limit=${pageSize}&offset=${currentPage}`

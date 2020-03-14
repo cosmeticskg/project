@@ -6,7 +6,8 @@ import {
   GET_CATEGORIES_SUCCESS,
   GET_HITS_SUCCESS,
   GET_SALES_SUCCESS,
-  GET_SLIDER_IMAGES_SUCCESS
+  GET_SLIDER_IMAGES_SUCCESS,
+  GET_SUBCATEGORIES_SUCCESS
 } from "./actions";
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
   sales: [],
   brands: [],
   categories: [],
+  subcategories: [],
   sliderImages: [],
   error: false,
   loading: false
@@ -33,6 +35,12 @@ const homeReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         categories: action.payload
+      };
+    case GET_SUBCATEGORIES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        subcategories: action.payload
       };
     case GET_BRANDS_SUCCESS:
       return {
