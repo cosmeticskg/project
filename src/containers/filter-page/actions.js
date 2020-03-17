@@ -1,29 +1,15 @@
 import API from "../../API";
 
-export const FILTER_PRODUCTS_BY_BRAND =
-  "[FILTER_PAGE] FILTER_PRODUCTS_BY_BRAND";
-export const FILTER_PRODUCTS_BY_CATEGORIES =
-  "[FILTER_PAGE] FILTER_PRODUCTS_BY_CATEGORIES";
 export const GET_PRODUCT_REQUEST = "[FILTER_PAGE] GET_PRODUCT_REQUEST";
 export const GET_PRODUCT_SUCCESS = "[FILTER_PAGE] GET_PRODUCT_SUCCESS";
 export const GET_CATEGORIES_SUCCESS = "[FILTER_PAGE] GET_CATEGORIES_SUCCESS";
+export const GET_SUBCATEGORIES_SUCCESS = "[FILTER_PAGE] GET_SUBCATEGORIES_SUCCESS";
 export const GET_BRANDS_SUCCESS = "[FILTER_PAGE] GET_BRANDS_SUCCESS";
 export const GET_PRODUCT_ERROR = "[FILTER_PAGE] GET_PRODUCT_ERROR";
 export const SET_CURRENT_PAGE = "[FILTER_PAGE] SET_CURRENT_PAGE";
 export const SET_BRAND = "[FILTER_PAGE] SET_BRAND";
-
-
-export const filterProductsByBrandThunk = (
-  products,
-  categoryId
-) => dispatch => {
-  return dispatch({
-    type: FILTER_PRODUCTS_BY_CATEGORIES,
-    payload: {
-      filterProducts: products.filter(item => item.category.includes(+categoryId))
-    }
-  });
-};
+export const SET_CATEGORY = "[FILTER_PAGE] SET_CATEGORY";
+export const SET_SUB_CATEGORY = "[FILTER_PAGE] SET_SUB_CATEGORY";
 
 export const getProductsRequest = () => ({ type: GET_PRODUCT_REQUEST });
 
@@ -34,7 +20,17 @@ export const setCurrentPage = (page) => ({
 
 export const setBrand = (brandId) => ({
   type: SET_BRAND,
-  payload: +brandId
+  payload: +brandId || null
+})
+
+export const setCategory = (categoryId) => ({
+  type: SET_CATEGORY,
+  payload: +categoryId || null
+})
+
+export const setSubcategory = (subCategoryId) => ({
+  type: SET_SUB_CATEGORY,
+  payload: +subCategoryId || null
 })
 
 export const getProductsSuccess = data => ({
@@ -47,6 +43,11 @@ export const getCategoriesSuccess = data => ({
   payload: data
 });
 
+export const getSubcategoriesSuccess = data => ({
+  type: GET_SUBCATEGORIES_SUCCESS,
+  payload: data
+});
+
 export const getBrandsSuccess = data => ({
   type: GET_BRANDS_SUCCESS,
   payload: data
@@ -54,9 +55,18 @@ export const getBrandsSuccess = data => ({
 
 export const getProductsError = () => ({ type: GET_PRODUCT_ERROR });
 
-export const getProductsRequestThunk = (brand,pageSize,currentPage) => dispatch => {
+export const getProductsRequestThunk = (category,subCategory,brand,pageSize,currentPage) => dispatch => {
   dispatch(getProductsRequest());
-  return API.getProductsForFilter(brand,pageSize,currentPage * pageSize)
+  if ( brand === null){
+    brand = "";
+  }
+  if ( category === null){
+    category = "";
+  }
+  if ( subCategory === null){
+    subCategory = "";
+  }
+  return API.getProductsForFilter(category,subCategory,brand,pageSize,currentPage * pageSize)
     .then(res => {
       let trueData = res.data.results.map(item => ({
         ...item,
@@ -77,6 +87,18 @@ export const getCategoriesRequestThunk = () => dispatch => {
     .then(res => {
       let categories = res.data;
       dispatch(getCategoriesSuccess(categories));
+    })
+    .catch(err => {
+      console.log(err, "ERROR FROM GET CATEGORIES");
+      dispatch(getProductsError());
+    });
+};
+
+export const getSubcategoriesRequestThunk = () => dispatch => {
+  return API.getSubcategories()
+    .then(res => {
+      let subCategories = res.data;
+      dispatch(getSubcategoriesSuccess(subCategories));
     })
     .catch(err => {
       console.log(err, "ERROR FROM GET CATEGORIES");

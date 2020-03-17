@@ -1,8 +1,7 @@
 import Axios from "axios";
 
 const http = Axios.create({
-  baseURL:
-    "https://eshop-dimash.herokuapp.com",
+  baseURL: "https://eshop-dimash.herokuapp.com",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json"
@@ -20,9 +19,9 @@ export default {
   getBrands: () => http.get("/brand/"),
   getCategories: () => http.get("/category/"),
   getSubcategories: () => http.get("/subcategory/"),
-  getProductsForFilter: (brand, pageSize, currentPage) =>
+  getProductsForFilter: (category, subCategory, brand, pageSize, currentPage) =>
     http.get(
-      `/product/?brand=${brand}&limit=${pageSize}&offset=${currentPage}`
+      `/product/?brand=${brand}&category=${category}&subcategory=${subCategory}&limit=${pageSize}&offset=${currentPage}`
     ),
   postData: (url, data) => http.post(`${url}`, data)
 };

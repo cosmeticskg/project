@@ -9,8 +9,11 @@ import {
   getProductsRequestThunk,
   getBrandsRequestThunk,
   getCategoriesRequestThunk,
+  getSubcategoriesRequestThunk,
   setCurrentPage,
-  setBrand
+  setBrand,
+  setCategory,
+  setSubcategory
 } from "./actions";
 import ModalOrder from "../cart-page/modal-order";
 import ModalThanks from "../cart-page/modal-thanks/";
@@ -24,16 +27,34 @@ import {
   addProductThunk,
   addProductToFavoritesThunk
 } from "../home-page/actions";
-import { filterProductsByBrandThunk } from "./actions";
 
 const FilterPage = props => {
   const dispatch = useDispatch();
-  const { pageSize, currentPage, currentBrand, setBrand } = props;
+  const {
+    pageSize,
+    currentPage,
+    currentBrand,
+    setBrand,
+    currentCategory,
+    setCategory,
+    currentSubcategory,
+    setSubcategory
+  } = props;
+
   useEffect(() => {
-    dispatch(getProductsRequestThunk(currentBrand, pageSize, currentPage));
+    dispatch(
+      getProductsRequestThunk(
+        currentCategory,
+        currentSubcategory,
+        currentBrand,
+        pageSize,
+        currentPage
+      )
+    );
     dispatch(getBrandsRequestThunk());
     dispatch(getCategoriesRequestThunk());
-  }, [currentBrand, pageSize, currentPage]);
+    dispatch(getSubcategoriesRequestThunk());
+  }, [currentCategory,currentSubcategory, currentBrand, pageSize, currentPage]);
 
   const handleShow = id => {
     let productToBuy = props.allProducts.find(item => item.id === id);
@@ -61,13 +82,7 @@ const FilterPage = props => {
     props.registrOrder(pushData);
   };
 
-  const handleChangeCategories = e => {
-    // console.log(e.target.value);
-    // console.log(props.allProducts);
-    dispatch(filterProductsByBrandThunk(props.allProducts, e.target.value));
-  };
-
-  const { categories, brands } = props;
+  const { categories, brands, subcategories } = props;
 
   return (
     <div>
@@ -76,43 +91,60 @@ const FilterPage = props => {
         <div className="filter__buttons__wrapper">
           <div className="filter_buttons">
             <select
-              value={props.categories}
-              onChange={handleChangeCategories}
+              onChange={e => {
+                setCategory(e.target.value);
+              }}
               name="category"
+              defaultValue={currentCategory}
             >
               <option>Все категории</option>
               {categories && categories.length ? (
                 props.categories.map(item => {
-                  if (item.parent === null) {
-                    return (
-                      <option key={item.id} value={item.id}>
-                        {" "}
-                        {item.name}{" "}
-                      </option>
-                    );
-                  }
+                  return (
+                    <option key={item.id} value={item.id}>
+                      {" "}
+                      {item.name}{" "}
+                    </option>
+                  );
                 })
               ) : (
                 <option>loading...</option>
               )}
             </select>
-            <select name="subCategory">
+            {/* //========================================================= */}
+
+            <select
+              name="subCategory"
+              onChange={e => {
+                setSubcategory(e.target.value);
+              }}
+              defaultChecked={currentSubcategory}
+            >
               <option>Все подкатегории</option>
-              <option>Крема</option>
-              <option>Бальзамы</option>
+              {subcategories && subcategories.length && currentCategory ? (
+                subcategories.map(item => {
+                  if (item.category === currentCategory) {
+                    return (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    );
+                  }
+                })
+              ) : (
+                <option>Выберите категорию</option>
+              )}
             </select>
+
+            {/* //========================================================= */}
             <select
               name="brand"
               onChange={e => {
-                console.log(e.target.value);
-                
                 setBrand(e.target.value);
               }}
               defaultValue={currentBrand}
             >
-              <option key="0" defaultValue='' value=''>
-                Все Бренды
-              </option>
+              <option key="0">Все Бренды</option>
               {brands && brands.length ? (
                 brands.map(item => {
                   return (
@@ -147,12 +179,15 @@ const mapStateToProps = state => ({
   filteredProducts: state.filter.filterProducts,
   brands: state.filter.brands,
   categories: state.filter.categories,
+  subcategories: state.filter.subcategories,
   showModalOrderValue: state.cart.showModalOrderValue,
   showModalThanksValue: state.cart.showModalThanksValue,
   pageSize: state.filter.pageSize,
   currentPage: state.filter.currentPage,
   totalProducts: state.filter.totalProducts,
-  currentBrand: state.filter.currentBrand
+  currentBrand: state.filter.currentBrand,
+  currentCategory: state.filter.currentCategory,
+  currentSubcategory: state.filter.currentSubcategory
 });
 
 const mapDispatchToProps = dispatch => {
@@ -172,14 +207,17 @@ const mapDispatchToProps = dispatch => {
     registrOrder: data => {
       dispatch(registrOrder(data));
     },
-    filterProductsByBrand: () => {
-      dispatch(filterProductsByBrandThunk());
-    },
     setCurrentPage: page => {
       dispatch(setCurrentPage(page));
     },
     setBrand: brandId => {
       dispatch(setBrand(brandId));
+    },
+    setCategory: categoryId => {
+      dispatch(setCategory(categoryId));
+    },
+    setSubcategory: subCategoryId => {
+      dispatch(setSubcategory(subCategoryId));
     }
   };
 };
