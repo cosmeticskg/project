@@ -3,16 +3,18 @@ header {
   justify-content: center;
   font-family: "Poppins", sans-serif;
   background: #f8f8f8;
-  height: 32px;
+  height: 37px;
 }
 
 header button {
   color: black;
-  font-size: 27px;
+  font-size: 28px;
   background: none;
   border: none;
   cursor: pointer;
   outline: none;
+  font-family: 'Raleway', sans-serif;
+
 }
 
 .header_name {

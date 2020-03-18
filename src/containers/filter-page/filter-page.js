@@ -95,9 +95,9 @@ const FilterPage = props => {
                 setCategory(e.target.value);
               }}
               name="category"
-              defaultValue={currentCategory}
+              value={currentCategory}
             >
-              <option>Все категории</option>
+              <option value='0' >Все категории</option>
               {categories && categories.length ? (
                 props.categories.map(item => {
                   return (
@@ -118,9 +118,9 @@ const FilterPage = props => {
               onChange={e => {
                 setSubcategory(e.target.value);
               }}
-              defaultChecked={currentSubcategory}
+              value={currentSubcategory}
             >
-              <option>Все подкатегории</option>
+              <option value='0'>Все подкатегории</option>
               {subcategories && subcategories.length && currentCategory ? (
                 subcategories.map(item => {
                   if (item.category === currentCategory) {
@@ -142,9 +142,9 @@ const FilterPage = props => {
               onChange={e => {
                 setBrand(e.target.value);
               }}
-              defaultValue={currentBrand}
+              value={currentBrand}
             >
-              <option key="0">Все Бренды</option>
+              <option value="0">Все Бренды</option>
               {brands && brands.length ? (
                 brands.map(item => {
                   return (
@@ -158,6 +158,7 @@ const FilterPage = props => {
                 <option>loading...</option>
               )}
             </select>
+
           </div>
         </div>
         <FilterList handleShow={handleShow} {...props} />

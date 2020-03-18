@@ -8,7 +8,7 @@ import {
   getSubcategoriesRequestThunk
 } from "../../containers/home-page/actions";
 import { Link } from "react-router-dom";
-import { setBrand } from "../../containers/filter-page/actions";
+import { setBrand, setCategory,setSubcategory } from "../../containers/filter-page/actions";
 
 const Navbar = props => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const Navbar = props => {
     dispatch(getSubcategoriesRequestThunk());
   }, []);
 
-  const { brands, categories, setBrand,subcategories } = props;
+  const { brands, categories, setBrand,setCategory,setSubcategory, subcategories } = props;
   let brandsForNavBar = brands.slice(0, 6);
 
   return (
@@ -41,6 +41,8 @@ const Navbar = props => {
                               value={brand.id}
                               onClick={e => {
                                 setBrand(brand.id);
+                                setSubcategory('0')
+                                setCategory('0')
                               }}
                             >
                               {brand.name}
@@ -60,7 +62,16 @@ const Navbar = props => {
                 return (
                   <li key={item.id}>
                     <Link to="/filters">
-                      <span>{item.name}</span>
+                      <span
+                        value={item.id}
+                        onClick={() => {
+                          setCategory(item.id);
+                          setBrand('0')
+                          setSubcategory('0')
+                        }}
+                      >
+                        {item.name}
+                      </span>
                       <ul>
                         {subcategories && subcategories.length ? (
                           subcategories.map(subItem => {
@@ -68,7 +79,14 @@ const Navbar = props => {
                               return (
                                 <li key={subItem.id}>
                                   <Link to="/filters">
-                                    <span>{subItem.name}</span>
+                                    <span
+                                      value={subItem.id}
+                                      onClick={()=> {
+                                        setCategory(item.id)
+                                        setSubcategory(subItem.id)
+                                        setBrand('0');
+                                      }}
+                                    >{subItem.name}</span>
                                   </Link>
                                 </li>
                               );
@@ -118,7 +136,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    setBrand: brandId => dispatch(setBrand(brandId))
+    setBrand: brandId => dispatch(setBrand(brandId)),
+    setCategory: categoryId => dispatch(setCategory(categoryId)),
+    setSubcategory: subCategoryId => dispatch(setSubcategory(subCategoryId))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
