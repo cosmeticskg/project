@@ -5,6 +5,7 @@ export const GET_PRODUCT_SUCCESS = "[FILTER_PAGE] GET_PRODUCT_SUCCESS";
 export const GET_CATEGORIES_SUCCESS = "[FILTER_PAGE] GET_CATEGORIES_SUCCESS";
 export const GET_SUBCATEGORIES_SUCCESS = "[FILTER_PAGE] GET_SUBCATEGORIES_SUCCESS";
 export const GET_BRANDS_SUCCESS = "[FILTER_PAGE] GET_BRANDS_SUCCESS";
+export const GET_TOTAL_COUNT_SUCCESS = "[FILTER_PAGE] GET_TOTAL_COUNT_SUCCESS";
 export const GET_PRODUCT_ERROR = "[FILTER_PAGE] GET_PRODUCT_ERROR";
 export const SET_CURRENT_PAGE = "[FILTER_PAGE] SET_CURRENT_PAGE";
 export const SET_BRAND = "[FILTER_PAGE] SET_BRAND";
@@ -35,6 +36,11 @@ export const setSubcategory = (subCategoryId) => ({
 
 export const getProductsSuccess = data => ({
   type: GET_PRODUCT_SUCCESS,
+  payload: data
+});
+
+export const getTotalCountSuccess = data => ({
+  type: GET_TOTAL_COUNT_SUCCESS,
   payload: data
 });
 
@@ -75,6 +81,7 @@ export const getProductsRequestThunk = (category,subCategory,brand,pageSize,curr
       }));
 
       dispatch(getProductsSuccess(trueData));
+      dispatch(getTotalCountSuccess(res.data.count));
     })
     .catch(err => {
       console.log(err, "ERROR FROM GET Products BY FILTER");

@@ -8,12 +8,14 @@ import {
   SET_CURRENT_PAGE,
   SET_BRAND,
   SET_CATEGORY,
-  SET_SUB_CATEGORY
+  SET_SUB_CATEGORY,
+  GET_TOTAL_COUNT_SUCCESS
 } from "./actions";
 import {} from "./actions";
+import { act } from "react-dom/test-utils";
 
 const initialState = {
-  totalProducts: 6,
+  totalProducts: null,
   products: [],
   filterProducts: [],
   brands: [],
@@ -86,6 +88,11 @@ const filterReducer = (state = initialState, action) => {
       return {
         ...state,
         currentSubcategory: action.payload
+      }
+    case GET_TOTAL_COUNT_SUCCESS:
+      return {
+        ...state,
+        totalProducts:action.payload
       }
 
     default:
