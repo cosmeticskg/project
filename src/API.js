@@ -19,6 +19,7 @@ export default {
   getBrands: () => http.get("/brand/"),
   getCategories: () => http.get("/category/"),
   getSubcategories: () => http.get("/subcategory/"),
+  getFooterData: () => http.get("/footer_media/"),
   getProductsForFilter: (category, subCategory, brand, pageSize, currentPage) =>
     http.get(
       `/product/?brand=${brand}&category=${category}&subcategory=${subCategory}&limit=${pageSize}&offset=${currentPage}`

@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./footer.css";
-import HeaderMain from "../header-main";
-import { Link } from "react-router-dom";
+import { connect, useDispatch } from "react-redux";
+import { getSocialNetworkDataThunk } from "./actions";
+import { Redirect } from "react-router-dom";
 
-function Footer() {
+function Footer(props) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSocialNetworkDataThunk());
+  }, []);
+
+  const { socialData } = props;
+
   return (
     <footer>
       <div>
@@ -15,27 +24,43 @@ function Footer() {
       </div>
       <div className="footer__contacts">
         <p>
-          <b>Контактные данные:</b>
+          <b>
+            Телефон:&nbsp;&nbsp;&nbsp;{" "}
+            <span className="footer__white">+996777123456</span>
+          </b>
         </p>
-        <p className="footer__white">&nbsp;&nbsp;&nbsp; +996777123456</p>
+        {/* <p className="footer__white">&nbsp;&nbsp;&nbsp; </p> */}
         <p>
           <b>Адрес:</b>
-          <p className="footer__white">
-            <a href="https://neobis.kg/">
-              &nbsp;&nbsp;&nbsp;&nbsp;Neobis clubs
-            </a>
-          </p>
+          <a className="footer__white" href="https://neobis.kg/">
+            &nbsp;&nbsp;&nbsp;&nbsp;Neobis clubs
+          </a>
         </p>
       </div>
 
       <div>
         <p className="footer__social">Соцcети:</p>
         <div>
-          
+          {socialData && socialData.length ? (
+            socialData.map(item => {
+            console.log("Footer -> item", item)
+              return (
+                <a href={item.media_type}>
+                  <img className='footer__social__network__icons' src={item.image} alt={item.name} />
+                </a>
+              );
+            })
+          ) : (
+            <span>loading...</span>
+          )}
         </div>
       </div>
     </footer>
   );
 }
 
-export default Footer;
+const mapStateToProps = state => ({
+  socialData: state.footer.footerData
+});
+
+export default connect(mapStateToProps)(Footer);
