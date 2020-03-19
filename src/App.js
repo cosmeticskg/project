@@ -1,7 +1,7 @@
 import React from "react";
 import "./app.css";
 import Home from "./containers/home-page";
-import Cart from "./containers/cart-page/";
+import Cart from "./containers/cart-page";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import FavoritePage from "./containers/favorite-page/favorite-page";
 import NotFound from './components/404';
