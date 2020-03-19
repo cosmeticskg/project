@@ -77,24 +77,27 @@ const filterReducer = (state = initialState, action) => {
     case SET_BRAND:
       return {
         ...state,
-        currentBrand: action.payload
+        currentBrand: action.payload,
+        currentPage: 0
       };
     case SET_CATEGORY:
       return {
         ...state,
-        currentCategory: action.payload
+        currentCategory: action.payload,
+        currentPage: 0
       };
     case SET_SUB_CATEGORY:
       return {
         ...state,
-        currentSubcategory: action.payload
-      }
+        currentSubcategory: action.payload,
+        currentPage: 0
+      };
     case GET_TOTAL_COUNT_SUCCESS:
       return {
         ...state,
-        totalProducts:action.payload
-      }
-
+        totalProducts: action.payload
+      };
+    
     default:
       return state;
   }

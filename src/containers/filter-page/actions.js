@@ -11,6 +11,7 @@ export const SET_CURRENT_PAGE = "[FILTER_PAGE] SET_CURRENT_PAGE";
 export const SET_BRAND = "[FILTER_PAGE] SET_BRAND";
 export const SET_CATEGORY = "[FILTER_PAGE] SET_CATEGORY";
 export const SET_SUB_CATEGORY = "[FILTER_PAGE] SET_SUB_CATEGORY";
+export const ZEROING_CURRENT_PAGE = "[FILTER_PAGE] ZEROING_CURRENT_PAGE";
 
 export const getProductsRequest = () => ({ type: GET_PRODUCT_REQUEST });
 
@@ -32,6 +33,7 @@ export const setCategory = (categoryId) => ({
 export const setSubcategory = (subCategoryId) => ({
   type: SET_SUB_CATEGORY,
   payload: +subCategoryId || null
+  
 })
 
 export const getProductsSuccess = data => ({
@@ -79,7 +81,6 @@ export const getProductsRequestThunk = (category,subCategory,brand,pageSize,curr
         is_purchased: false,
         quantity: 1
       }));
-
       dispatch(getProductsSuccess(trueData));
       dispatch(getTotalCountSuccess(res.data.count));
     })
