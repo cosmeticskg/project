@@ -147,11 +147,17 @@ export const getHitsRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getHits()
     .then(res => {
-      let trueData = res.data.results.map(item => ({
+      
+      let trueData = res.data.results.map(item => {
+        let newPrice = +item.price;
+        newPrice.toFixed();
+        return {
         ...item,
         is_purchased: false,
-        quantity: 1
-      }));
+        quantity: 1,
+        price: newPrice
+        }
+      });
 
       dispatch(getHitsSuccess(trueData));
     })

@@ -20,7 +20,9 @@ const CartItem = props => {
     id,
     quantity,
     selectProduct,
-    is_purchased
+    is_purchased,
+    isSaleProduct,
+    old_price
   } = props;
   return (
     <div className="cart-item-wrapper">
@@ -40,7 +42,14 @@ const CartItem = props => {
         </div>
       </div>
       <div className="cart-item-price">
-        <p>{price} сом</p>
+        {isSaleProduct ? (
+            <div>
+              <span>{old_price} сом</span>
+              <p>{price} сом</p>
+            </div>
+          ) : (
+            <p>{price} сом</p>
+          )}
       </div>
       <div className="cart-item-buttons">
         <div>

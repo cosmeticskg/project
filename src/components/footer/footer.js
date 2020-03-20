@@ -44,7 +44,7 @@ function Footer(props) {
           {socialData && socialData.length ? (
             socialData.map(item => {
               return (
-                <a href={item.media_type}>
+                <a href={item.media_type} key={item.id}>
                   <img className='footer__social__network__icons' src={item.image} alt={item.name} />
                 </a>
               );

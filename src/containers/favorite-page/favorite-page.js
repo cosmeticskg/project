@@ -14,7 +14,7 @@ const FavoritePage = props => {
       <HeaderMain />
       <Navbar />
       <div className="favorite__wrapper">
-        <p>Избранное: </p>
+        <p className="favorite__title">Избранное </p>
         <FavoriteList {...props} />
       </div>
       <Footer />

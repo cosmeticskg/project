@@ -25,9 +25,9 @@ import PhotoSlider from "../photo-slider/photo-slider";
 
 class HomeContainer extends Component {
   componentDidMount() {
-    // this.props.fetchProducts();
-    // this.props.fetchHits();
-    // this.props.fetchSales();
+    this.props.fetchProducts();
+    this.props.fetchHits();
+    this.props.fetchSales();
     this.props.fetchSliderImages();
   }
 
@@ -86,15 +86,15 @@ class HomeContainer extends Component {
           handleCurrentSaleBundle={handleCurrentSaleBundle}
         />
         <div className="home_container__wrapper">
-          <h3>Рекомендуемые товары :</h3>
+          <h3>Рекомендуемые товары</h3>
           <ItemSlider
             {...this.props}
             mapArray={products}
             handleShow={handleShow}
           />
-          <h3>Хиты :</h3>
+          <h3>Хиты</h3>
           <ItemSlider {...this.props} mapArray={hits} handleShow={handleShow} />
-          <h3>Скидки:</h3>
+          <h3>Скидки</h3>
           <ItemSlider
             {...this.props}
             mapArray={sales}

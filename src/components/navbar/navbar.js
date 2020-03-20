@@ -19,7 +19,17 @@ const Navbar = props => {
   }, []);
 
   const { brands, categories, setBrand,setCategory,setSubcategory, subcategories } = props;
-  let brandsForNavBar = brands.slice(0, 5);
+
+  brands.sort(function (a, b) {
+    if (a.id > b.id) {
+      return 1;
+    }
+    if (a.id < b.id) {
+      return -1;
+    }
+    return 0;
+  })
+  let brandsForNavBar = brands.slice(0, 6);
 
   return (
     <nav className="main__nav">

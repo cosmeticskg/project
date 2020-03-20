@@ -1,7 +1,13 @@
 .favorite__wrapper{
     min-height: 477px;
+    
 }
 .favorite__wrapper p {
     font-size: 20px;
-    margin-left: 210px;
+    text-align: center;
+
+}
+.favorite__title{
+    font-family: 'Montserrat', monospace;
+    font-size: 22px  !important;
 }
