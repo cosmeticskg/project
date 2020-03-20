@@ -20,7 +20,8 @@ margin-left: 15%;
     margin-left: 20px;
 }
 .fav-item-description {
-    display: flex;
+    display: block;
+    overflow: hidden;
     position: absolute;
     top: 0;
     left: 150px;
@@ -29,6 +30,7 @@ margin-left: 15%;
     justify-content: center;
     margin-left: 10px;
     max-width: 550px;
+    height: 140px;
     /* border: 1px solid red; */
 }
 .fav-item-description div h4{

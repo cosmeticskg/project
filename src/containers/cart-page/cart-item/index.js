@@ -4,9 +4,9 @@ import trash from "../../../img/trash.svg";
 import trashActive from "../../../img/trash-active.svg";
 import heartInactive from "../../../img/heart-inactive.svg";
 import heartActive from "../../../img/heart-active.svg";
-import HoverImage from 'react-hover-image';
+import HoverImage from "react-hover-image";
 
-const CartItem = (props) => {
+const CartItem = props => {
   const handleDelete = id => {
     onDelete(id);
   };
@@ -38,9 +38,9 @@ const CartItem = (props) => {
         <div>
           <span>{description}</span>
         </div>
-        <div>
-          <p>{price} сом</p>
-        </div>
+      </div>
+      <div className="cart-item-price">
+        <p>{price} сом</p>
       </div>
       <div className="cart-item-buttons">
         <div>
@@ -48,7 +48,7 @@ const CartItem = (props) => {
             onClick={() => props.addProductToFavorites(props.products)}
             className="cart-like-trash-btn"
           >
-            <HoverImage src={heartInactive} hoverSrc={heartActive} alt='fav' />
+            <HoverImage src={heartInactive} hoverSrc={heartActive} alt="fav" />
           </button>
           <button
             onClick={() => handleDelete(id)}

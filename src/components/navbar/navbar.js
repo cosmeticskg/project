@@ -19,7 +19,7 @@ const Navbar = props => {
   }, []);
 
   const { brands, categories, setBrand,setCategory,setSubcategory, subcategories } = props;
-  let brandsForNavBar = brands.slice(0, 6);
+  let brandsForNavBar = brands.slice(0, 5);
 
   return (
     <nav className="main__nav">

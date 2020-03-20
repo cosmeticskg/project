@@ -1,35 +1,64 @@
 header {
   display: flex;
   justify-content: center;
-  font-family: "Poppins", sans-serif;
-  background: #f8f8f8;
-  height: 37px;
+  /* background: #f8f8f8; */
+  background: white;
+  height: 110px;
+  position: relative;
 }
 
 header button {
   color: black;
-  font-size: 28px;
   background: none;
   border: none;
   cursor: pointer;
   outline: none;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 45px;
 
 }
 
 .header_name {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
+}
+.header_name button {
+  padding: 10px 0 8px 0 ;
+}
+.header_name div{
+  color: #bcbabf;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.header_description {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  line-height: 0.6;
+  letter-spacing: 0;  
+}
+.header_description p {
+  letter-spacing: 1px;
+}
+.header_description p:nth-child(1){
+  color: black;
+}
+.header_description p:nth-child(2){
+text-transform: none;
 }
 
 .header_buttons {
-  margin: 0;
-  padding: 0;
-  width: 100px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  position: absolute;
+  top: 15px;
+  right: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 8px;
+  z-index: 10;
 }
 .header_buttons a {
     text-decoration:  none;
@@ -42,10 +71,11 @@ header button {
   margin: 1px 5px 0 0;
   outline: none;
   height: 30px;
-  font-size: 13px;
+  font-size: 14px;
   border-radius: 6px;
   text-align: center;
   text-decoration: none !important;
+
 }
 .header_buttons button span:hover {
   color: #e62e04;
