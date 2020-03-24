@@ -23,10 +23,8 @@ import {
   hideModalOrder,
   registrOrder
 } from "../cart-page/actions";
-import {
-  addProductThunk,
-  addProductToFavoritesThunk
-} from "../home-page/actions";
+import { addProductToCartThunk } from "../cart-page/actions";
+import { addProductToFavoritesThunk } from "../favorite-page/actions";
 
 const FilterPage = props => {
   const dispatch = useDispatch();
@@ -54,7 +52,13 @@ const FilterPage = props => {
     dispatch(getBrandsRequestThunk());
     dispatch(getCategoriesRequestThunk());
     dispatch(getSubcategoriesRequestThunk());
-  }, [currentCategory,currentSubcategory, currentBrand, pageSize, currentPage]);
+  }, [
+    currentCategory,
+    currentSubcategory,
+    currentBrand,
+    pageSize,
+    currentPage
+  ]);
 
   const handleShow = id => {
     let productToBuy = props.allProducts.find(item => item.id === id);
@@ -97,7 +101,7 @@ const FilterPage = props => {
               name="category"
               value={currentCategory}
             >
-              <option value='0' >Все категории</option>
+              <option value="0">Все категории</option>
               {categories && categories.length ? (
                 props.categories.map(item => {
                   return (
@@ -120,7 +124,7 @@ const FilterPage = props => {
               }}
               value={currentSubcategory}
             >
-              <option value='0'>Все подкатегории</option>
+              <option value="0">Все подкатегории</option>
               {subcategories && subcategories.length && currentCategory ? (
                 subcategories.map(item => {
                   if (item.category === currentCategory) {
@@ -158,7 +162,6 @@ const FilterPage = props => {
                 <option>loading...</option>
               )}
             </select>
-
           </div>
         </div>
         <FilterList handleShow={handleShow} {...props} />
@@ -195,7 +198,7 @@ const mapDispatchToProps = dispatch => {
   return {
     addProductToFavorites: product =>
       dispatch(addProductToFavoritesThunk(product)),
-    addProduct: product => dispatch(addProductThunk(product)),
+    addProductToCart: product => dispatch(addProductToCartThunk(product)),
     showModalOrder: () => {
       dispatch(showModalOrder());
     },

@@ -1,21 +1,19 @@
 import API from "../../API";
+import checkDataForFavorites from "../../helpfulFuncs/helpful-functions";
 
 export const GET_PRODUCT_REQUEST = "[HOME_PAGE] GET_PRODUCT_REQUEST";
 export const GET_PRODUCT_SUCCESS = "[HOME-PAGE] GET_PRODUCT_SUCCESS";
 export const GET_SALES_SUCCESS = "[HOME-PAGE] GET_SALES_SUCCESS";
 export const GET_HITS_SUCCESS = "[HOME-PAGE] GET_HITS_SUCCESS";
 export const GET_CATEGORIES_SUCCESS = "[HOME-PAGE] GET_CATEGORIES_SUCCESS";
-export const GET_SUBCATEGORIES_SUCCESS = "[HOME-PAGE] GET_SUBCATEGORIES_SUCCESS";
+export const GET_PRODUCT_ERROR = "[HOME_PAGE] GET_PRODUCT_ERROR";
 export const GET_BRANDS_SUCCESS = "[HOME-PAGE] GET_BRANDS_SUCCESS";
+export const GET_SUBCATEGORIES_SUCCESS =
+  "[HOME-PAGE] GET_SUBCATEGORIES_SUCCESS";
 export const GET_SLIDER_IMAGES_SUCCESS =
   "[HOME-PAGE] GET_SLIDER_IMAGES_SUCCESS";
-export const GET_PRODUCT_ERROR = "[HOME_PAGE] GET_PRODUCT_ERROR";
-export const ADD_PRODUCT = "[HOME_PAGE] ADD_PRODUCT ";
-
-export const addProduct = productId => ({
-  type: ADD_PRODUCT,
-  payload: productId
-});
+export const CHANGE_ITEM_DATA_IN_HOME_PAGE =
+  "[HOME_PAGE] CHANGE_ITEM_DATA_IN_HOME_PAGE";
 
 export const getProductsRequest = () => ({ type: GET_PRODUCT_REQUEST });
 
@@ -48,29 +46,18 @@ export const getSliderImagesSuccess = data => ({
   type: GET_SLIDER_IMAGES_SUCCESS,
   payload: data
 });
+
 export const getSubcategoriesSuccess = data => ({
   type: GET_SUBCATEGORIES_SUCCESS,
   payload: data
-})
+});
+
+export const changeItemDataInHomePage = data => ({
+  type: CHANGE_ITEM_DATA_IN_HOME_PAGE,
+  payload: data
+});
 
 export const getProductsError = () => ({ type: GET_PRODUCT_ERROR });
-
-export const addProductToFavoritesThunk = data => dispatch => {
-  let favoriteItemsInLocalStorage;
-  if (localStorage.getItem("favorites") === null) {
-    favoriteItemsInLocalStorage = [];
-  } else {
-    favoriteItemsInLocalStorage = JSON.parse(localStorage.getItem("favorites"));
-    favoriteItemsInLocalStorage = favoriteItemsInLocalStorage.filter(
-      productItem => productItem.id !== data.id
-    ); //чтобы item не повторялись
-  }
-  favoriteItemsInLocalStorage.unshift(data);
-  localStorage.setItem(
-    "favorites",
-    JSON.stringify(favoriteItemsInLocalStorage)
-  );
-};
 
 export const getSliderImagesRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
@@ -80,23 +67,12 @@ export const getSliderImagesRequestThunk = () => dispatch => {
   });
 };
 
-export const addProductThunk = data => dispatch => {
-  let a;
-  if (localStorage.getItem("products") === null) {
-    a = [];
-  } else {
-    a = JSON.parse(localStorage.getItem("products"));
-    a = a.filter(productItem => productItem.id !== data.id);
-  }
-  a.unshift(data);
-  dispatch(addProduct(a));
-  localStorage.setItem("products", JSON.stringify(a));
-};
-
 export const getProductsRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getProducts()
     .then(res => {
+      let favoriteData = JSON.parse(localStorage.getItem("favorites"));
+
       let trueData = res.data.results.map(item => {
         let newPrice = +item.price;
         newPrice.toFixed();
@@ -104,10 +80,12 @@ export const getProductsRequestThunk = () => dispatch => {
           ...item,
           is_purchased: false,
           quantity: 1,
-          price: newPrice
+          price: newPrice,
+          isFavoriteItem: false
         };
       });
-      dispatch(getProductsSuccess(trueData));
+      let finalProducts = checkDataForFavorites(trueData);
+      dispatch(getProductsSuccess(finalProducts));
     })
     .catch(err => {
       console.log(err, "ERROR FROM GET Products");
@@ -119,7 +97,7 @@ export const getSalesRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getSales()
     .then(res => {
-      let arr = [];
+      let sales = [];
       res.data.results.forEach((item, i) => {
         item.products.forEach(elem => {
           let newPrice = elem.new_price.toFixed();
@@ -127,15 +105,17 @@ export const getSalesRequestThunk = () => dispatch => {
             ...elem.product,
             is_purchased: false,
             quantity: 1,
-            price: newPrice,
+            price: +newPrice,
             isSaleProduct: true,
-            old_price: elem.old_price
+            old_price: elem.old_price,
+            isFavoriteItem: false
           };
-          arr.push(subArr);
+          sales.push(subArr);
         });
       });
 
-      dispatch(getSalesSuccess(arr));
+      let finalSales = checkDataForFavorites(sales, 'sales');
+      dispatch(getSalesSuccess(finalSales));
     })
     .catch(err => {
       console.log(err, "ERROR FROM GET Products");
@@ -147,19 +127,19 @@ export const getHitsRequestThunk = () => dispatch => {
   dispatch(getProductsRequest());
   return API.getHits()
     .then(res => {
-      
       let trueData = res.data.results.map(item => {
         let newPrice = +item.price;
         newPrice.toFixed();
         return {
-        ...item,
-        is_purchased: false,
-        quantity: 1,
-        price: newPrice
-        }
+          ...item,
+          is_purchased: false,
+          quantity: 1,
+          price: newPrice,
+          isFavoriteItem: false
+        };
       });
-
-      dispatch(getHitsSuccess(trueData));
+      let finalHits = checkDataForFavorites(trueData);
+      dispatch(getHitsSuccess(finalHits));
     })
     .catch(err => {
       console.log(err, "ERROR FROM GET Products");
@@ -202,3 +182,17 @@ export const getBrandsRequestThunk = () => dispatch => {
       dispatch(getProductsError());
     });
 };
+
+// export const getNavbarDataRequestThunk = (requestName,requestNameSuccessAC) => dispatch => {
+//   let requestNameForAPI = requestName;
+//   console.log("requestNameForAPI", requestNameForAPI)
+//   return API.requestName()
+//     .then(res => {
+//       let data = res.data;
+//       dispatch(requestNameSuccessAC(data));
+//     })
+//     .catch(err => {
+//       console.log(err, "ERROR FROM GET NAVBAR DATA");
+//       dispatch(getProductsError());
+//     });
+// };

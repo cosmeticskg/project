@@ -49,3 +49,15 @@ export const registrOrder = data => dispatch => {
   dispatch(hideModalOrder());
   dispatch( showModalThanks());
 };
+
+export const addProductToCartThunk = data => dispatch => {
+  let a;
+  if (localStorage.getItem("products") === null) {
+    a = [];
+  } else {
+    a = JSON.parse(localStorage.getItem("products"));
+    a = a.filter(productItem => productItem.id !== data.id);
+  }
+  a.unshift(data);
+  localStorage.setItem("products", JSON.stringify(a));
+};

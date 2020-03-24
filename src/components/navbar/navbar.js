@@ -5,12 +5,17 @@ import { connect, useDispatch } from "react-redux";
 import {
   getBrandsRequestThunk,
   getCategoriesRequestThunk,
-  getSubcategoriesRequestThunk
+  getSubcategoriesRequestThunk,
+  getNavbarDataRequestThunk
 } from "../../containers/home-page/actions";
 import { Link } from "react-router-dom";
 import { setBrand, setCategory,setSubcategory } from "../../containers/filter-page/actions";
+import API from '../../API';
+import {getBrandsSuccess } from '../../containers/home-page/actions'
+
 
 const Navbar = props => {
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBrandsRequestThunk());

@@ -13,7 +13,7 @@ header button {
   cursor: pointer;
   outline: none;
   font-family: 'Montserrat', sans-serif;
-  font-size: 45px;
+  font-size: 42px;
 
 }
 
@@ -24,10 +24,12 @@ header button {
   flex-direction: column;
   width: 100%;
 }
+
 .header_name button {
-  padding: 0 0 8px 0 ;
+  padding: 0 0 8px 0;
 }
-.header_name div{
+
+.header_name div {
   color: #bcbabf;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -37,21 +39,26 @@ header button {
   position: absolute;
   top: 20px;
   left: 20px;
-  line-height: 0.6;
-  letter-spacing: 0;  
+  line-height: 0.3;
+  letter-spacing: 0;
 }
+
 .header_description p {
   letter-spacing: 1px;
+  text-transform: none;
 }
-.header_description p:nth-child(1){
+
+.header_description p:nth-child(1) {
   color: black;
 }
-.header_description p:nth-child(2){
-text-transform: none;
+
+.header_description p:nth-child(2) {
+  text-transform: none;
 }
 
 .header_buttons {
   position: absolute;
+  width: 252px;
   top: 15px;
   right: 0px;
   display: grid;
@@ -59,8 +66,9 @@ text-transform: none;
   padding: 8px;
   z-index: 10;
 }
+
 .header_buttons a {
-    text-decoration:  none;
+  text-decoration: none;
 }
 
 .header_buttons button {
@@ -74,8 +82,9 @@ text-transform: none;
   border-radius: 6px;
   text-align: center;
   text-decoration: none !important;
-
+  position: relative;
 }
+
 .header_buttons button span:hover {
   color: #e62e04;
   text-decoration: none !important;
@@ -84,4 +93,22 @@ text-transform: none;
 .header_buttons img {
   width: 25px;
   height: 20px;
+}
+
+.header_value{
+  font-family: 'Baloo 2', cursive;
+  position: absolute;
+  display: inline-block;
+  /* background: #cf171f; */
+  background: #00FA9A;
+  color: white;
+  text-align: center;
+  border-radius: 50%;  
+  width: 20px;
+  height: 20px;
+  top: -8px;
+  right: -15px;
+}
+.header_cart{
+  background: #DA70D6;
 }

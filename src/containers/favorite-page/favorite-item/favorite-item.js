@@ -32,7 +32,7 @@ const FavoriteItem = props => {
       <div className="cart-item-buttons">
         <div>
           <button
-            onClick={() => props.addProduct(props.products)}
+            onClick={() => props.addProductToCart(props.products)}
             className="cart-like-trash-btn"
           >
             <HoverImage src={cartInactive} hoverSrc={cartActive} alt="cart" />

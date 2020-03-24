@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const http = Axios.create({
-  baseURL: "https://eshop-dimash.herokuapp.com",
+  baseURL: "http://46.101.192.225:8000",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json"

@@ -19,8 +19,7 @@ import {
 import ModalOrder from "./modal-order";
 import ModalThanks from "./modal-thanks";
 import ModalAlert from "./modal-thanks/modal-alert";
-
-import { addProductToFavoritesThunk } from "../home-page/actions";
+import { addProductToFavoritesThunk } from "../favorite-page/actions";
 
 class Cart extends Component {
   componentWillMount() {

@@ -6,7 +6,7 @@ import Footer from "../../components/footer";
 import { connect } from "react-redux";
 import FavoriteList from "./favorite-list/";
 import { productFinallyRemovedFromFavorites } from "./actions";
-import {addProductThunk} from '../home-page/actions';
+import { addProductToCartThunk } from "../cart-page/actions";
 
 const FavoritePage = props => {
   return (
@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
   onDelete: id => {
     dispatch(productFinallyRemovedFromFavorites(id));
   },
-  addProduct: product => dispatch(addProductThunk(product))
+  addProductToCart: product => dispatch(addProductToCartThunk(product))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavoritePage);

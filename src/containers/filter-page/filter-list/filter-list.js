@@ -5,7 +5,6 @@ import styles from "./filter-list.module.css";
 
 const FilterList = props => {
   const {
-    allProducts,
     filteredProducts,
     currentPage,
     pageSize,

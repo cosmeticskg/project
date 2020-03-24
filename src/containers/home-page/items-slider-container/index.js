@@ -4,8 +4,6 @@ import ErrorIndicator from "../../../components/error-indicator";
 import { connect } from "react-redux";
 import {
   getProductsRequestThunk,
-  addProductThunk,
-  addProductToFavoritesThunk,
   getHitsRequestThunk,
   getSalesRequestThunk,
   getSliderImagesRequestThunk
@@ -16,6 +14,8 @@ import {
   hideModalOrder,
   registrOrder
 } from "../../cart-page/actions";
+import { addProductToFavoritesThunk } from "../../favorite-page/actions";
+import { addProductToCartThunk } from "../../cart-page/actions";
 import { setCurrentSaleBundle } from "../../stocks-page/actions";
 import ModalOrder from "../../cart-page/modal-order";
 import ModalThanks from "../../cart-page/modal-thanks";
@@ -28,7 +28,7 @@ class HomeContainer extends Component {
     this.props.fetchProducts();
     this.props.fetchHits();
     this.props.fetchSales();
-    this.props.fetchSliderImages();
+    // this.props.fetchSliderImages();
   }
 
   render() {
@@ -78,7 +78,6 @@ class HomeContainer extends Component {
     }
 
     const { products, sales, hits } = this.props.allProducts;
-
     return (
       <div className="main__wrapper">
         <PhotoSlider
@@ -132,7 +131,7 @@ const mapDispatchToProps = dispatch => {
     fetchSales: () => dispatch(getSalesRequestThunk()),
     addProductToFavorites: product =>
       dispatch(addProductToFavoritesThunk(product)),
-    addProduct: product => dispatch(addProductThunk(product)),
+    addProductToCart: product => dispatch(addProductToCartThunk(product)),
     showModalOrder: () => {
       dispatch(showModalOrder());
     },

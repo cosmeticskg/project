@@ -1,12 +1,12 @@
-.fav_item_wrapper{
-width: 900px;
-height: 150px;
-background-color: white;
-border-radius: 15px;
-margin-bottom: 10px;
-position: relative;
-display: flex;
-margin-left: 15%;
+.fav_item_wrapper {
+    width: 900px;
+    height: 150px;
+    background-color: white;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    margin-left: 15%;
 }
 
 /* IMG */
@@ -18,6 +18,7 @@ margin-left: 15%;
     z-index: 1;
     margin-left: 20px;
 }
+
 .fav-item-description {
     display: block;
     overflow: hidden;
@@ -25,22 +26,27 @@ margin-left: 15%;
     top: 0;
     left: 150px;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    margin-left: 10px;
     max-width: 550px;
     height: 140px;
+
     /* border: 1px solid red; */
 }
-.fav-item-description div h4{
+
+.fav-item-description div span{
+    line-height: 1.2;
+}
+
+.fav-item-description div h4 {
     font-size: 18px;
     color: blueviolet;
     font-style: italic;
+    margin: 0;
+    padding: 10px 0 10px 0;
 }
+
 .fav_item_wrapper div p {
     color: #FA8072;
     position: absolute;
     right: 25px;
     bottom: 0;
 }
-

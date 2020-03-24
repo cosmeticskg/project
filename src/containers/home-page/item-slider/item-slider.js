@@ -21,6 +21,7 @@ const ItemSlider = props => {
       <div className="item__slider">
         <Slider {...settings}>
           {mapArray.map((item, i) => {
+          
             return (
               <div key={i} className="item__slider__row">
                 <Item key={i} products={item} {...props} handleShow={handleShow} />
