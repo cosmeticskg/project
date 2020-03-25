@@ -6,7 +6,8 @@ import {
   SHOW_MODAL_ORDER,
   SHOW_MODAL_THANKS,
   SHOW_ALERT_ON_EMPTY_CART,
-  HIDE_MODAL_ORDER
+  HIDE_MODAL_ORDER,
+  CHANGE_ITEM_DATA_IN_CART_PAGE
 } from "./actions";
 
 const initialState = {
@@ -99,6 +100,20 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         total: finalTotalForCount
+      };
+
+    case CHANGE_ITEM_DATA_IN_CART_PAGE:
+      let newObject = action.payload;
+      let finalProducts = state.purchasedProducts.map(item => {
+        if (item.id === newObject.id) {
+          item.isFavoriteItem = !item.isFavoriteItem;
+        }
+        return item;
+      });
+      localStorage.setItem('products',JSON.stringify(finalProducts))
+      return {
+        ...state,
+        purchasedProducts: finalProducts,
       };
 
     case SHOW_MODAL_ORDER:

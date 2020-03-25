@@ -8,6 +8,7 @@ export const SHOW_MODAL_ORDER = "[CART_PAGE] SHOW_MODAL_ORDER ";
 export const SHOW_MODAL_THANKS = "[CART_PAGE] SHOW_MODAL_THANKS ";
 export const SHOW_ALERT_ON_EMPTY_CART = "[CART_PAGE] SHOW_ALERT_ON_EMPTY_CART ";
 export const HIDE_MODAL_ORDER = "[CART_PAGE] HIDE_MODAL_ORDER ";
+export const CHANGE_ITEM_DATA_IN_CART_PAGE = "[CART_PAGE] CHANGE_ITEM_DATA_IN_CART_PAGE ";
 
 export const productCountToggle = (productId, value) => ({
   type: PRODUCT_COUNT_TOGGLE,
@@ -41,6 +42,11 @@ export const productFinallyRemovedFromCart = productId => ({
 export const selectProductToBuy = productId => ({
   type: SELECT_PRODUCT_TO_BUY,
   payload: productId
+});
+
+export const changeItemDataInCartPage = data => ({
+  type: CHANGE_ITEM_DATA_IN_CART_PAGE,
+  payload: data
 });
 
 export const registrOrder = data => dispatch => {

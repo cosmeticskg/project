@@ -11,6 +11,15 @@ const checkDataForFavorites = (array, specify = "") => {
     });
     return final;
   }
+  if (specify === "cart") {
+    let final = array.map(item => {
+      let preFinal = favoriteData.find(elem => elem.id === item.id);
+      return preFinal
+        ? { ...item, ...preFinal, price: item.price }
+        : { ...item};
+    });
+    return final;
+  }
 
   let final = array.map(item => {
     let preFinal = favoriteData.find(elem => elem.id === item.id);
@@ -18,4 +27,18 @@ const checkDataForFavorites = (array, specify = "") => {
   });
   return final;
 };
-export default checkDataForFavorites;
+
+const setFavorite = (array,actionPayloadId) => {
+  const final = array.map(item => {
+    if (item.id === actionPayloadId) {
+      item.isFavoriteItem = !item.isFavoriteItem;
+    }
+    return item;
+  });
+  return final
+}
+
+export default { 
+  checkDataForFavorites,
+  setFavorite
+ };

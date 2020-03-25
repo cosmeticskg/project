@@ -1,4 +1,6 @@
 import {changeItemDataInHomePage} from '../home-page/actions';
+import {changeItemDataInCartPage} from '../cart-page/actions';
+import {changeItemDataInFilterPage} from '../filter-page/actions';
 
 export const PRODUCT_FINALLY_REMOVED_FROM_FAVORITES =
   "[FAVORITE_PAGE] PRODUCT_FINALLY_REMOVED_FROM_FAVORITES ";
@@ -49,4 +51,6 @@ export const addProductToFavoritesThunk = data => dispatch => {
   let finalData = JSON.parse(localStorage.getItem("favorites"));
   dispatch(toggleItemValueOfFavorite(data));
   dispatch(changeItemDataInHomePage(data));
+  dispatch(changeItemDataInCartPage(data));
+  dispatch(changeItemDataInFilterPage(data));
 };

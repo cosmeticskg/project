@@ -7,8 +7,18 @@ import activeFavorites from "../../../img/heart-active.svg";
 import HoverImage from "react-hover-image";
 
 function Item(props) {
-  const { name, price, image, id, isSaleProduct,old_price, isFavoriteItem } = props.products;
-  const { handleShow } = props;
+  const {
+    handleShow,
+    products: {
+      name,
+      price,
+      image,
+      id,
+      isSaleProduct,
+      old_price,
+      isFavoriteItem
+    }
+  } = props;
   const handlePurchaseItem = id => {
     handleShow(id);
   };
@@ -34,22 +44,20 @@ function Item(props) {
         </div>
         <div className="item__buttons__favorites">
           <button onClick={() => props.addProductToFavorites(props.products)}>
-            {
-              isFavoriteItem ? (
-                <img src={activeFavorites} alt="favorites"/>
-              ) : (
-                <img src={favorites} alt="favorites"/>
-              )
-            }
-            {/* <HoverImage
-              src={favorites}
-              hoverSrc={activeFavorites}
-              alt="favorites"
-            /> */}
+            {isFavoriteItem ? (
+              <img src={activeFavorites} alt="favorites" />
+            ) : (
+              <img src={favorites} alt="favorites" />
+            )}
           </button>
         </div>
         <div className="item__buttons__cart">
           <button onClick={() => props.addProductToCart(props.products)}>
+            {/* {isCartItem ? (
+              <img src={activeFavorites} alt="favorites" />
+            ) : (
+              <img src={cart} alt="favorites" />
+            )} */}
             <HoverImage src={cart} hoverSrc={activeCart} alt="cart" />
           </button>
         </div>

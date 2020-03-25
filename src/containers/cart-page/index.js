@@ -20,17 +20,20 @@ import ModalOrder from "./modal-order";
 import ModalThanks from "./modal-thanks";
 import ModalAlert from "./modal-thanks/modal-alert";
 import { addProductToFavoritesThunk } from "../favorite-page/actions";
+import FUNCS from "../../helpfulFuncs/helpful-functions";
 
 class Cart extends Component {
   componentWillMount() {
     let productsArr = [];
-    if (localStorage.getItem('products') === null){
-      localStorage.setItem('products',JSON.stringify(productsArr));
+    if (localStorage.getItem("products") === null) {
+      localStorage.setItem("products", JSON.stringify(productsArr));
     }
     const products = JSON.parse(localStorage.getItem("products"));
     if (products && products.length) {
-      products.map(product => (product.is_purchased = true));
-      localStorage.setItem("products", JSON.stringify(products));
+      let checkedProducts = FUNCS.checkDataForFavorites(products,'cart');
+      checkedProducts.map(product => (product.is_purchased = true));
+      localStorage.setItem("products", JSON.stringify(checkedProducts));
+      this.props.purchasedProducts.purchasedProducts = checkedProducts;
       this.props.countTotal();
     }
   }
@@ -96,8 +99,8 @@ class Cart extends Component {
           <Footer />
         </div>
         <ModalAlert
-           show={this.props.showAlertOnEmptyCartValue}
-           handleClose={handleHide}
+          show={this.props.showAlertOnEmptyCartValue}
+          handleClose={handleHide}
         />
         <ModalOrder
           show={this.props.showModalOrderValue}

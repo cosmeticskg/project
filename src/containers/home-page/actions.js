@@ -1,5 +1,5 @@
 import API from "../../API";
-import checkDataForFavorites from "../../helpfulFuncs/helpful-functions";
+import FUNCS from "../../helpfulFuncs/helpful-functions";
 
 export const GET_PRODUCT_REQUEST = "[HOME_PAGE] GET_PRODUCT_REQUEST";
 export const GET_PRODUCT_SUCCESS = "[HOME-PAGE] GET_PRODUCT_SUCCESS";
@@ -84,7 +84,7 @@ export const getProductsRequestThunk = () => dispatch => {
           isFavoriteItem: false
         };
       });
-      let finalProducts = checkDataForFavorites(trueData);
+      let finalProducts = FUNCS.checkDataForFavorites(trueData);
       dispatch(getProductsSuccess(finalProducts));
     })
     .catch(err => {
@@ -114,7 +114,7 @@ export const getSalesRequestThunk = () => dispatch => {
         });
       });
 
-      let finalSales = checkDataForFavorites(sales, 'sales');
+      let finalSales = FUNCS.checkDataForFavorites(sales, 'sales');
       dispatch(getSalesSuccess(finalSales));
     })
     .catch(err => {
@@ -138,7 +138,7 @@ export const getHitsRequestThunk = () => dispatch => {
           isFavoriteItem: false
         };
       });
-      let finalHits = checkDataForFavorites(trueData);
+      let finalHits = FUNCS.checkDataForFavorites(trueData);
       dispatch(getHitsSuccess(finalHits));
     })
     .catch(err => {

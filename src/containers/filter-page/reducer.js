@@ -9,7 +9,8 @@ import {
   SET_BRAND,
   SET_CATEGORY,
   SET_SUB_CATEGORY,
-  GET_TOTAL_COUNT_SUCCESS
+  GET_TOTAL_COUNT_SUCCESS,
+  CHANGE_ITEM_DATA_IN_FILTER_PAGE
 } from "./actions";
 import {} from "./actions";
 import { act } from "react-dom/test-utils";
@@ -96,6 +97,19 @@ const filterReducer = (state = initialState, action) => {
       return {
         ...state,
         totalProducts: action.payload
+      };
+    case CHANGE_ITEM_DATA_IN_FILTER_PAGE:
+      let newObject = action.payload;
+      let finalProducts = state.products.map(item => {
+        if (item.id === newObject.id) {
+          item.isFavoriteItem = !item.isFavoriteItem;
+        }
+        return item;
+      });
+
+      return {
+        ...state,
+        products: finalProducts,
       };
     
     default:

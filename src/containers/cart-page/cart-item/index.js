@@ -22,7 +22,9 @@ const CartItem = props => {
     selectProduct,
     is_purchased,
     isSaleProduct,
-    old_price
+    old_price,
+    isFavoriteItem,
+    isCartItem
   } = props;
   return (
     <div className="cart-item-wrapper">
@@ -57,12 +59,21 @@ const CartItem = props => {
             onClick={() => props.addProductToFavorites(props.products)}
             className="cart-like-trash-btn"
           >
-            <HoverImage src={heartInactive} hoverSrc={heartActive} alt="fav" />
+           {isFavoriteItem ? (
+              <img src={heartActive} alt="favorites" />
+            ) : (
+              <img src={heartInactive} alt="favorites" />
+            )}
           </button>
           <button
             onClick={() => handleDelete(id)}
             className="cart-like-trash-btn"
           >
+            {/* {isCartItem ? (
+              <img src={trashActive} alt="favorites" />
+            ) : (
+              <img src={trash} alt="favorites" />
+            )} */}
             <HoverImage src={trash} hoverSrc={trashActive} alt="trash" />
           </button>
         </div>

@@ -1,4 +1,5 @@
 import API from "../../API";
+import FUNCS from '../../helpfulFuncs/helpful-functions';
 
 export const GET_PRODUCT_REQUEST = "[FILTER_PAGE] GET_PRODUCT_REQUEST";
 export const GET_PRODUCT_SUCCESS = "[FILTER_PAGE] GET_PRODUCT_SUCCESS";
@@ -12,8 +13,14 @@ export const SET_BRAND = "[FILTER_PAGE] SET_BRAND";
 export const SET_CATEGORY = "[FILTER_PAGE] SET_CATEGORY";
 export const SET_SUB_CATEGORY = "[FILTER_PAGE] SET_SUB_CATEGORY";
 export const ZEROING_CURRENT_PAGE = "[FILTER_PAGE] ZEROING_CURRENT_PAGE";
+export const CHANGE_ITEM_DATA_IN_FILTER_PAGE = "[FILTER_PAGE] CHANGE_ITEM_DATA_IN_FILTER_PAGE";
 
 export const getProductsRequest = () => ({ type: GET_PRODUCT_REQUEST });
+
+export const changeItemDataInFilterPage = data => ({
+  type: CHANGE_ITEM_DATA_IN_FILTER_PAGE,
+  payload: data
+});
 
 export const setCurrentPage = (page) => ({
   type: SET_CURRENT_PAGE,
@@ -81,7 +88,8 @@ export const getProductsRequestThunk = (category,subCategory,brand,pageSize,curr
         is_purchased: false,
         quantity: 1
       }));
-      dispatch(getProductsSuccess(trueData));
+      let finalProducts = FUNCS.checkDataForFavorites(trueData, 'sales');
+      dispatch(getProductsSuccess(finalProducts));
       dispatch(getTotalCountSuccess(res.data.count));
     })
     .catch(err => {
