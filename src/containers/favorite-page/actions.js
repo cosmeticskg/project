@@ -6,9 +6,16 @@ export const PRODUCT_FINALLY_REMOVED_FROM_FAVORITES =
   "[FAVORITE_PAGE] PRODUCT_FINALLY_REMOVED_FROM_FAVORITES ";
 export const TOGGLE_ITEM_VALUE_OF_FAVORITE =
   "[FAVORITE_PAGE] TOGGLE_ITEM_VALUE_OF_FAVORITE ";
+export const CHANGE_CART_ITEM_DATA_IN_FAVORITE_PAGE =
+  "[FAVORITE_PAGE] CHANGE_CART_ITEM_DATA_IN_FAVORITE_PAGE ";
 
 export const productFinallyRemovedFromFavorites = productId => ({
   type: PRODUCT_FINALLY_REMOVED_FROM_FAVORITES,
+  payload: productId
+});
+
+export const changeCARTItemDataInFavoritePage = productId => ({
+  type: CHANGE_CART_ITEM_DATA_IN_FAVORITE_PAGE,
   payload: productId
 });
 

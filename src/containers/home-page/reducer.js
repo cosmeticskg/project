@@ -8,7 +8,8 @@ import {
   GET_SALES_SUCCESS,
   GET_SLIDER_IMAGES_SUCCESS,
   GET_SUBCATEGORIES_SUCCESS,
-  CHANGE_ITEM_DATA_IN_HOME_PAGE
+  CHANGE_ITEM_DATA_IN_HOME_PAGE,
+  CHANGE_CART_ITEM_DATA_IN_HOME_PAGE
 } from "./actions";
 
 const initialState = {
@@ -52,6 +53,34 @@ const homeReducer = (state = initialState, action) => {
         products: finalProducts,
         hits: finalHits,
         sales:finalSales
+      };
+
+    case CHANGE_CART_ITEM_DATA_IN_HOME_PAGE:
+      let newObj = action.payload;
+      let finalCartProducts = state.products.map(item => {
+        if (item.id === newObj.id) {
+          item.isCartItem = !item.isCartItem;
+        }
+        return item;
+      });
+      let finalCartHits = state.hits.map(item => {
+        if (item.id === newObj.id) {
+          item.isCartItem = !item.isCartItem;
+        }
+        return item;
+      });
+      let finalCartSales = state.sales.map(item => {
+        if (item.id === newObj.id) {
+          item.isCartItem = !item.isCartItem;
+        }
+        return item;
+      });
+
+      return {
+        ...state,
+        products: finalCartProducts,
+        hits: finalCartHits,
+        sales:finalCartSales
       };
     case GET_PRODUCT_REQUEST:
       return {

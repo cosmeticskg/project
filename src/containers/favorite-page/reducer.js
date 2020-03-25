@@ -1,6 +1,7 @@
 import {
   PRODUCT_FINALLY_REMOVED_FROM_FAVORITES,
-  TOGGLE_ITEM_VALUE_OF_FAVORITE
+  TOGGLE_ITEM_VALUE_OF_FAVORITE,
+  CHANGE_CART_ITEM_DATA_IN_FAVORITE_PAGE
 } from "./actions";
 import FUNCS from "../../helpfulFuncs/helpful-functions";
 
@@ -20,14 +21,15 @@ const favoriteReducer = (state = initialState, action) => {
       let newItems = favorites.filter(item => action.payload !== item.id);
       localStorage.setItem("favorites", JSON.stringify(newItems));
 
-      let purchasedProducts = JSON.parse(localStorage.getItem('products'));
+      //next code for changing isFavoriteItem in cart page 
+      let purchasedProducts = JSON.parse(localStorage.getItem("products"));
       let finalCartProducts = purchasedProducts.map(item => {
         if (item.id === action.payload) {
-          item.isFavoriteItem = false;  
+          item.isFavoriteItem = false;
         }
         return item;
       });
-      localStorage.setItem('products',JSON.stringify(finalCartProducts))
+      localStorage.setItem("products", JSON.stringify(finalCartProducts));
 
       return {
         ...state,
@@ -38,11 +40,26 @@ const favoriteReducer = (state = initialState, action) => {
     case TOGGLE_ITEM_VALUE_OF_FAVORITE:
       favorites = FUNCS.setFavorite(favorites, action.payload.id);
       localStorage.setItem("favorites", JSON.stringify(favorites));
-      
+
       return {
         ...state,
         favoriteProducts: favorites,
         favoritesCount: favorites.length
+      };
+
+    case CHANGE_CART_ITEM_DATA_IN_FAVORITE_PAGE:
+      let newObject = action.payload;
+      let finalProducts = state.favoriteProducts.map(item => {
+        if (item.id === newObject.id) {
+          item.isCartItem = !item.isCartItem;
+        }
+        return item;
+      });
+      localStorage.setItem("favorites", JSON.stringify(finalProducts));
+      return {
+        ...state,
+        favoriteProducts: finalProducts,
+        favoritesCount: finalProducts.length
       };
 
     default:

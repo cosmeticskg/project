@@ -14,6 +14,8 @@ export const GET_SLIDER_IMAGES_SUCCESS =
   "[HOME-PAGE] GET_SLIDER_IMAGES_SUCCESS";
 export const CHANGE_ITEM_DATA_IN_HOME_PAGE =
   "[HOME_PAGE] CHANGE_ITEM_DATA_IN_HOME_PAGE";
+export const CHANGE_CART_ITEM_DATA_IN_HOME_PAGE =
+  "[HOME_PAGE] CHANGE_CART_ITEM_DATA_IN_HOME_PAGE";
 
 export const getProductsRequest = () => ({ type: GET_PRODUCT_REQUEST });
 
@@ -57,6 +59,11 @@ export const changeItemDataInHomePage = data => ({
   payload: data
 });
 
+export const changeCARTItemDataInHomePage = data => ({
+  type: CHANGE_CART_ITEM_DATA_IN_HOME_PAGE,
+  payload: data
+});
+
 export const getProductsError = () => ({ type: GET_PRODUCT_ERROR });
 
 export const getSliderImagesRequestThunk = () => dispatch => {
@@ -81,10 +88,13 @@ export const getProductsRequestThunk = () => dispatch => {
           is_purchased: false,
           quantity: 1,
           price: newPrice,
-          isFavoriteItem: false
+          isFavoriteItem: false,
+          isCartItem: false
         };
       });
-      let finalProducts = FUNCS.checkDataForFavorites(trueData);
+      let favoritesData = FUNCS.checkDataForFavorites(trueData);
+      let cartData = FUNCS.checkDataForCart(favoritesData);
+      let finalProducts = cartData;
       dispatch(getProductsSuccess(finalProducts));
     })
     .catch(err => {
@@ -108,13 +118,15 @@ export const getSalesRequestThunk = () => dispatch => {
             price: +newPrice,
             isSaleProduct: true,
             old_price: elem.old_price,
-            isFavoriteItem: false
+            isFavoriteItem: false,
+            isCartItem: false
           };
           sales.push(subArr);
         });
       });
-
-      let finalSales = FUNCS.checkDataForFavorites(sales, 'sales');
+      let favoriteSales = FUNCS.checkDataForFavorites(sales, "sales");
+      let cartData = FUNCS.checkDataForCart(favoriteSales, "sales");
+      let finalSales = cartData;
       dispatch(getSalesSuccess(finalSales));
     })
     .catch(err => {
@@ -135,10 +147,13 @@ export const getHitsRequestThunk = () => dispatch => {
           is_purchased: false,
           quantity: 1,
           price: newPrice,
-          isFavoriteItem: false
+          isFavoriteItem: false,
+          isCartItem: false
         };
       });
-      let finalHits = FUNCS.checkDataForFavorites(trueData);
+      let favoriteHits = FUNCS.checkDataForFavorites(trueData);
+      let cartData = FUNCS.checkDataForCart(favoriteHits);
+      let finalHits = cartData;
       dispatch(getHitsSuccess(finalHits));
     })
     .catch(err => {

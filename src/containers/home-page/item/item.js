@@ -4,7 +4,6 @@ import cart from "../../../img/cart-black.svg";
 import activeCart from "../../../img/shopping-cart.svg";
 import favorites from "../../../img/heart-inactive.svg";
 import activeFavorites from "../../../img/heart-active.svg";
-import HoverImage from "react-hover-image";
 
 function Item(props) {
   const {
@@ -16,7 +15,8 @@ function Item(props) {
       id,
       isSaleProduct,
       old_price,
-      isFavoriteItem
+      isFavoriteItem,
+      isCartItem
     }
   } = props;
   const handlePurchaseItem = id => {
@@ -53,12 +53,11 @@ function Item(props) {
         </div>
         <div className="item__buttons__cart">
           <button onClick={() => props.addProductToCart(props.products)}>
-            {/* {isCartItem ? (
-              <img src={activeFavorites} alt="favorites" />
+            {isCartItem ? (
+              <img src={activeCart} alt="cart-active" />
             ) : (
-              <img src={cart} alt="favorites" />
-            )} */}
-            <HoverImage src={cart} hoverSrc={activeCart} alt="cart" />
+              <img src={cart} alt="cart" />
+            )}
           </button>
         </div>
       </div>

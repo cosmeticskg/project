@@ -37,7 +37,7 @@ function HeaderMain(props) {
             <button>
               <img src={cart_inactive} alt="cart" />
               <span>Корзина</span>
-              <span className="header_value header_cart">{cartCount.length}</span>
+              <span className="header_value header_cart">{cartCount}</span>
             </button>
           </Link>
           <Link to="/stocks">
@@ -60,7 +60,7 @@ function HeaderMain(props) {
 const mapStateToProps = state => {
   return {
     favCount: state.favorite.favoritesCount,
-    cartCount: state.cart.purchasedProducts
+    cartCount: state.cart.cartCount
   };
 };
 

@@ -7,11 +7,19 @@ import {
   SHOW_MODAL_THANKS,
   SHOW_ALERT_ON_EMPTY_CART,
   HIDE_MODAL_ORDER,
-  CHANGE_ITEM_DATA_IN_CART_PAGE
+  CHANGE_ITEM_DATA_IN_CART_PAGE,
+  TOGGLE_ITEM_VALUE_OF_CART
 } from "./actions";
+import FUNCS from '../../helpfulFuncs/helpful-functions';
+
+let initialItems = JSON.parse(localStorage.getItem("products"));
+if (initialItems === null) {
+  localStorage.setItem("products", JSON.stringify([]));
+}
 
 const initialState = {
-  purchasedProducts: JSON.parse(localStorage.getItem("products")) || [],
+  purchasedProducts: initialItems || [],
+  cartCount: initialItems.length,
   total: 0,
   showModalOrderValue: false,
   showModalThanksValue: false,
@@ -60,10 +68,22 @@ const cartReducer = (state = initialState, action) => {
       let newItems = products.filter(item => action.payload !== item.id);
 
       localStorage.setItem("products", JSON.stringify(newItems));
+
+      //next code for changing isCartItem in favorite page
+      let favoritesProducts = JSON.parse(localStorage.getItem('favorites'));
+      let finalFavProducts = favoritesProducts.map(item => {
+        if (item.id === action.payload) {
+          item.isCartItem = false;  
+        }
+        return item;
+      });
+      localStorage.setItem('favorites',JSON.stringify(finalFavProducts))
+
       return {
         ...state,
         purchasedProducts: newItems,
-        total: removeTotal
+        total: removeTotal,
+        cartCount: newItems.length
       };
 
     case SELECT_PRODUCT_TO_BUY:
@@ -114,6 +134,17 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         purchasedProducts: finalProducts,
+        cartCount: finalProducts.length
+      };
+    
+    case TOGGLE_ITEM_VALUE_OF_CART:
+    products = FUNCS.setPurchaseToCart(products, action.payload.id);
+      localStorage.setItem("products", JSON.stringify(products))
+      
+      return {
+        ...state,
+        purchasedProducts: products,
+        cartCount: products.length
       };
 
     case SHOW_MODAL_ORDER:

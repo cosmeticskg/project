@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./favorite-page.css";
 import HeaderMain from "../../components/header-main";
 import Navbar from "../../components/navbar";
@@ -9,6 +9,11 @@ import { productFinallyRemovedFromFavorites } from "./actions";
 import { addProductToCartThunk } from "../cart-page/actions";
 
 const FavoritePage = props => {
+  useEffect(() => {
+    let updatedProductsByIsCartItem = JSON.parse(localStorage.getItem('favorites'));
+    props.favoriteProducts.favoriteProducts =  updatedProductsByIsCartItem;
+  }, []);
+
   return (
     <div className="favorite">
       <HeaderMain />

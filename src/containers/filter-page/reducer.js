@@ -10,7 +10,8 @@ import {
   SET_CATEGORY,
   SET_SUB_CATEGORY,
   GET_TOTAL_COUNT_SUCCESS,
-  CHANGE_ITEM_DATA_IN_FILTER_PAGE
+  CHANGE_ITEM_DATA_IN_FILTER_PAGE,
+  CHANGE_CART_ITEM_DATA_IN_FILTER_PAGE
 } from "./actions";
 import {} from "./actions";
 import { act } from "react-dom/test-utils";
@@ -110,6 +111,19 @@ const filterReducer = (state = initialState, action) => {
       return {
         ...state,
         products: finalProducts,
+      };
+    case CHANGE_CART_ITEM_DATA_IN_FILTER_PAGE:
+      let newObj = action.payload;
+      let finalCartProducts = state.products.map(item => {
+        if (item.id === newObj.id) {
+          item.isCartItem = !item.isCartItem;
+        }
+        return item;
+      });
+
+      return {
+        ...state,
+        products: finalCartProducts,
       };
     
     default:
