@@ -1,6 +1,7 @@
 import React from "react";
 import CartItem from "../cart-item";
 import "./cart-list.css";
+import Empty from '../../../components/empty/';
 
 const CartList = props => {
   const purchasedProducts = JSON.parse(localStorage.getItem("products"));
@@ -22,7 +23,7 @@ const CartList = props => {
           );
         })
       ) : (
-        <p>Empty</p>
+        <Empty />
       )}
     </div>
   );

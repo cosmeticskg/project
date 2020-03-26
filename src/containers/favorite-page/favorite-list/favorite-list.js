@@ -1,6 +1,7 @@
 import React from "react";
 import FavoriteItem from '../favorite-item';
 import "./favorite-list.css";
+import Empty from '../../../components/empty/';
 
 const FavoriteList = (props) => {
   const favoriteProducts = JSON.parse(localStorage.getItem("favorites"));
@@ -19,7 +20,7 @@ const FavoriteList = (props) => {
           );
         })
       ) : (
-        <p>Empty</p>
+        <Empty />
       )}
     </div>
   );

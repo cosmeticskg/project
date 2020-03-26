@@ -5,6 +5,8 @@
     font-family: 'Gelasio', 'Poppins', sans-serif;
 }
 
+
+
 .main__nav ul,
 .main__nav ol {
     list-style: none;
@@ -20,7 +22,7 @@
 }
 
 .main__nav>ul li {
-    padding-left: 30px;
+    padding-left: 26px;
     position: relative;
     display: flex;
     text-align: center;
@@ -30,10 +32,11 @@
 
 .main__nav>ul li a {
     display: block;
-    font-size: 24px;
+    font-size: 18px;
     text-decoration: none;
+    text-align: center;
     color: white;
-    padding: 12px 0 12px 35px;
+    padding: 14px 0 14px 0;
     cursor: pointer;
 }
 
@@ -43,11 +46,14 @@
 
 .main__nav>ul li>img {
     position: absolute;
-    width: 30px;
-    padding-top: 12px;
+    width: 29px;
+    padding-top: 10px;
 }
 
-
+.navbar_categories_title{
+    padding: 12px 0 10px 30px !important;
+    font-size: 23px !important;
+}
 
 .main__nav .main__nav__category {
     padding: 0 37px 0 11px;
@@ -55,6 +61,10 @@
 }
 
 /* SubMenu */
+
+.navbar_brands_wrapper{
+    width: 300px;
+}
 
 .main__nav ul li ul {
     box-sizing: border-box;
@@ -74,10 +84,14 @@
     align-items: center;
     height: 36px;
 }
+.main__nav li>ul li:hover{
+    color: white;
+    background-color: #58D68D;
+}
 
 .main__nav li ul li span {
     text-align: center;
-    font-size: 20px;
+    font-size: 17px;
     color: #717171;
 }
 
@@ -107,7 +121,7 @@
 }
 
 .main__nav li ul li ul li span {
-    font-size: 17px;
+    font-size: 14px;
 }
 
 .main__nav li ul li ul li a:hover {

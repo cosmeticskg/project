@@ -2,14 +2,10 @@ import React, { Fragment } from "react";
 import "./filter-list.css";
 import Item from "../../home-page/item";
 import styles from "./filter-list.module.css";
+import Empty from "../../../components/empty";
 
 const FilterList = props => {
-  const {
-    filteredProducts,
-    currentPage,
-    pageSize,
-    totalProducts
-  } = props;
+  const { filteredProducts, currentPage, pageSize, totalProducts } = props;
 
   let pagesCount = Math.ceil(totalProducts / pageSize);
   let pages = [];
@@ -33,7 +29,9 @@ const FilterList = props => {
               );
             })
           ) : (
-            <p>Empty</p>
+            <div style={{paddingTop:'70px'}}>
+              <Empty />
+            </div>
           )}
         </div>
       </div>

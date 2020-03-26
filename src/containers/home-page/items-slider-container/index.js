@@ -28,7 +28,7 @@ class HomeContainer extends Component {
     this.props.fetchProducts();
     this.props.fetchHits();
     this.props.fetchSales();
-    // this.props.fetchSliderImages();
+    this.props.fetchSliderImages();
   }
 
   render() {

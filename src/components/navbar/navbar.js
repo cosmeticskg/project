@@ -25,28 +25,28 @@ const Navbar = props => {
 
   const { brands, categories, setBrand,setCategory,setSubcategory, subcategories } = props;
 
-  brands.sort(function (a, b) {
-    if (a.id > b.id) {
-      return 1;
-    }
-    if (a.id < b.id) {
-      return -1;
-    }
-    return 0;
-  })
-  let brandsForNavBar = brands.slice(0, 6);
+  // brands.sort(function (a, b) {
+  //   if (a.id > b.id) {
+  //     return 1;
+  //   }
+  //   if (a.id < b.id) {
+  //     return -1;
+  //   }
+  //   return 0;
+  // })
+  let brandsForNavBar = brands.slice(0, 7);
 
   return (
     <nav className="main__nav">
       <ul>
         <li className="main__nav__category">
           <img src={navLogo} alt="menu-icon" />
-          <a href="#">Категории</a>
+          <a href="#" className='navbar_categories_title'>Категории</a>
           <ul>
             <li key="allBrands">
               <Link to="/filters">
                 <span>Бренды</span>
-                <ul>
+                <ul className='navbar_brands_wrapper'>
                   {brands && brands.length ? (
                     brands.map(brand => {
                       return (
