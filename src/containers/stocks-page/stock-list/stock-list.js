@@ -2,17 +2,15 @@ import React, { Fragment } from "react";
 import "./stock-list.css";
 import StockItem from "../stock-item";
 import StockImage from "../../../img/main-slider/big_shoes_verh_1402.jpg";
+import Empty from "../../../components/empty";
 
 const StockList = props => {
   const { stocks, currentSaleBundle } = props;
 
   return (
-    <div className="cart">
-      <div className="cart-body-wrapper">
-        <div>
-          <img className="stock_image" src={currentSaleBundle.imageUrl} alt="stock-content" />
-        </div>
-        <div className="cart-item-list">
+    <div className="stock_wrapper">
+      <div className="stock-list">
+        <div className="stock-item-list">
           {stocks && stocks.length && currentSaleBundle.id !== null ? (
             stocks.map(item => {
               if (item.id === currentSaleBundle.id) {
@@ -22,18 +20,26 @@ const StockList = props => {
               }
             })
           ) : (
-            <p>Empty</p>
+            <Empty />
           )}
         </div>
       </div>
-
+      <p className="stock_plus">+</p>
+      <p className="stock_res">=</p>
       <div className="stock-total">
         {stocks && stocks.length && currentSaleBundle.id !== null ? (
           stocks.map(item => {
             if (item.id === currentSaleBundle.id) {
               return (
                 <Fragment>
-                  <h2>Сумма заказа</h2>
+                  <h2>Сумма по акции</h2>
+                  {/* <div className="stock_total_image_wrapper">
+                    <img
+                      className="stock_total_image"
+                      src={currentSaleBundle.imageUrl}
+                      alt="total_image"
+                    />
+                  </div> */}
                   <div className="stock__old_price">
                     <p>Старая цена</p>
                     <p>{item.total_price}</p>

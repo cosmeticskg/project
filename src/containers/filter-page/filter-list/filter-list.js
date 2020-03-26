@@ -12,6 +12,7 @@ const FilterList = props => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
+  const prev ='< Prev';
 
   return (
     <Fragment>
@@ -29,26 +30,32 @@ const FilterList = props => {
               );
             })
           ) : (
-            <div style={{paddingTop:'70px'}}>
+            <div style={{ paddingTop: "70px" }}>
               <Empty />
             </div>
           )}
         </div>
       </div>
-      <div className="filter_list_paginator">
-        {pages.map(page => {
-          return (
-            <div
-              onClick={() => {
-                props.setCurrentPage(page - 1);
-              }}
-            >
-              <span className={currentPage + 1 === page && styles.selectedPage}>
-                {page}
-              </span>
-            </div>
-          );
-        })}
+      <div className={styles.centering_wrapper}>
+        <div className={styles.paginator_wrapper}>
+          {/* <p className={styles.prev}>{prev}</p> */}
+          {pages.map(page => {
+            return (
+              <div
+                onClick={() => {
+                  props.setCurrentPage(page - 1);
+                }}
+              >
+                <span
+                  className={currentPage + 1 === page && styles.selectedPage}
+                >
+                  {page}
+                </span>
+              </div>
+            );
+          })}
+          {/* <p className={styles.next}> Next > </p> */}
+        </div>
       </div>
     </Fragment>
   );

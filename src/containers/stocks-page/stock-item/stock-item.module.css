@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 400px;
+    overflow: hidden;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(50,226,92,0.5);
+    margin: 0;
+    padding: 0;
+}
+.image_wrapper{
+    display: flex;
+    justify-content: center;
+}
+.image {    
+    width: 200px;
+    height: 200px;
+}
+
+.content {
+}
+
+.description {
+    display: block;
+    height: 142px;
+    overflow: hidden;
+    padding: 10px 10px 0 10px;
+}
+
+.price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    height: 48px;
+    color: #FA8072;
+}

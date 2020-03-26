@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import "./stock-item.css";
+import styles from "./stock-item.module.css";
 import API from '../../../API';
 
 const StockItem = (props) => {
@@ -13,15 +13,15 @@ const StockItem = (props) => {
 
   const {price} = props
   return (
-    <div className="cart-item-wrapper">
-      <div>
-        <img className="cart-product-img" src={currentProduct.image} alt="item-pic" />
+    <div className={styles.wrapper}>
+      <div className={styles.image_wrapper}>
+        <img className={styles.image} src={currentProduct.image} alt="item-pic" />
       </div>
-      <div className="cart-item-description">
-        <div>
+      <div className={styles.content}>
+        <div className={styles.description}>
           <span>{currentProduct.description}</span>
         </div>
-        <div>
+        <div className={styles.price}>
           <p>{price} сом</p>
         </div>
       </div>
