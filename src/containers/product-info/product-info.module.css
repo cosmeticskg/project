@@ -1,0 +1,118 @@
+.title_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content_wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    min-height: 660px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.image {
+    width: 500px;
+    height: 500px;
+}
+
+.description_wrapper {
+    position: relative;
+}
+
+.name {
+    font-size: 20px;
+    font-style: italic;
+    color: blueviolet;
+    font-weight: 600;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+
+}
+
+.favorite,
+.cart,
+.buy {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 10px;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.favorite {
+    border: 1px solid #00FA9A;
+    background: #00FA9A linear-gradient(#00FA9A, #0EE8AD);
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0), inset 0 1px 2px rgba(0, 0, 0, 0), inset 0 0 0 60px rgba(255, 255, 0, 0);
+    transition: box-shadow .2s, border-color .2s;
+}
+
+.favorite:hover {
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0), inset 0 1px 2px rgba(0, 0, 0, 0), inset 0 0 0 60px rgba(255, 255, 0, .5);
+}
+.favorite:active{
+    padding: calc(.25em + 1px) .5em calc(.25em - 1px);
+    border-color: #20C498;
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, .1), inset 0 1px 2px rgba(0, 0, 0, .3), inset 0 0 0 60px rgba(255, 255, 0, .45);
+}
+
+.cart {
+    border: 1px solid #DA70D6;
+    background: #DA70D6 linear-gradient(#DA70D6, #DA1CB5);
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0), inset 0 1px 2px rgba(0, 0, 0, 0), inset 0 0 0 60px rgba(255, 255, 0, 0);
+    transition: box-shadow .2s, border-color .2s;
+}
+
+.cart:hover {
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0), inset 0 1px 2px rgba(0, 0, 0, 0), inset 0 0 0 60px rgba(255, 255, 0, .2);
+}
+
+.cart:active{
+    padding: calc(.25em + 1px) .5em calc(.25em - 1px);
+    border-color: #DA70D6;
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, .1), inset 0 1px 2px rgba(0, 0, 0, .3), inset 0 0 0 60px rgba(255, 255, 0, .45);
+}
+
+.buy {
+    border: 1px solid rgb(250, 172, 17);
+    background: rgb(255, 212, 3) linear-gradient(rgb(255, 212, 3), rgb(248, 157, 23));
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0), inset 0 1px 2px rgba(0, 0, 0, 0), inset 0 0 0 60px rgba(255, 255, 0, 0);
+    transition: box-shadow .2s, border-color .2s;
+}
+
+.buy:hover {
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0), inset 0 1px 2px rgba(0, 0, 0, 0), inset 0 0 0 60px rgba(255, 255, 0, .5);
+}
+.buy:active{
+    padding: calc(.25em + 1px) .5em calc(.25em - 1px);
+    border-color: rgba(177, 159, 0, 1);
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, .1), inset 0 1px 2px rgba(0, 0, 0, .3), inset 0 0 0 60px rgba(255, 255, 0, .45);
+}
+
+.description {
+    line-height: 1.4;
+    max-width: 650px;
+    max-height: 500px;
+    overflow: auto;
+}
+
+.price {
+    color: #FA8072;
+    font-size: 25px;
+    font-style: italic;
+    position: absolute;
+    right: 100px;
+}

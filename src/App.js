@@ -6,7 +6,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import FavoritePage from "./containers/favorite-page/favorite-page";
 import NotFound from './components/404';
 import FilterPage from './containers/filter-page';
-import StocksPage from "./containers/stocks-page/stocks-page";
+import StocksPage from "./containers/stocks-page";
+import ProductInfoPage from './containers/product-info'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/cart" component={Cart} />
           <Route path="/filters" component={FilterPage} />
           <Route path="/stocks" component={StocksPage} />
+          <Route path="/product/:productId" component={ProductInfoPage} />
           <Route path='*' component={NotFound} />
         </Switch>
       </div>

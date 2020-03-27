@@ -5,6 +5,7 @@ import activeTrash from "../../../img/trash-active.svg";
 import cartInactive from "../../../img/cart-black.svg";
 import cartActive from "../../../img/shopping-cart.svg";
 import HoverImage from "react-hover-image";
+import {Link} from 'react-router-dom';
 
 const FavoriteItem = props => {
   const { name, onDelete, image, description, price, id, isCartItem } = props;
@@ -15,20 +16,26 @@ const FavoriteItem = props => {
 
   return (
     <div className="fav_item_wrapper">
-      <div>
-        <img className="fav-product-img" src={image} alt="item-pic" />
-      </div>
-      <div className="fav-item-description">
+      <Link
+        to={`/product/${id}`}
+        style={{ textDecoration: "none", color: "black" }}
+      >
         <div>
-          <h4>{name}</h4>
+          <img className="fav-product-img" src={image} alt="item-pic" />
+        </div>
+        <div className="fav-item-description">
+          <div>
+            <h4>{name}</h4>
+          </div>
+          <div>
+            <span>{description}</span>
+          </div>
         </div>
         <div>
-          <span>{description}</span>
+          <p>{price} сом</p>
         </div>
-      </div>
-      <div>
-        <p>{price} сом</p>
-      </div>
+      </Link>
+
       <div className="cart-item-buttons">
         <div>
           <button

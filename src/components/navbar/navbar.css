@@ -37,11 +37,14 @@
     text-align: center;
     color: white;
     padding: 14px 0 14px 0;
-    cursor: pointer;
 }
 
 .main__nav>ul li>span {
     font-size: 18px;
+
+}
+.main__nav>ul li>span:hover{
+    cursor: pointer;
 }
 
 .main__nav>ul li>img {

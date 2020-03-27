@@ -13,6 +13,7 @@
     margin: 10px 0 10px 0;
     border-radius: 15px;
     background-color: #fff;
+    text-decoration: none;
 }
 
 .item__wrapper:hover {
@@ -69,9 +70,11 @@
     font-size: 15px;
     line-height: 0.2;
 }
-.item__buttons__price div{
-    padding: 17px 0 0 0 ;
+
+.item__buttons__price div {
+    padding: 17px 0 0 0;
 }
+
 .item__buttons__price div span {
     font-size: 12px;
     text-decoration: line-through;

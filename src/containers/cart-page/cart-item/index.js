@@ -5,6 +5,7 @@ import trashActive from "../../../img/trash-active.svg";
 import heartInactive from "../../../img/heart-inactive.svg";
 import heartActive from "../../../img/heart-active.svg";
 import HoverImage from "react-hover-image";
+import { Link } from "react-router-dom";
 
 const CartItem = props => {
   const handleDelete = id => {
@@ -34,24 +35,34 @@ const CartItem = props => {
         checked={is_purchased}
         className="cart-checkbox"
       />
+      <Link
+        to={`/product/${id}`}
+        style={{ textDecoration: "none", color: "black" }}
+      >
+        <div>
+          <img className="cart-product-img" src={image} alt="item-pic" />
+        </div>
+      </Link>
 
-      <div>
-        <img className="cart-product-img" src={image} alt="item-pic" />
-      </div>
       <div className="cart-item-description">
+      <Link
+        to={`/product/${id}`}
+        style={{ textDecoration: "none", color: "black" }}
+      >
         <div>
           <span>{description}</span>
         </div>
+        </Link>
       </div>
       <div className="cart-item-price">
         {isSaleProduct ? (
-            <div>
-              <span>{old_price} сом</span>
-              <p>{price} сом</p>
-            </div>
-          ) : (
+          <div>
+            <span>{old_price} сом</span>
             <p>{price} сом</p>
-          )}
+          </div>
+        ) : (
+          <p>{price} сом</p>
+        )}
       </div>
       <div className="cart-item-buttons">
         <div>
@@ -59,7 +70,7 @@ const CartItem = props => {
             onClick={() => props.addProductToFavorites(props.products)}
             className="cart-like-trash-btn"
           >
-           {isFavoriteItem ? (
+            {isFavoriteItem ? (
               <img src={heartActive} alt="favorites" />
             ) : (
               <img src={heartInactive} alt="favorites" />
@@ -69,11 +80,6 @@ const CartItem = props => {
             onClick={() => handleDelete(id)}
             className="cart-like-trash-btn"
           >
-            {/* {isCartItem ? (
-              <img src={trashActive} alt="favorites" />
-            ) : (
-              <img src={trash} alt="favorites" />
-            )} */}
             <HoverImage src={trash} hoverSrc={trashActive} alt="trash" />
           </button>
         </div>
