@@ -15,9 +15,9 @@ function HeaderMain(props) {
     <header>
       <div className="header_name">
         <Link to="/">
-          <button>COSMETICA.KG</button>
+          <button className='header_logo'>COSMETICA.KG</button>
         </Link>
-        <div>be brandy. be trandy.</div>
+        <div className='header_logo_desc'>be brandy. be trandy.</div>
 
         <div className="header_description">
           <p>(702) 01 01 01 , (555) 22 33 44</p>

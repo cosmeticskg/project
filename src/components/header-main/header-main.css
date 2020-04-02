@@ -16,6 +16,12 @@ header button {
   font-size: 42px;
 
 }
+.header_logo{
+  font-family: 'Dancing Script', cursive;
+}
+.header_logo_desc{
+  font-family: 'Gotu', sans-serif;
+}
 
 .header_name {
   display: flex;
@@ -37,14 +43,16 @@ header button {
 
 .header_description {
   position: absolute;
-  top: 20px;
+  top: 5px;
   left: 20px;
-  line-height: 0.3;
+  line-height: 0.5;
   letter-spacing: 0;
+  font-size: 17px;
+  font-family: 'Playfair Display', serif;
 }
 
 .header_description p {
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: none;
 }
 

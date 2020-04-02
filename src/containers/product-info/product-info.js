@@ -60,7 +60,6 @@ const ProductInfoPage = props => {
       <Navbar />
       <div>
         <div className={styles.title_wrapper}>
-          <p className="favorite__title">Товар </p>
         </div>
 
         <div className={styles.content_wrapper}>

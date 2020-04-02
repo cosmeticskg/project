@@ -89,7 +89,7 @@
 }
 .main__nav li>ul li:hover{
     color: white;
-    background-color: #58D68D;
+    background-color: #1C1C1C;
 }
 
 .main__nav li ul li span {
@@ -99,7 +99,7 @@
 }
 
 .main__nav li ul li span:hover {
-    color: #e62e40;
+    color: white;
 }
 
 .main__nav li:hover>ul {
