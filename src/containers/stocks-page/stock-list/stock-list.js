@@ -33,13 +33,6 @@ const StockList = props => {
               return (
                 <Fragment>
                   <h2>Сумма по акции</h2>
-                  {/* <div className="stock_total_image_wrapper">
-                    <img
-                      className="stock_total_image"
-                      src={currentSaleBundle.imageUrl}
-                      alt="total_image"
-                    />
-                  </div> */}
                   <div className="stock__old_price">
                     <p>Старая цена</p>
                     <p>{item.total_price}</p>

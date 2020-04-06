@@ -13,7 +13,7 @@ import {
   setCurrentPage,
   setBrand,
   setCategory,
-  setSubcategory
+  setSubcategory,
 } from "./actions";
 import ModalOrder from "../cart-page/modal-order";
 import ModalThanks from "../cart-page/modal-thanks/";
@@ -21,12 +21,12 @@ import {
   showModalOrder,
   showModalThanks,
   hideModalOrder,
-  registrOrder
+  registrOrder,
 } from "../cart-page/actions";
 import { addProductToCartThunk } from "../cart-page/actions";
 import { addProductToFavoritesThunk } from "../favorite-page/actions";
 
-const FilterPage = props => {
+const FilterPage = (props) => {
   const dispatch = useDispatch();
   const {
     pageSize,
@@ -36,7 +36,7 @@ const FilterPage = props => {
     currentCategory,
     setCategory,
     currentSubcategory,
-    setSubcategory
+    setSubcategory,
   } = props;
 
   useEffect(() => {
@@ -57,11 +57,11 @@ const FilterPage = props => {
     currentSubcategory,
     currentBrand,
     pageSize,
-    currentPage
+    currentPage,
   ]);
 
-  const handleShow = id => {
-    let productToBuy = props.allProducts.find(item => item.id === id);
+  const handleShow = (id) => {
+    let productToBuy = props.allProducts.find((item) => item.id === id);
     localStorage.setItem("productToBuy", JSON.stringify(productToBuy));
     props.showModalOrder();
   };
@@ -71,17 +71,17 @@ const FilterPage = props => {
   const handleHide = () => {
     props.hideModalOrder();
   };
-  const submit = values => {
+  const submit = (values) => {
     let products = [JSON.parse(localStorage.getItem("productToBuy"))];
-    let pushProducts = products.map(item => {
+    let pushProducts = products.map((item) => {
       return (item = {
         product: item.id,
-        count: item.quantity
+        count: item.quantity,
       });
     });
     let pushData = {
       contacts: [values],
-      products: pushProducts
+      products: pushProducts,
     };
     props.registrOrder(pushData);
   };
@@ -95,7 +95,7 @@ const FilterPage = props => {
         <div className="filter__buttons__wrapper">
           <div className="filter_buttons">
             <select
-              onChange={e => {
+              onChange={(e) => {
                 setCategory(e.target.value);
               }}
               name="category"
@@ -103,7 +103,7 @@ const FilterPage = props => {
             >
               <option value="0">Все категории</option>
               {categories && categories.length ? (
-                props.categories.map(item => {
+                props.categories.map((item) => {
                   return (
                     <option key={item.id} value={item.id}>
                       {" "}
@@ -119,14 +119,14 @@ const FilterPage = props => {
 
             <select
               name="subCategory"
-              onChange={e => {
+              onChange={(e) => {
                 setSubcategory(e.target.value);
               }}
               value={currentSubcategory}
             >
               <option value="0">Все подкатегории</option>
               {subcategories && subcategories.length && currentCategory ? (
-                subcategories.map(item => {
+                subcategories.map((item) => {
                   if (item.category === currentCategory) {
                     return (
                       <option key={item.id} value={item.id}>
@@ -143,14 +143,14 @@ const FilterPage = props => {
             {/* //========================================================= */}
             <select
               name="brand"
-              onChange={e => {
+              onChange={(e) => {
                 setBrand(e.target.value);
               }}
               value={currentBrand}
             >
               <option value="0">Все Бренды</option>
               {brands && brands.length ? (
-                brands.map(item => {
+                brands.map((item) => {
                   return (
                     <option key={item.id} value={item.id}>
                       {" "}
@@ -178,7 +178,7 @@ const FilterPage = props => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   allProducts: state.filter.products,
   filteredProducts: state.filter.filterProducts,
   brands: state.filter.brands,
@@ -191,14 +191,14 @@ const mapStateToProps = state => ({
   totalProducts: state.filter.totalProducts,
   currentBrand: state.filter.currentBrand,
   currentCategory: state.filter.currentCategory,
-  currentSubcategory: state.filter.currentSubcategory
+  currentSubcategory: state.filter.currentSubcategory,
 });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    addProductToFavorites: product =>
+    addProductToFavorites: (product) =>
       dispatch(addProductToFavoritesThunk(product)),
-    addProductToCart: product => dispatch(addProductToCartThunk(product)),
+    addProductToCart: (product) => dispatch(addProductToCartThunk(product)),
     showModalOrder: () => {
       dispatch(showModalOrder());
     },
@@ -208,21 +208,21 @@ const mapDispatchToProps = dispatch => {
     hideModalOrder: () => {
       dispatch(hideModalOrder());
     },
-    registrOrder: data => {
+    registrOrder: (data) => {
       dispatch(registrOrder(data));
     },
-    setCurrentPage: page => {
+    setCurrentPage: (page) => {
       dispatch(setCurrentPage(page));
     },
-    setBrand: brandId => {
+    setBrand: (brandId) => {
       dispatch(setBrand(brandId));
     },
-    setCategory: categoryId => {
+    setCategory: (categoryId) => {
       dispatch(setCategory(categoryId));
     },
-    setSubcategory: subCategoryId => {
+    setSubcategory: (subCategoryId) => {
       dispatch(setSubcategory(subCategoryId));
-    }
+    },
   };
 };
 

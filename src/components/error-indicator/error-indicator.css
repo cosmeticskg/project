@@ -5,6 +5,8 @@
   align-items: center;
   color: #953143;
   font-size: large;
+  height: 419px;
+  padding: 200px 0;
 }
 
 .error-indicator img {
