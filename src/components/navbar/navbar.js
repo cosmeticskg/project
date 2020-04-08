@@ -18,9 +18,9 @@ const Navbar = props => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getBrandsRequestThunk());
-    dispatch(getCategoriesRequestThunk());
-    dispatch(getSubcategoriesRequestThunk());
+    // dispatch(getBrandsRequestThunk());
+    // dispatch(getCategoriesRequestThunk());
+    // dispatch(getSubcategoriesRequestThunk());
   }, []);
 
   const { brands, categories, setBrand,setCategory,setSubcategory, subcategories } = props;

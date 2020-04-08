@@ -16,7 +16,6 @@ import {
 } from "../../cart-page/actions";
 import { addProductToFavoritesThunk } from "../../favorite-page/actions";
 import { addProductToCartThunk } from "../../cart-page/actions";
-import { setCurrentSaleBundle } from "../../stocks-page/actions";
 import ModalOrder from "../../cart-page/modal-order";
 import ModalThanks from "../../cart-page/modal-thanks";
 import ItemSlider from "../item-slider";
@@ -25,21 +24,13 @@ import PhotoSlider from "../photo-slider/photo-slider";
 
 class HomeContainer extends Component {
   componentDidMount() {
-    this.props.fetchProducts();
-    this.props.fetchHits();
-    this.props.fetchSales();
+    // this.props.fetchProducts();
+    // this.props.fetchHits();
+    // this.props.fetchSales();
     this.props.fetchSliderImages();
   }
 
   render() {
-    const handleCurrentSaleBundle = (id, imageUrl) => {
-      let data = {
-        id,
-        imageUrl
-      };
-      localStorage.setItem("currentSaleBundle", JSON.stringify(data));
-      this.props.setCurrentSaleBundle(data);
-    };
     const handleShow = id => {
       let productToBuy = this.props.allProducts.products.find(
         item => item.id === id
@@ -82,7 +73,6 @@ class HomeContainer extends Component {
       <div className="main__wrapper">
         <PhotoSlider
           {...this.props}
-          handleCurrentSaleBundle={handleCurrentSaleBundle}
         />
         <div className="home_container__wrapper">
           <h3>Рекомендуемые товары</h3>
@@ -143,9 +133,6 @@ const mapDispatchToProps = dispatch => {
     },
     registrOrder: data => {
       dispatch(registrOrder(data));
-    },
-    setCurrentSaleBundle: saleId => {
-      dispatch(setCurrentSaleBundle(saleId));
     }
   };
 };

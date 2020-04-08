@@ -5,15 +5,15 @@ import StockImage from "../../../img/main-slider/big_shoes_verh_1402.jpg";
 import Empty from "../../../components/empty";
 
 const StockList = props => {
-  const { stocks, currentSaleBundle } = props;
+  const { stocks, currentId } = props;
 
   return (
     <div className="stock_wrapper">
       <div className="stock-list">
         <div className="stock-item-list">
-          {stocks && stocks.length && currentSaleBundle.id !== null ? (
+          {stocks && stocks.length ? (
             stocks.map(item => {
-              if (item.id === currentSaleBundle.id) {
+              if (item.id === currentId) {
                 return item.products.map(product => {
                   return <StockItem {...product} />;
                 });
@@ -27,9 +27,9 @@ const StockList = props => {
       <p className="stock_plus">+</p>
       <p className="stock_res">=</p>
       <div className="stock-total">
-        {stocks && stocks.length && currentSaleBundle.id !== null ? (
+        {stocks && stocks.length ? (
           stocks.map(item => {
-            if (item.id === currentSaleBundle.id) {
+            if (item.id === currentId) {
               return (
                 <Fragment>
                   <h2>Сумма по акции</h2>

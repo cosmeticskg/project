@@ -48,27 +48,13 @@ export default class PhotoSlider extends Component {
         <Slider {...settings}>
           {sliderImages.map((photo,i) => {
             return (
-              <Link to='/stocks'>
-              <div key={i} onClick={e => this.props.handleCurrentSaleBundle(photo.salebundle,photo.image)}>
+              <Link to={`/stocks/${photo.id}`}>
+              <div key={i}>
                 <img width="100%" height="350px" src={photo.image} alt="slider" />
               </div>
               </Link>
             );
           })}
-          {/* {photos.map((photo, i) => {
-            return (
-              <Link to="/stocks">
-                <div key={i}>
-                  <img
-                    width="100%"
-                    height="350px"
-                    src={photo.url}
-                    alt="slider"
-                  />
-                </div>
-              </Link>
-            );
-          })} */}
         </Slider>
       </div>
     );

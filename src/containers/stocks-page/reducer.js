@@ -1,15 +1,13 @@
 import {
   GET_STOCKS_REQUEST,
   GET_STOCKS_SUCCESS,
-  GET_STOCKS_ERROR,
-  SET_CURRENT_SALE_BUNDLE
+  GET_STOCKS_ERROR
 } from "./actions";
 
 const initialState = {
   stocksData: [],
   loading: true,
-  error: false,
-  currentSaleBundle: JSON.parse(localStorage.getItem('currentSaleBundle')) || null
+  error: false
 };
 
 const stocksReducer = (state = initialState, action) => {
@@ -32,11 +30,6 @@ const stocksReducer = (state = initialState, action) => {
         error: true,
         loading: false
       };
-    case SET_CURRENT_SALE_BUNDLE:
-      return {
-        ...state,
-        currentSaleBundle: action.payload
-      }
 
     default:
       return state;

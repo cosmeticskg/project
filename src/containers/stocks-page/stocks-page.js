@@ -22,7 +22,7 @@ const StocksPage = props => {
   useEffect(() => {
     dispatch(getStocksThunk());
   }, []);
-
+  const currentId = +props.match.params.id;
   const { error, loading } = props;
 
   const handleShow = () => {
@@ -36,7 +36,7 @@ const StocksPage = props => {
   };
   const submit = values => {
     let allProducts = props.stocks.find(
-      item => item.id === props.currentSaleBundle.id
+      item => item.id === currentId
     );
     console.log("allProducts", allProducts);
     let pushProducts = allProducts.products.map(item => {
@@ -65,7 +65,7 @@ const StocksPage = props => {
     <div>
       <HeaderMain />
       <Navbar />
-      <StockList {...props} handleShow={handleShow} />
+      <StockList {...props} handleShow={handleShow} currentId={currentId} />
       <Footer />
       <ModalOrder
         show={props.showModalOrderValue}
