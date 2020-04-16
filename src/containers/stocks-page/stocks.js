@@ -22,7 +22,6 @@ const Stocks = () => {
       <Navbar />
       <div className={style.content}>
         {stocks.map((item) => {
-        console.log("Stocks -> item", item)
           return (
             <div className={style.item}>
               <img src={item.image} alt="stock" />

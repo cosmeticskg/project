@@ -103,11 +103,20 @@ export const getProductsRequestThunk = (
     currentPage * pageSize
   )
     .then(res => {
-      let trueData = res.data.results.map(item => ({
+    console.log("res", res.data.results)
+      
+      let trueData = res.data.results.map(item => {
+      console.log("item", item)
+        let newPrice = +item.price;
+        newPrice.toFixed();
+        return {
         ...item,
         is_purchased: false,
-        quantity: 1
-      }));
+        quantity: 1,
+        price: newPrice,
+        isFavoriteItem: false,
+        isCartItem: false
+      }});
       let favoriteProducts = FUNCS.checkDataForFavorites(trueData, "sales");
       let cartProducts = FUNCS.checkDataForCart(favoriteProducts, "sales");
       let finalProducts = cartProducts;

@@ -19,9 +19,12 @@
 }
 
 .image {
-    width: 500px;
-    height: 500px;
+    width: 350px;
+    height: 350px;
 }
+
+.image_slider {}
+
 
 .description_wrapper {
     position: relative;
@@ -37,8 +40,51 @@
 .buttons {
     display: flex;
     justify-content: space-around;
-    width: 500px;
+    width: 600px;
+    height: 160px;
+}
 
+.left_buttons {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.top_buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.bottom_buttons {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 0 0 0;
+}
+.bottom_buttons p{
+    font-family: "Roboto Mono";
+    margin: 0;
+    padding: 0 0 10px 0;
+}
+
+.price_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 200px;
+    height: 160px;
+    background: #f3f7f6;
+    padding: 0 10px 0 10px;
+    margin-left: 20px;
+}
+
+.price {
+    color: black;
+    font-size: 25px;
 }
 
 .favorite,
@@ -51,20 +97,38 @@
     outline: none;
     border: none;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 5px;
+    height: 40px;
+    width: 180px;
 }
 
-.favorite {
-    border: 1px solid #00FA9A;
-    background: #00FA9A linear-gradient(#00FA9A, #0EE8AD);
+.buy {
+    font-size: 1.2rem;
+}
+
+.description {
+    line-height: 1.4;
+    max-width: 650px;
+    max-height: 600px;
+    overflow: auto;
+    font-family: 'Open Sans';
+}
+
+
+.buy {
+    border: 2px solid #bfd654;
+    background: #bfd654;
     box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0), inset 0 1px 2px rgba(0, 0, 0, 0), inset 0 0 0 60px rgba(255, 255, 0, 0);
     transition: box-shadow .2s, border-color .2s;
 }
 
-.favorite:hover {
-    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0), inset 0 1px 2px rgba(0, 0, 0, 0), inset 0 0 0 60px rgba(255, 255, 0, .5);
+.buy:hover {
+    /* box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0), inset 0 1px 2px rgba(0, 0, 0, 0), inset 0 0 0 60px rgba(255, 255, 0, .5); */
+    background: white;
+    border: 2px solid grey;
 }
-.favorite:active{
+
+.buy:active {
     padding: calc(.25em + 1px) .5em calc(.25em - 1px);
     border-color: #20C498;
     box-shadow: inset 0 -1px 1px rgba(0, 0, 0, .1), inset 0 1px 2px rgba(0, 0, 0, .3), inset 0 0 0 60px rgba(255, 255, 0, .45);
@@ -81,39 +145,25 @@
     box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0), inset 0 1px 2px rgba(0, 0, 0, 0), inset 0 0 0 60px rgba(255, 255, 0, .2);
 }
 
-.cart:active{
+.cart:active {
     padding: calc(.25em + 1px) .5em calc(.25em - 1px);
     border-color: #DA70D6;
     box-shadow: inset 0 -1px 1px rgba(0, 0, 0, .1), inset 0 1px 2px rgba(0, 0, 0, .3), inset 0 0 0 60px rgba(255, 255, 0, .45);
 }
 
-.buy {
+.favorite {
     border: 1px solid rgb(250, 172, 17);
     background: rgb(255, 212, 3) linear-gradient(rgb(255, 212, 3), rgb(248, 157, 23));
     box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0), inset 0 1px 2px rgba(0, 0, 0, 0), inset 0 0 0 60px rgba(255, 255, 0, 0);
     transition: box-shadow .2s, border-color .2s;
 }
 
-.buy:hover {
+.favorite:hover {
     box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0), inset 0 1px 2px rgba(0, 0, 0, 0), inset 0 0 0 60px rgba(255, 255, 0, .5);
 }
-.buy:active{
+
+.favorite:active {
     padding: calc(.25em + 1px) .5em calc(.25em - 1px);
     border-color: rgba(177, 159, 0, 1);
     box-shadow: inset 0 -1px 1px rgba(0, 0, 0, .1), inset 0 1px 2px rgba(0, 0, 0, .3), inset 0 0 0 60px rgba(255, 255, 0, .45);
-}
-
-.description {
-    line-height: 1.4;
-    max-width: 650px;
-    max-height: 500px;
-    overflow: auto;
-}
-
-.price {
-    color: #FA8072;
-    font-size: 25px;
-    font-style: italic;
-    position: absolute;
-    right: 100px;
 }

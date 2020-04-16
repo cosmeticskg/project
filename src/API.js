@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const http = Axios.create({
-  baseURL: "https://cors-anywhere.herokuapp.com/http://46.101.192.225:8000",
+  baseURL: "https://cors-anywhere.herokuapp.com/http://46.101.192.225:8000/ru",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json"

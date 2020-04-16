@@ -11,22 +11,23 @@ import {
   showModalOrder,
   showModalThanks,
   hideModalOrder,
-  registrOrder
+  registrOrder,
 } from "../cart-page/actions";
 import { addProductToCartThunk } from "../cart-page/actions";
 import { addProductToFavoritesThunk } from "../favorite-page/actions";
 import API from "../../API";
 
-const ProductInfoPage = props => {
+const ProductInfoPage = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     let productId = props.match.params.productId;
     dispatch(getProductRequestThunk(productId));
+    
   }, []);
 
-  const handleShow = id => {
-    API.getProduct(id).then(res => {
-      let productToBuy =res.data;
+  const handleShow = (id) => {
+    API.getProduct(id).then((res) => {
+      let productToBuy = res.data;
       localStorage.setItem("productToBuy", JSON.stringify(productToBuy));
       props.showModalOrder();
     });
@@ -37,57 +38,70 @@ const ProductInfoPage = props => {
   const handleHide = () => {
     props.hideModalOrder();
   };
-  const submit = values => {
+  const submit = (values) => {
     let products = [JSON.parse(localStorage.getItem("productToBuy"))];
-    let pushProducts = products.map(item => {
+    let pushProducts = products.map((item) => {
       return (item = {
         product: item.id,
-        count: 1
+        count: 1,
       });
     });
     let pushData = {
       contacts: [values],
-      products: pushProducts
+      products: pushProducts,
     };
     props.registrOrder(pushData);
   };
 
-  const { image, name, description, price, id } = props.product;
-
+  const { image, name, description, price, id, brand, total_purchase } = props.product;
+  const {brands} = props;
+  const currentBrand = brands.find(item=> item.id === brand) || '';
   return (
     <div>
       <HeaderMain />
       <Navbar />
       <div>
-        <div className={styles.title_wrapper}>
-        </div>
+        <div className={styles.title_wrapper}></div>
 
         <div className={styles.content_wrapper}>
           <div className={styles.content}>
             <div>
               <img src={image} alt="product" className={styles.image} />
+              <div className={styles.image_slider}></div>
             </div>
             <div className={styles.description_wrapper}>
               <p className={styles.name}>{name}</p>
               <div className={styles.buttons}>
-                <button
-                  onClick={() => props.addProductToFavorites(props.product)}
-                  className={styles.favorite}
-                >
-                  Добавить в избранное
-                </button>
-                <button
-                  onClick={() => props.addProductToCart(props.product)}
-                  className={styles.cart}
-                >
-                  Добавить в корзину
-                </button>
-                <button onClick={() => handleShow(id)} className={styles.buy}>
-                  Купить
-                </button>
+                <div className={styles.left_buttons}>
+                  <div className={styles.top_buttons}>
+                    <button
+                      onClick={() => props.addProductToFavorites(props.product)}
+                      className={styles.favorite}
+                    >
+                      Добавить в избранное
+                    </button>
+                    <button
+                      onClick={() => props.addProductToCart(props.product)}
+                      className={styles.cart}
+                    >
+                      Добавить в корзину
+                    </button>
+                  </div>
+                  <div className={styles.bottom_buttons}>
+                    <p>Бренд: {currentBrand.name}</p>
+                    <p>Продано за все время: {total_purchase} шт. </p>
+                  </div>
+                </div>
+
+                <div className={styles.price_wrapper}>
+                  <p className={styles.price}>{price} сом</p>
+
+                  <button onClick={() => handleShow(id)} className={styles.buy}>
+                    Купить
+                  </button>
+                </div>
               </div>
               <p className={styles.description}>{description}</p>
-              <p className={styles.price}>{price} сом</p>
             </div>
           </div>
         </div>
@@ -104,18 +118,19 @@ const ProductInfoPage = props => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   product: state.product.product,
   allProducts: state.home.products,
   showModalOrderValue: state.cart.showModalOrderValue,
-  showModalThanksValue: state.cart.showModalThanksValue
+  showModalThanksValue: state.cart.showModalThanksValue,
+  brands: state.home.brands
 });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    addProductToFavorites: product =>
+    addProductToFavorites: (product) =>
       dispatch(addProductToFavoritesThunk(product)),
-    addProductToCart: product => dispatch(addProductToCartThunk(product)),
+    addProductToCart: (product) => dispatch(addProductToCartThunk(product)),
     showModalOrder: () => {
       dispatch(showModalOrder());
     },
@@ -125,9 +140,9 @@ const mapDispatchToProps = dispatch => {
     hideModalOrder: () => {
       dispatch(hideModalOrder());
     },
-    registrOrder: data => {
+    registrOrder: (data) => {
       dispatch(registrOrder(data));
-    }
+    },
   };
 };
 

@@ -8,7 +8,7 @@ function Footer(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(getSocialNetworkDataThunk());
+    dispatch(getSocialNetworkDataThunk());
   }, []);
 
   const { socialData } = props;

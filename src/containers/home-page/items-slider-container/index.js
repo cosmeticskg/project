@@ -24,9 +24,9 @@ import PhotoSlider from "../photo-slider/photo-slider";
 
 class HomeContainer extends Component {
   componentDidMount() {
-    // this.props.fetchProducts();
-    // this.props.fetchHits();
-    // this.props.fetchSales();
+    this.props.fetchProducts();
+    this.props.fetchHits();
+    this.props.fetchSales();
     this.props.fetchSliderImages();
   }
 
