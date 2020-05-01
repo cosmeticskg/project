@@ -11,7 +11,37 @@ const ItemSlider = props => {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
-    rows: 1
+    rows: 1,
+    responsive: [
+      {
+        breakpoint: 1130,
+        settings: {
+          arrows: true,
+          slidesToShow: 4 
+        }
+      },
+      {
+        breakpoint: 960,
+        settings: {
+          arrows: true,
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: true,
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 530,
+        settings: {
+          arrows: true,
+          slidesToShow: 1
+        }
+      }
+    ]
     // autoplay: true,
     // autoplaySpeed: 3000
   };

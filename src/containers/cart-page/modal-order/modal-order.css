@@ -16,14 +16,14 @@
     max-height: 68%;
     background-color: white;
     border-radius: 4px;
-    width: 50%;
+    width: 80%;
     padding: 30px 5px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, .24);
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 420px;
+    max-width: 420px;
 }
 
 .modal-content form ul {
@@ -64,9 +64,15 @@
     padding: 0 0 25px 0;
 }
 
+.modal_order_submit_wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .modal-content form button {
     border-radius: 20px;
-    margin: 20px 150px;
+    margin: 20px auto;
     height: 40px;
     width: 120px;
     border: none;
@@ -106,4 +112,18 @@
 
 .modal-content form ul li span {
     color: red;
+}
+@media only screen and (max-width:400px){
+    .modal-content{
+        max-height  : 80%;
+    }
+    .modal-content form ul{
+        padding: 0 10px;
+    }
+}
+@media only screen and (max-width:640px) and (orientation : landscape){
+    .modal-content{
+        max-height  : 80%;
+        overflow: scroll;
+    }
 }

@@ -31,7 +31,7 @@ const StockList = props => {
           stocks.map(item => {
             if (item.id === currentId) {
               return (
-                <Fragment>
+                <Fragment key={item.id}>
                   <h2>Сумма по акции</h2>
                   <div className="stock__old_price">
                     <p>Старая цена</p>

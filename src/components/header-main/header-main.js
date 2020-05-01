@@ -13,18 +13,22 @@ function HeaderMain(props) {
 
   return (
     <header>
+      <div className="header_description">
+        <p>(702) 01 01 01 , (555) 22 33 44</p>
+        <p>Ежедневно с 7:30 до 18:00</p>
+        <p>Байтик-Баатыра 70а</p>
+      </div>
+
       <div className="header_name">
-        <Link to="/">
-          <button className='header_logo'>COSMETICA.KG</button>
-        </Link>
-        <div className='header_logo_desc'>be brandy. be trandy.</div>
-
-        <div className="header_description">
-          <p>(702) 01 01 01 , (555) 22 33 44</p>
-          <p>Ежедневно с 7:30 до 18:00</p>
-          <p>Байтик-Баатыра 70а</p>
+        <div>
+          <Link to="/">
+            <button className="header_logo">COSMETICA.KG</button>
+          </Link>
+          <div className="header_logo_desc">be brandy. be trandy.</div>
         </div>
+      </div>
 
+      <div className="header_button_wrapper">
         <div className="header_buttons">
           <Link to="/favorite">
             <button>
@@ -57,10 +61,10 @@ function HeaderMain(props) {
     </header>
   );
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     favCount: state.favorite.favoritesCount,
-    cartCount: state.cart.cartCount
+    cartCount: state.cart.cartCount,
   };
 };
 

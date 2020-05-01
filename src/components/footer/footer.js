@@ -37,7 +37,7 @@ function Footer(props) {
           </p>
         </div>
 
-        <div>
+        <div className='footer__social__wrapper'>
           <p className="footer__social footer_title">Соцcети</p>
           <div>
             {socialData && socialData.length ? (
@@ -59,7 +59,7 @@ function Footer(props) {
         </div>
       </div>
       <div className="footer_creater_name">
-        <span>
+        <span className="footer_creater_name_content">
           &copy; 2020 Copyright:{" "}
           <span className="footer_copyright">
             <a className="footer__copyright__link" href="https://neobis.kg/">

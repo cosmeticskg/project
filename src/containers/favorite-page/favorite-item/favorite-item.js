@@ -5,12 +5,12 @@ import activeTrash from "../../../img/trash-active.svg";
 import cartInactive from "../../../img/cart-black.svg";
 import cartActive from "../../../img/shopping-cart.svg";
 import HoverImage from "react-hover-image";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const FavoriteItem = props => {
+const FavoriteItem = (props) => {
   const { name, onDelete, image, description, price, id, isCartItem } = props;
 
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     onDelete(id);
   };
 
@@ -37,6 +37,7 @@ const FavoriteItem = props => {
       </Link>
 
       <div className="cart-item-buttons">
+        
         <div>
           <button
             onClick={() => props.addProductToCart(props.products)}

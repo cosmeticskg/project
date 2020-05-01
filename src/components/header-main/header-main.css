@@ -1,9 +1,12 @@
 header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   background: white;
   height: 110px;
-  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  padding: 0 10px ;
 }
 
 header button {
@@ -16,10 +19,12 @@ header button {
   font-size: 42px;
 
 }
-.header_logo{
+
+.header_logo {
   font-family: 'Dancing Script', cursive;
 }
-.header_logo_desc{
+
+.header_logo_desc {
   font-family: 'Gotu', sans-serif;
 }
 
@@ -28,7 +33,8 @@ header button {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  height: 110px;
+  /* width: 100%; */
 }
 
 .header_name button {
@@ -42,9 +48,10 @@ header button {
 }
 
 .header_description {
-  position: absolute;
+  /* position: absolute;
   top: 5px;
-  left: 20px;
+  left: 20px; */
+  height: 110px;
   line-height: 0.5;
   letter-spacing: 0;
   font-size: 17px;
@@ -64,15 +71,20 @@ header button {
   text-transform: none;
 }
 
+.header_button_wrapper {
+  display: flex;
+  height: 110px;
+}
+
 .header_buttons {
-  position: absolute;
+  /* position: absolute;   */
   width: 252px;
-  top: 15px;
-  right: 0px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 8px;
-  z-index: 10;
+  /* z-index: 10;
+  top: 15px;
+  right: 0px; */
 }
 
 .header_buttons a {
@@ -103,7 +115,7 @@ header button {
   height: 20px;
 }
 
-.header_value{
+.header_value {
   font-family: 'Baloo 2', cursive;
   position: absolute;
   display: inline-block;
@@ -111,12 +123,34 @@ header button {
   background: #00FA9A;
   color: white;
   text-align: center;
-  border-radius: 50%;  
+  border-radius: 50%;
   width: 20px;
   height: 20px;
   top: -8px;
   right: -15px;
 }
-.header_cart{
+
+.header_cart {
   background: #DA70D6;
+}
+
+@media only screen and (max-width : 850px) {
+  header{
+    height: 220px;
+    justify-content: space-evenly;
+  }
+}
+
+@media only screen and (min-width:768px) and (max-width:850px) {
+  header{
+    height: 220px;
+    justify-content: space-evenly;
+  }
+}
+
+@media only screen and (max-width : 575px) {
+  header{
+    justify-content: center;
+    height: 330px;
+  }
 }

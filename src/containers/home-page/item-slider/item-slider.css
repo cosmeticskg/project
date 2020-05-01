@@ -1,6 +1,7 @@
 .item__slider .slick-slider {
-    width: 99%;
+    width: 98%;
 }
+
 .item__slider {
     background: #fafafa;
 }
@@ -32,15 +33,28 @@
     background-image: url('../../../img/angle-pointing-to-left.svg');
     background-size: 50px 50px;
     display: inline-block;
-    width: 50px; 
+    width: 50px;
     height: 50px;
-    content:"";
+    content: "";
 }
+
 .slick-next:before {
     background-image: url('../../../img/angle-arrow-pointing-to-right.svg');
     background-size: 50px 50px;
     display: inline-block;
-    width: 50px; 
+    width: 50px;
     height: 50px;
-    content:"";
+    content: "";
 }
+
+/* @media screen and (max-width: 400px) {
+    .slick-slider .slick-prev {
+        left: 5% !important;
+        z-index: 20;
+    }
+    
+    .slick-slider .slick-next {
+        right: 10% !important;
+        z-index: 20;
+    }
+} */

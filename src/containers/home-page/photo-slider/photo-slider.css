@@ -26,10 +26,26 @@
 }
 
 .slick-slider .slick-next {
-    right: 5% !important;
+    right: 8% !important;
     z-index: 20;
 }
 
-.slick-prev:before, .slick-next:before {
+.slick-prev:before,
+.slick-next:before {
     color: whitesmoke !important;
+}
+
+@media screen and (max-width: 400px) {
+    .photo_slider_image_container {
+        height: 130px;
+    }
+    .slick-slider .slick-prev {
+        left: 5% !important;
+        z-index: 20;
+    }
+    
+    .slick-slider .slick-next {
+        right: 10% !important;
+        z-index: 20;
+    }
 }

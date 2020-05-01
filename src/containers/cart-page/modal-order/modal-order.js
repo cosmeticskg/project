@@ -12,7 +12,7 @@ const renderField = ({ input, type, meta: { touched, error } }) => (
   </div>
 );
 
-const ModalOrder = props => {
+const ModalOrder = (props) => {
   const { show, handleClose, handleSubmit, submitting } = props;
 
   const showClassName = show
@@ -28,11 +28,15 @@ const ModalOrder = props => {
         <form onSubmit={handleSubmit}>
           <ul>
             <li>
-              <label htmlFor="name">Имя:<span>*</span> </label>
+              <label htmlFor="name">
+                Имя:<span>*</span>{" "}
+              </label>
               <Field name="name" type="text" component="input" required />
             </li>
             <li>
-              <label htmlFor="phone_number">Телефон:<span>*</span>  </label>
+              <label htmlFor="phone_number">
+                Телефон:<span>*</span>{" "}
+              </label>
               <Field
                 name="phone_number"
                 type="tel"
@@ -41,7 +45,9 @@ const ModalOrder = props => {
               />
             </li>
             <li>
-              <label htmlFor="email">E-mail:<span>*</span> </label>
+              <label htmlFor="email">
+                E-mail:<span>*</span>{" "}
+              </label>
               <Field
                 name="email"
                 type="email"
@@ -50,7 +56,9 @@ const ModalOrder = props => {
               />
             </li>
             <li>
-              <label htmlFor="address">Адрес:<span>*</span> </label>
+              <label htmlFor="address">
+                Адрес:<span>*</span>{" "}
+              </label>
               <Field name="address" type="text" component="input" required />
             </li>
             <li>
@@ -58,9 +66,11 @@ const ModalOrder = props => {
               <Field name="comment" component="textarea" />
             </li>
           </ul>
-          <button disabled={submitting} type="submit">
-            Отправить
-          </button>
+          <div className="modal_order_submit_wrapper">
+            <button disabled={submitting} type="submit">
+              Отправить
+            </button>
+          </div>
         </form>
       </div>
     </div>
@@ -69,5 +79,5 @@ const ModalOrder = props => {
 
 export default reduxForm({
   form: "contacts",
-  validate
+  validate,
 })(ModalOrder);

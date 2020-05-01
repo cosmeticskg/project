@@ -48,9 +48,9 @@ export default class PhotoSlider extends Component {
         <Slider {...settings}>
           {sliderImages.map((photo,i) => {
             return (
-              <Link to={`/stocks/${photo.id}`}>
-              <div key={i}>
-                <img width="100%" height="350px" src={photo.image} alt="slider" />
+              <Link key={i} to={`/stocks/${photo.id}`}>
+              <div className="photo_slider_image_container" key={i}>
+                <img width="100%" height="100%" src={photo.image} alt="slider" />
               </div>
               </Link>
             );
