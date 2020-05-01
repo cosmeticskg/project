@@ -8,6 +8,7 @@ import FUNCS from "../../helpfulFuncs/helpful-functions";
 let initialFavorites = JSON.parse(localStorage.getItem("favorites"));
 if (initialFavorites === null) {
   localStorage.setItem("favorites", JSON.stringify([]));
+  initialFavorites = 0;
 }
 const initialState = {
   favoriteProducts: initialFavorites || [],

@@ -26,6 +26,7 @@ const StockList = props => {
       </div>
       <p className="stock_plus">+</p>
       <p className="stock_res">=</p>
+      <p className="stock_res_reverse">||</p>
       <div className="stock-total">
         {stocks && stocks.length ? (
           stocks.map(item => {

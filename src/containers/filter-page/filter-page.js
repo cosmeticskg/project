@@ -94,6 +94,7 @@ const FilterPage = (props) => {
       <div className="filter_wrapper">
         <div className="filter__buttons__wrapper">
           <div className="filter_buttons">
+            
             <select
               onChange={(e) => {
                 setCategory(e.target.value);

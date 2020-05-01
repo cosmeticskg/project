@@ -15,6 +15,7 @@ import FUNCS from '../../helpfulFuncs/helpful-functions';
 let initialItems = JSON.parse(localStorage.getItem("products"));
 if (initialItems === null) {
   localStorage.setItem("products", JSON.stringify([]));
+  initialItems = 0;
 }
 
 const initialState = {

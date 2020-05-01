@@ -22,7 +22,6 @@ const ProductInfoPage = (props) => {
   useEffect(() => {
     let productId = props.match.params.productId;
     dispatch(getProductRequestThunk(productId));
-    
   }, []);
 
   const handleShow = (id) => {
@@ -53,21 +52,26 @@ const ProductInfoPage = (props) => {
     props.registrOrder(pushData);
   };
 
-  const { image, name, description, price, id, brand, total_purchase } = props.product;
-  const {brands} = props;
-  const currentBrand = brands.find(item=> item.id === brand) || '';
+  const {
+    image,
+    name,
+    description,
+    price,
+    id,
+    brand,
+    total_purchase,
+  } = props.product;
+  const { brands } = props;
+  const currentBrand = brands.find((item) => item.id === brand) || "";
   return (
     <div>
       <HeaderMain />
       <Navbar />
       <div>
-        <div className={styles.title_wrapper}></div>
-
         <div className={styles.content_wrapper}>
           <div className={styles.content}>
-            <div>
+            <div className={styles.image_wrapper}>
               <img src={image} alt="product" className={styles.image} />
-              <div className={styles.image_slider}></div>
             </div>
             <div className={styles.description_wrapper}>
               <p className={styles.name}>{name}</p>
@@ -123,7 +127,7 @@ const mapStateToProps = (state) => ({
   allProducts: state.home.products,
   showModalOrderValue: state.cart.showModalOrderValue,
   showModalThanksValue: state.cart.showModalThanksValue,
-  brands: state.home.brands
+  brands: state.home.brands,
 });
 
 const mapDispatchToProps = (dispatch) => {

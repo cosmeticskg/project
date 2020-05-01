@@ -154,3 +154,22 @@ header button {
     height: 330px;
   }
 }
+
+@media only screen and (max-width: 310px){
+  .header_description{
+    line-height: 1;
+    font-size: 14px;
+  }
+  .header_name{
+    max-width: 239px;
+  }
+  .header_logo{
+    font-size: 33px;
+  }
+  .header_logo_desc{
+    font-size: 13px;
+  }
+  .header_buttons{
+    max-width: 239px;
+  }
+}

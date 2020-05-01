@@ -1,21 +1,23 @@
-.title_wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-}
-
 .content_wrapper {
+    box-sizing: border-box;
     display: flex;
     width: 100%;
     justify-content: space-around;
     min-height: 660px;
+    flex-direction: row;
+    margin-top: 50px;
 }
 
 .content {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+    flex-wrap: wrap;
+}
+
+.image_wrapper {
+    display: flex;
+    justify-content: center;
 }
 
 .image {
@@ -23,11 +25,10 @@
     height: 350px;
 }
 
-.image_slider {}
-
-
 .description_wrapper {
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .name {
@@ -40,13 +41,13 @@
 .buttons {
     display: flex;
     justify-content: space-around;
-    width: 600px;
-    height: 160px;
+    min-height: 160px;
+    flex-wrap: wrap;
 }
 
 .left_buttons {
     display: flex;
-    width: 100%;
+    width: 380px;
     flex-direction: column;
 }
 
@@ -54,6 +55,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .bottom_buttons {
@@ -64,7 +66,8 @@
     box-sizing: border-box;
     padding: 20px 0 0 0;
 }
-.bottom_buttons p{
+
+.bottom_buttons p {
     font-family: "Roboto Mono";
     margin: 0;
     padding: 0 0 10px 0;
@@ -113,6 +116,39 @@
     overflow: auto;
     font-family: 'Open Sans';
 }
+
+@media screen and (max-width:700px) {
+    .content {
+        display: block;
+    }
+}
+
+
+@media screen and (max-width: 380px) {
+    .content {
+        display: block;
+    }
+
+    .favorite,
+    .cart {
+        margin: 5px auto;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .image {
+        width: 250px;
+        height: 250px;
+    }
+}
+@media screen and (max-width: 250px) {
+    .image {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+
 
 
 .buy {

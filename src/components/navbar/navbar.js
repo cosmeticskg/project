@@ -20,9 +20,9 @@ import { getBrandsSuccess } from "../../containers/home-page/actions";
 const Navbar = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(getBrandsRequestThunk());
-    // dispatch(getCategoriesRequestThunk());
-    // dispatch(getSubcategoriesRequestThunk());
+    dispatch(getBrandsRequestThunk());
+    dispatch(getCategoriesRequestThunk());
+    dispatch(getSubcategoriesRequestThunk());
   }, []);
 
   const {
