@@ -22,7 +22,6 @@ export const getProductRequestThunk = (productId) => dispatch => {
   return API.getProduct(productId)
     .then(res => {
       let product = res.data;
-      console.log("product", product)
       let newPrice = +product.price;
         newPrice.toFixed();
         product =  {
@@ -33,7 +32,6 @@ export const getProductRequestThunk = (productId) => dispatch => {
           isFavoriteItem: false,
           isCartItem: false
         };
-        console.log('final product: ', product)
       dispatch(getProductSuccess(product));
     })
     .catch(err => {

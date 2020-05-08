@@ -55,7 +55,7 @@ const Navbar = (props) => {
           </a>
           <ul>
             <li key="allBrands">
-              <Link to="/filters">
+              {/* <Link to="/filters"> */}
                 <span>Бренды</span>
                 <ul className="navbar_brands_wrapper">
                   {brands && brands.length ? (
@@ -81,7 +81,7 @@ const Navbar = (props) => {
                     <span>loading...</span>
                   )}
                 </ul>
-              </Link>
+              {/* </Link> */}
             </li>
             {categories && categories.length ? (
               categories.map((item) => {
@@ -104,7 +104,6 @@ const Navbar = (props) => {
                             if (subItem.category === item.id) {
                               return (
                                 <li key={subItem.id}>
-                                  <Link to="/filters">
                                     <span
                                       value={subItem.id}
                                       onClick={() => {
@@ -115,7 +114,6 @@ const Navbar = (props) => {
                                     >
                                       {subItem.name}
                                     </span>
-                                  </Link>
                                 </li>
                               );
                             }

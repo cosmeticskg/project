@@ -42,6 +42,7 @@ const FilterList = props => {
           {pages.map(page => {
             return (
               <div
+              key={page}
                 onClick={() => {
                   props.setCurrentPage(page - 1);
                 }}

@@ -103,10 +103,7 @@ export const getProductsRequestThunk = (
     currentPage * pageSize
   )
     .then(res => {
-    console.log("res", res.data.results)
-      
       let trueData = res.data.results.map(item => {
-      console.log("item", item)
         let newPrice = +item.price;
         newPrice.toFixed();
         return {

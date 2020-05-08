@@ -14,7 +14,6 @@ const Stocks = () => {
       setStocks(data.data.results);
     });
   }, []);
-  console.log(stocks);
 
   return (
     <div className={style.wrapper}>
