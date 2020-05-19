@@ -24,12 +24,11 @@ const ProductInfoPage = (props) => {
     dispatch(getProductRequestThunk(productId));
   }, []);
 
-  const handleShow = (id) => {
-    API.getProduct(id).then((res) => {
-      let productToBuy = res.data;
-      localStorage.setItem("productToBuy", JSON.stringify(productToBuy));
-      props.showModalOrder();
-    });
+  const handleShow = async (id) => {
+    let res = await API.getProduct(id);
+    let productToBuy = res.data;
+    localStorage.setItem("productToBuy", JSON.stringify(productToBuy));
+    props.showModalOrder();
   };
   const showThanks = () => {
     props.showModalThanks();

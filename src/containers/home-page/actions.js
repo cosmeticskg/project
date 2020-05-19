@@ -19,68 +19,68 @@ export const CHANGE_CART_ITEM_DATA_IN_HOME_PAGE =
 
 export const getProductsRequest = () => ({ type: GET_PRODUCT_REQUEST });
 
-export const getProductsSuccess = data => ({
+export const getProductsSuccess = (data) => ({
   type: GET_PRODUCT_SUCCESS,
-  payload: data
+  payload: data,
 });
 
-export const getSalesSuccess = data => ({
+export const getSalesSuccess = (data) => ({
   type: GET_SALES_SUCCESS,
-  payload: data
+  payload: data,
 });
 
-export const getHitsSuccess = data => ({
+export const getHitsSuccess = (data) => ({
   type: GET_HITS_SUCCESS,
-  payload: data
+  payload: data,
 });
 
-export const getCategoriesSuccess = data => ({
+export const getCategoriesSuccess = (data) => ({
   type: GET_CATEGORIES_SUCCESS,
-  payload: data
+  payload: data,
 });
 
-export const getBrandsSuccess = data => ({
+export const getBrandsSuccess = (data) => ({
   type: GET_BRANDS_SUCCESS,
-  payload: data
+  payload: data,
 });
 
-export const getSliderImagesSuccess = data => ({
+export const getSliderImagesSuccess = (data) => ({
   type: GET_SLIDER_IMAGES_SUCCESS,
-  payload: data
+  payload: data,
 });
 
-export const getSubcategoriesSuccess = data => ({
+export const getSubcategoriesSuccess = (data) => ({
   type: GET_SUBCATEGORIES_SUCCESS,
-  payload: data
+  payload: data,
 });
 
-export const changeItemDataInHomePage = data => ({
+export const changeItemDataInHomePage = (data) => ({
   type: CHANGE_ITEM_DATA_IN_HOME_PAGE,
-  payload: data
+  payload: data,
 });
 
-export const changeCARTItemDataInHomePage = data => ({
+export const changeCARTItemDataInHomePage = (data) => ({
   type: CHANGE_CART_ITEM_DATA_IN_HOME_PAGE,
-  payload: data
+  payload: data,
 });
 
 export const getProductsError = () => ({ type: GET_PRODUCT_ERROR });
 
-export const getSliderImagesRequestThunk = () => dispatch => {
+export const getSliderImagesRequestThunk = () => (dispatch) => {
   dispatch(getProductsRequest());
-  return API.getSliderImages().then(res => {
+  return API.getSliderImages().then((res) => {
     let sliderImagesArr = res.data.results;
     dispatch(getSliderImagesSuccess(sliderImagesArr));
   });
 };
 
-export const getProductsRequestThunk = () => dispatch => {
+export const getProductsRequestThunk = () => (dispatch) => {
   dispatch(getProductsRequest());
   return API.getProducts()
-    .then(res => {
+    .then((res) => {
       let favoriteData = JSON.parse(localStorage.getItem("favorites"));
 
-      let trueData = res.data.results.map(item => {
+      let trueData = res.data.results.map((item) => {
         let newPrice = +item.price;
         newPrice.toFixed();
         return {
@@ -89,7 +89,7 @@ export const getProductsRequestThunk = () => dispatch => {
           quantity: 1,
           price: newPrice,
           isFavoriteItem: false,
-          isCartItem: false
+          isCartItem: false,
         };
       });
       let favoritesData = FUNCS.checkDataForFavorites(trueData);
@@ -97,19 +97,19 @@ export const getProductsRequestThunk = () => dispatch => {
       let finalProducts = cartData;
       dispatch(getProductsSuccess(finalProducts));
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err, "ERROR FROM GET Products");
       dispatch(getProductsError());
     });
 };
 
-export const getSalesRequestThunk = () => dispatch => {
+export const getSalesRequestThunk = () => (dispatch) => {
   dispatch(getProductsRequest());
   return API.getSales()
-    .then(res => {
+    .then((res) => {
       let sales = [];
       res.data.results.forEach((item, i) => {
-        item.products.forEach(elem => {
+        item.products.forEach((elem) => {
           let newPrice = elem.new_price.toFixed();
           let subArr = {
             ...elem.product,
@@ -119,7 +119,7 @@ export const getSalesRequestThunk = () => dispatch => {
             isSaleProduct: true,
             old_price: elem.old_price,
             isFavoriteItem: false,
-            isCartItem: false
+            isCartItem: false,
           };
           sales.push(subArr);
         });
@@ -129,17 +129,17 @@ export const getSalesRequestThunk = () => dispatch => {
       let finalSales = cartData;
       dispatch(getSalesSuccess(finalSales));
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err, "ERROR FROM GET Products");
       dispatch(getProductsError());
     });
 };
 
-export const getHitsRequestThunk = () => dispatch => {
+export const getHitsRequestThunk = () => (dispatch) => {
   dispatch(getProductsRequest());
   return API.getHits()
-    .then(res => {
-      let trueData = res.data.results.map(item => {
+    .then((res) => {
+      let trueData = res.data.results.map((item) => {
         let newPrice = +item.price;
         newPrice.toFixed();
         return {
@@ -148,7 +148,7 @@ export const getHitsRequestThunk = () => dispatch => {
           quantity: 1,
           price: newPrice,
           isFavoriteItem: false,
-          isCartItem: false
+          isCartItem: false,
         };
       });
       let favoriteHits = FUNCS.checkDataForFavorites(trueData);
@@ -156,43 +156,55 @@ export const getHitsRequestThunk = () => dispatch => {
       let finalHits = cartData;
       dispatch(getHitsSuccess(finalHits));
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err, "ERROR FROM GET Products");
       dispatch(getProductsError());
     });
 };
 
-export const getCategoriesRequestThunk = () => dispatch => {
+// const getDataToNavbar = (method, action) => (dispatch) => {
+//   return method
+//     .then((res) => {
+//       let data = res.data;
+//       dispatch(action(data));
+//     })
+//     .catch((err) => {
+//       console.log(err, `ERROR FROM GET ${method}`);
+//       dispatch(getProductsError());
+//     });
+// };
+
+export const getCategoriesRequestThunk = () => (dispatch) => {
   return API.getCategories()
-    .then(res => {
+    .then((res) => {
       let categories = res.data;
       dispatch(getCategoriesSuccess(categories));
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err, "ERROR FROM GET CATEGORIES");
       dispatch(getProductsError());
     });
 };
 
-export const getSubcategoriesRequestThunk = () => dispatch => {
+export const getSubcategoriesRequestThunk = () => (dispatch) => {
   return API.getSubcategories()
-    .then(res => {
+    .then((res) => {
       let subCategories = res.data;
       dispatch(getSubcategoriesSuccess(subCategories));
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err, "ERROR FROM GET SUBCATEGORIES");
       dispatch(getProductsError());
     });
 };
 
-export const getBrandsRequestThunk = () => dispatch => {
+export const getBrandsRequestThunk = () => (dispatch) => {
   return API.getBrands()
-    .then(res => {
+    .then((res) => {
       let brands = res.data;
       dispatch(getBrandsSuccess(brands));
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err, "ERROR FROM GET BRANDS");
       dispatch(getProductsError());
     });

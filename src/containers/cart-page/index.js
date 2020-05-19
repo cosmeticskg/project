@@ -21,6 +21,7 @@ import ModalThanks from "./modal-thanks";
 import ModalAlert from "./modal-thanks/modal-alert";
 import { addProductToFavoritesThunk } from "../favorite-page/actions";
 import FUNCS from "../../helpfulFuncs/helpful-functions";
+import { getCartPurchasedProducts, getCartTotal } from "../../helpfulFuncs/selectors";
 
 class Cart extends Component {
   componentWillMount() {
@@ -119,8 +120,8 @@ class Cart extends Component {
 
 const mapStateToProps = state => {
   return {
-    purchasedProducts: state.cart,
-    total: state.cart.total,
+    purchasedProducts: getCartPurchasedProducts(state),
+    total: getCartTotal(state),
     showModalOrderValue: state.cart.showModalOrderValue,
     showModalThanksValue: state.cart.showModalThanksValue,
     showAlertOnEmptyCartValue: state.cart.showAlertOnEmptyCartValue

@@ -193,6 +193,7 @@ const mapStateToProps = (state) => ({
   currentBrand: state.filter.currentBrand,
   currentCategory: state.filter.currentCategory,
   currentSubcategory: state.filter.currentSubcategory,
+  portionSize: state.filter.portionSize
 });
 
 const mapDispatchToProps = (dispatch) => {

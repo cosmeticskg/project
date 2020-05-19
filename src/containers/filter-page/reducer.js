@@ -25,11 +25,12 @@ const initialState = {
   subcategories: [],
   loading: true,
   error: false,
-  pageSize: 4,
+  pageSize: 2,
   currentPage: 0,
   currentBrand: null,
   currentCategory: null,
-  currentSubcategory: null
+  currentSubcategory: null,
+  portionSize: 3
 };
 
 const filterReducer = (state = initialState, action) => {
